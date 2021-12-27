@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:ans/views/account.dart';
 import 'package:ans/views/attendance.dart';
+import 'package:ans/views/events.dart';
 import 'package:ans/views/myroutine.dart';
 import 'package:flutter/material.dart';
 import 'package:ans/views/mysubject.dart';
@@ -24,7 +26,6 @@ class _HomeGridState extends State<HomeGrid> {
           child: Container(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
-              // ignore: prefer_const_literals_to_create_immutables
               children: [
                 Icon(
                   Icons.subject,
@@ -106,53 +107,69 @@ class _HomeGridState extends State<HomeGrid> {
           },
         ),
 
-        // My subject container
-        Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            // ignore: prefer_const_literals_to_create_immutables
-            children: [
-              Icon(
-                Icons.book,
-                size: 50,
-                color: Colors.white,
-              ),
-              Text(
-                "Events",
-                style: TextStyle(fontSize: 22, color: Colors.white),
-              )
-            ],
+        // Events container
+        InkWell(
+          child: Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              // ignore: prefer_const_literals_to_create_immutables
+              children: [
+                Icon(
+                  Icons.book,
+                  size: 50,
+                  color: Colors.white,
+                ),
+                Text(
+                  "Events",
+                  style: TextStyle(fontSize: 22, color: Colors.white),
+                )
+              ],
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              color: Colors.teal,
+            ),
           ),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            color: Colors.teal,
-          ),
+
+          // Ontap function is here
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => UserEventPage()));
+          },
         ),
 
-        // Holidays container
-        Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            // ignore: prefer_const_literals_to_create_immutables
-            children: [
-              Icon(
-                Icons.receipt,
-                size: 50,
-                color: Colors.white,
-              ),
-              Text(
-                "Fees Detail",
-                style: TextStyle(fontSize: 22, color: Colors.white),
-              )
-            ],
+        // Fees Detail Container
+        InkWell(
+          child: Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.receipt,
+                  size: 50,
+                  color: Colors.white,
+                ),
+                Text(
+                  "Fees Detail",
+                  style: TextStyle(fontSize: 22, color: Colors.white),
+                )
+              ],
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              color: Colors.pink,
+            ),
           ),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            color: Colors.pink,
-          ),
+
+          // After pressing the fees detail grid it takes to the
+          // account information page
+          onTap: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => FeePage()));
+          },
         ),
 
-        // Notification container
+        // Notice container
         Container(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
@@ -164,7 +181,7 @@ class _HomeGridState extends State<HomeGrid> {
                 color: Colors.white,
               ),
               Text(
-                "Notification",
+                "Notice",
                 style: TextStyle(fontSize: 22, color: Colors.white),
               )
             ],

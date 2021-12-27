@@ -3,6 +3,7 @@ import 'package:ans/routinewidgets/mon.dart';
 import 'package:ans/routinewidgets/thu.dart';
 import 'package:ans/routinewidgets/tue.dart';
 import 'package:ans/routinewidgets/wed.dart';
+import 'package:ans/views/colors.dart';
 import 'package:flutter/material.dart';
 
 class RoutinePage extends StatefulWidget {
@@ -49,84 +50,6 @@ class _RoutinePageState extends State<RoutinePage> {
                 ThursdayPage(),
                 FridayPage(),
               ],
-            )
-            // body: ListView.builder(
-            //     itemCount: 5,
-            //     itemBuilder: (context, position) {
-            //       return Card(
-            //         color: Colors.grey,
-            //         child: Padding(
-            //           padding: const EdgeInsets.all(20.0),
-
-            //           child: Column(
-            //             crossAxisAlignment: CrossAxisAlignment.start,
-            //             children: [
-            //               // For subject name
-            //               Text(
-            //                 "Sunday ",
-            //                 style:
-            //                     TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            //               ),
-
-            //               SizedBox(
-            //                 height: 15,
-            //               ),
-
-            //               // Subject code
-            //               Text(
-            //                 "Mobile Application ",
-            //                 style:
-            //                     TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            //               ),
-            //               SizedBox(
-            //                 height: 15,
-            //               ),
-            //               // Teacher name
-            //               Text(
-            //                 "Ajay Sharma",
-            //                 style:
-            //                     TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            //               ),
-
-            //               SizedBox(
-            //                 height: 15,
-            //               ),
-            //               // Time
-            //               Text(
-            //                 "08:00 - 10:00 AM",
-            //                 style:
-            //                     TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            //               ),
-
-            //               SizedBox(
-            //                 height: 15,
-            //               ),
-
-            //               // Teacher name
-            //               Text(
-            //                 "Sudhir Kumar",
-            //                 style:
-            //                     TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            //               ),
-
-            //               SizedBox(
-            //                 height: 15,
-            //               ),
-            //               // Time
-            //               Text(
-            //                 "12:00 - 02:00 PM",
-            //                 style:
-            //                     TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
-            //               ),
-            //             ],
-            //           ),
-            //           // child: Text(
-            //           //   position.toString(),
-            //           //   style: TextStyle(fontSize: 22.0),
-            //           // ),
-            //         ),
-            //       );
-            //     }),
-            ));
+            )));
   }
 }
