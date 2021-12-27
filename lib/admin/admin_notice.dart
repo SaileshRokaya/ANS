@@ -2,14 +2,14 @@ import 'package:ans/admin/admin_email.dart';
 import 'package:ans/admin/admin_events.dart';
 import 'package:flutter/material.dart';
 
-class NoticePage extends StatefulWidget {
-  const NoticePage({Key? key}) : super(key: key);
+class AdminNoticePage extends StatefulWidget {
+  const AdminNoticePage({Key? key}) : super(key: key);
 
   @override
-  _NoticePageState createState() => _NoticePageState();
+  _AdminNoticePageState createState() => _AdminNoticePageState();
 }
 
-class _NoticePageState extends State<NoticePage> {
+class _AdminNoticePageState extends State<AdminNoticePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -20,7 +20,6 @@ class _NoticePageState extends State<NoticePage> {
       body: Column(
         children: [
           // container for notice title
-
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: TextFormField(
@@ -28,6 +27,22 @@ class _NoticePageState extends State<NoticePage> {
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: "Enter your title here",
+                //labelText: "Email",
+              ),
+            ),
+          ),
+
+          // Message content is here
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: TextFormField(
+              keyboardType: TextInputType.multiline,
+              minLines: 1, //Normal textInputField will be displayed
+              maxLines: 5, // when user presses enter it will adapt to it
+              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              decoration: const InputDecoration(
+                border: OutlineInputBorder(),
+                hintText: "Message here",
                 //labelText: "Email",
               ),
             ),

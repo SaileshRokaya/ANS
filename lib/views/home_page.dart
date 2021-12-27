@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:ans/views/menu_bar.dart';
 import 'package:ans/views/my_profile.dart';
 import 'package:flutter/material.dart';
@@ -39,8 +41,6 @@ class _HomePageState extends State<HomePage> {
               child: CircleAvatar(
                 backgroundImage: NetworkImage(""),
                 radius: 25.0,
-                // backgroundImage:
-                //     NetworkImage("${snapshot.data.hitsList[index].previewUrl}"),
                 backgroundColor: Colors.cyanAccent,
               ),
               onTap: () {
@@ -63,6 +63,7 @@ class _HomePageState extends State<HomePage> {
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         selectedItemColor: Colors.green,
+        // ignore: prefer_const_literals_to_create_immutables
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
