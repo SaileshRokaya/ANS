@@ -1,5 +1,6 @@
 import 'package:ans/admin/admin_events.dart';
 import 'package:ans/admin/admin_notice.dart';
+import 'package:ans/admin/admin_panel.dart';
 import 'package:ans/views/account.dart';
 import 'package:ans/views/caraousel.dart';
 import 'package:ans/views/home_grid.dart';
@@ -31,7 +32,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: AdminEventPage(),
+      home: AdminHomePage(),
     );
   }
 }
