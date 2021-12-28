@@ -1,6 +1,8 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:ans/admin/admin_events.dart';
+import 'package:ans/admin/admin_fees.dart';
+import 'package:ans/admin/admin_leave.dart';
 import 'package:ans/admin/admin_notice.dart';
 import 'package:ans/views/account.dart';
 import 'package:ans/views/attendance.dart';
@@ -85,19 +87,19 @@ class _AdminGridState extends State<AdminGrid> {
           },
         ),
 
-        // Admit card container
+        // Leave Request  container
         InkWell(
           child: Container(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Icon(
-                  Icons.card_giftcard,
+                  Icons.money,
                   size: 50,
                   color: Colors.white,
                 ),
                 Text(
-                  "Admit Card",
+                  "Leave",
                   style: TextStyle(fontSize: 22, color: Colors.white),
                 ),
               ],
@@ -109,7 +111,35 @@ class _AdminGridState extends State<AdminGrid> {
           ),
           onTap: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => SubjectPage()));
+                MaterialPageRoute(builder: (context) => AdminLeavePage()));
+          },
+        ),
+
+        // Fees Request container
+        InkWell(
+          child: Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.book,
+                  size: 50,
+                  color: Colors.white,
+                ),
+                Text(
+                  "Fees",
+                  style: TextStyle(fontSize: 22, color: Colors.white),
+                ),
+              ],
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              color: Colors.green,
+            ),
+          ),
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => AdminFeePage()));
           },
         ),
       ],

@@ -4,6 +4,7 @@ import 'package:ans/views/account.dart';
 import 'package:ans/views/attendance.dart';
 import 'package:ans/views/events.dart';
 import 'package:ans/views/myroutine.dart';
+import 'package:ans/views/notice.dart';
 import 'package:flutter/material.dart';
 import 'package:ans/views/mysubject.dart';
 
@@ -170,26 +171,34 @@ class _HomeGridState extends State<HomeGrid> {
         ),
 
         // Notice container
-        Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            // ignore: prefer_const_literals_to_create_immutables
-            children: [
-              Icon(
-                Icons.notifications,
-                size: 50,
-                color: Colors.white,
-              ),
-              Text(
-                "Notice",
-                style: TextStyle(fontSize: 22, color: Colors.white),
-              )
-            ],
+        InkWell(
+          child: Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              // ignore: prefer_const_literals_to_create_immutables
+              children: [
+                Icon(
+                  Icons.notifications,
+                  size: 50,
+                  color: Colors.white,
+                ),
+                Text(
+                  "Notice",
+                  style: TextStyle(fontSize: 22, color: Colors.white),
+                )
+              ],
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              color: Colors.grey,
+            ),
           ),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            color: Colors.grey,
-          ),
+
+          // On tap function is written here
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => UserNoticePage()));
+          },
         ),
 
         // Admit card container
