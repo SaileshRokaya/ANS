@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 
-class EventReadPage extends StatelessWidget {
-  const EventReadPage({Key? key}) : super(key: key);
+class NoticeReadPage extends StatelessWidget {
+  const NoticeReadPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text("Notice"),
+          title: Text("Notice News"),
         ),
         body: Container(
           child: Column(

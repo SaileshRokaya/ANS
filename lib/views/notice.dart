@@ -1,15 +1,16 @@
 import 'package:ans/views/Events_read.dart';
+import 'package:ans/views/notice_read.dart';
 import 'package:flutter/material.dart';
 
-class UserEventPage extends StatelessWidget {
-  const UserEventPage({Key? key}) : super(key: key);
+class UserNoticePage extends StatelessWidget {
+  const UserNoticePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("List of Events"),
+        title: Text("List of Notice"),
       ),
 
       // The body part is here
@@ -50,7 +51,7 @@ class UserEventPage extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => EventReadPage()));
+                              builder: (context) => NoticeReadPage()));
                     },
                   ),
                 ),
