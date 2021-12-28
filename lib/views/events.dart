@@ -29,9 +29,10 @@ class UserEventPage extends StatelessWidget {
                       width: 420,
                       decoration: BoxDecoration(
                         //borderRadius: Radius.circular(),
-                        color: Colors.black54,
+                        color: Colors.tealAccent.shade400,
+                        borderRadius: BorderRadius.circular(16),
                         border: Border.all(
-                          color: Colors.cyan,
+                          color: Colors.tealAccent,
                           width: 2,
                         ),
                       ),

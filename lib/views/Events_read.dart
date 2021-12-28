@@ -8,7 +8,7 @@ class EventReadPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text("Notice"),
+          title: Text("Event News"),
         ),
         body: Container(
           child: Column(
