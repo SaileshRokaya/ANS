@@ -19,21 +19,21 @@ class _SubjectPageState extends State<SubjectPage> {
           itemCount: 4,
           itemBuilder: (context, position) {
             return Card(
+              color: Colors.white70,
               child: Padding(
-                padding: const EdgeInsets.all(20.0),
-
+                padding: const EdgeInsets.all(16.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // For subject name
                     Text(
-                      "Subject Name: ",
+                      "Object oriented and software engineering",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
 
                     SizedBox(
-                      height: 15,
+                      height: 22,
                     ),
 
                     Row(
@@ -41,25 +41,19 @@ class _SubjectPageState extends State<SubjectPage> {
                       children: [
                         // Subject code
                         Text(
-                          "Unit Code: ",
+                          "Unit Code: CIS019",
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20),
+                              fontWeight: FontWeight.normal, fontSize: 20),
                         ),
                         Text(
-                          "Credit: ",
+                          "Credit: 30",
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20),
+                              fontWeight: FontWeight.normal, fontSize: 20),
                         ),
                       ],
                     )
-
-                    // Credit hour in subject
                   ],
                 ),
-                // child: Text(
-                //   position.toString(),
-                //   style: TextStyle(fontSize: 22.0),
-                // ),
               ),
             );
           }),

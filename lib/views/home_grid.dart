@@ -2,6 +2,7 @@
 
 import 'package:ans/views/account.dart';
 import 'package:ans/views/attendance.dart';
+import 'package:ans/views/events.dart';
 import 'package:ans/views/myroutine.dart';
 import 'package:flutter/material.dart';
 import 'package:ans/views/mysubject.dart';
@@ -107,26 +108,34 @@ class _HomeGridState extends State<HomeGrid> {
         ),
 
         // Events container
-        Container(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            // ignore: prefer_const_literals_to_create_immutables
-            children: [
-              Icon(
-                Icons.book,
-                size: 50,
-                color: Colors.white,
-              ),
-              Text(
-                "Events",
-                style: TextStyle(fontSize: 22, color: Colors.white),
-              )
-            ],
+        InkWell(
+          child: Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              // ignore: prefer_const_literals_to_create_immutables
+              children: [
+                Icon(
+                  Icons.book,
+                  size: 50,
+                  color: Colors.white,
+                ),
+                Text(
+                  "Events",
+                  style: TextStyle(fontSize: 22, color: Colors.white),
+                )
+              ],
+            ),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(16),
+              color: Colors.teal,
+            ),
           ),
-          decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(16),
-            color: Colors.teal,
-          ),
+
+          // Ontap function is here
+          onTap: () {
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => UserEventPage()));
+          },
         ),
 
         // Fees Detail Container

@@ -6,6 +6,7 @@ class FridayPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
+      color: Colors.white30,
       child: Column(
         children: [
           // Container for first subject
@@ -141,7 +142,7 @@ class FridayPage extends StatelessWidget {
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
                     SizedBox(
-                      height: 15,
+                      height: 07,
                     ),
                     // Teacher name
                     Text(
@@ -151,7 +152,7 @@ class FridayPage extends StatelessWidget {
                     ),
 
                     SizedBox(
-                      height: 15,
+                      height: 07,
                     ),
                     // Time
                     Row(
