@@ -1,3 +1,4 @@
+import 'package:ans/views/colors.dart';
 import 'package:flutter/material.dart';
 
 class FridayPage extends StatelessWidget {
@@ -6,7 +7,7 @@ class FridayPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: Colors.white30,
+      color: scaffoldBackgroundColor,
       child: Column(
         children: [
           // Container for first subject
@@ -16,9 +17,9 @@ class FridayPage extends StatelessWidget {
               width: 460,
               height: 150,
               decoration: BoxDecoration(
-                  color: Colors.blueGrey,
+                  color: Colors.lightBlue.shade400,
                   border: Border.all(
-                    color: Colors.cyan,
+                    color: Colors.red,
                     width: 2,
                   )),
               child: Padding(
@@ -77,9 +78,9 @@ class FridayPage extends StatelessWidget {
               width: 460,
               height: 150,
               decoration: BoxDecoration(
-                  color: Colors.black54,
+                  color: Colors.lightGreen,
                   border: Border.all(
-                    color: Colors.teal,
+                    color: Colors.redAccent,
                     width: 2,
                   )),
               child: Padding(
@@ -125,11 +126,12 @@ class FridayPage extends StatelessWidget {
               width: 460,
               height: 150,
               decoration: BoxDecoration(
-                  color: Colors.black54,
-                  border: Border.all(
-                    color: Colors.cyan,
-                    width: 2,
-                  )),
+                color: Colors.tealAccent.shade700,
+                border: Border.all(
+                  color: Colors.red.shade600,
+                  width: 2,
+                ),
+              ),
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Column(
@@ -142,7 +144,7 @@ class FridayPage extends StatelessWidget {
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
                     ),
                     SizedBox(
-                      height: 07,
+                      height: 15,
                     ),
                     // Teacher name
                     Text(
@@ -152,7 +154,7 @@ class FridayPage extends StatelessWidget {
                     ),
 
                     SizedBox(
-                      height: 07,
+                      height: 15,
                     ),
                     // Time
                     Row(

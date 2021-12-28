@@ -19,7 +19,7 @@ class _SubjectPageState extends State<SubjectPage> {
           itemCount: 4,
           itemBuilder: (context, position) {
             return Card(
-              color: Colors.white70,
+              color: Colors.green.shade400,
               child: Padding(
                 padding: const EdgeInsets.all(16.0),
                 child: Column(

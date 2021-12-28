@@ -30,9 +30,10 @@ class UserNoticePage extends StatelessWidget {
                       width: 420,
                       decoration: BoxDecoration(
                         //borderRadius: Radius.circular(),
-                        color: Colors.black54,
+                        color: Colors.teal,
+                        borderRadius: BorderRadius.circular(16),
                         border: Border.all(
-                          color: Colors.cyan,
+                          color: Colors.teal,
                           width: 2,
                         ),
                       ),
