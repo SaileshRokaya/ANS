@@ -1,3 +1,7 @@
+// ignore_for_file: prefer_const_constructors
+
+import 'package:ans/views/menu_bar.dart';
+import 'package:ans/views/my_profile.dart';
 import 'package:flutter/material.dart';
 import 'package:ans/views/mysubject.dart';
 import 'package:ans/views/home_grid.dart';
@@ -22,25 +26,26 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: MenuBarPage(),
       appBar: AppBar(
         centerTitle: true,
         title: Row(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
+            //MenuBarPage(),
             Padding(
               padding: const EdgeInsets.only(right: 75),
               child: Title(color: Colors.blue, child: Text("DASHBOARD")),
             ),
             InkWell(
               child: CircleAvatar(
+                backgroundImage: NetworkImage(""),
                 radius: 25.0,
-                // backgroundImage:
-                //     NetworkImage("${snapshot.data.hitsList[index].previewUrl}"),
                 backgroundColor: Colors.cyanAccent,
               ),
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => UserProfile()));
+                    MaterialPageRoute(builder: (context) => MyProfile()));
               },
             )
           ],
@@ -58,6 +63,7 @@ class _HomePageState extends State<HomePage> {
         currentIndex: _selectedIndex,
         onTap: _onItemTapped,
         selectedItemColor: Colors.green,
+        // ignore: prefer_const_literals_to_create_immutables
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),

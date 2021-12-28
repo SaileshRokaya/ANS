@@ -1,8 +1,9 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:ans/views/change_password.dart';
 import 'package:flutter/material.dart';
 import 'package:ans/views/email_verification.dart';
-import 'package:ans/views/change_password';
+//import 'package:ans/views/change_password';
 
 class OTPVerify extends StatelessWidget {
   const OTPVerify({Key? key}) : super(key: key);
