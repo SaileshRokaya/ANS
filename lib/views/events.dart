@@ -1,5 +1,8 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:ans/views/Events_read.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class UserEventPage extends StatelessWidget {
   const UserEventPage({Key? key}) : super(key: key);
@@ -36,12 +39,27 @@ class UserEventPage extends StatelessWidget {
                           width: 2,
                         ),
                       ),
+                      // ignore: prefer_const_constructors
                       child: Padding(
-                        padding: const EdgeInsets.only(left: 15.0, top: 15),
-                        child: Text(
-                          "Title is here",
-                          style: TextStyle(
-                              fontSize: 22, fontWeight: FontWeight.bold),
+                        padding: const EdgeInsets.only(
+                            left: 15.0, top: 15, bottom: 10, right: 8),
+                        // ignore: prefer_const_constructors
+                        child: Row(
+                          // ignore: prefer_const_literals_to_create_immutables
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Text(
+                              "Title is here",
+                              style: TextStyle(
+                                  fontSize: 22, fontWeight: FontWeight.bold),
+                            ),
+                            Spacer(),
+                            Text(
+                              DateFormat('KK:mm a').format(DateTime.now()),
+                              style: TextStyle(
+                                  fontSize: 20, fontWeight: FontWeight.normal),
+                            ),
+                          ],
                         ),
                       ),
                     ),
