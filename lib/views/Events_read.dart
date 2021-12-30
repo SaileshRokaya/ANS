@@ -1,8 +1,19 @@
-import 'package:flutter/material.dart';
+// ignore_for_file: prefer_const_constructors, file_names
 
-class EventReadPage extends StatelessWidget {
+import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
+
+class EventReadPage extends StatefulWidget {
   const EventReadPage({Key? key}) : super(key: key);
 
+  @override
+  State<EventReadPage> createState() => _EventReadPageState();
+}
+
+class _EventReadPageState extends State<EventReadPage> {
+  String bodyMessage =
+      "Hello sir i am manis gir from kathmadu nepal. I love to join in your college";
+  String title = "Notice for upcoming exams upcoming december";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -12,11 +23,20 @@ class EventReadPage extends StatelessWidget {
         ),
         body: Container(
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
+              // date time is here
+              Padding(
+                padding: const EdgeInsets.only(top: 25, left: 188),
+                child: Text(
+                  DateFormat('dd-MM-yyyy, KK:mm a').format(DateTime.now()),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal),
+                ),
+              ),
               // Title is here
               Padding(
-                padding: const EdgeInsets.only(top: 22, bottom: 22, right: 8),
+                padding: const EdgeInsets.only(
+                    top: 50, bottom: 22, right: 8, left: 19),
                 child: Container(
                   constraints: BoxConstraints(
                     maxHeight: double.infinity,
@@ -32,7 +52,8 @@ class EventReadPage extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 4, top: 15),
                     child: Text(
-                      "Notice for upcoming exams",
+                      "Title: " + title,
+                      maxLines: 3,
                       style:
                           TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                     ),
@@ -58,9 +79,9 @@ class EventReadPage extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 15.0, top: 15),
                     child: Text(
-                      "Hello sir i am manis gir from kathmadu nepal. I love to join in your college",
-                      style:
-                          TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                      bodyMessage,
+                      style: TextStyle(
+                          fontSize: 22, fontWeight: FontWeight.normal),
                     ),
                   ),
                 ),

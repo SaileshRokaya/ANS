@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
+
 import 'package:ans/fees/fees_form.dart';
 import 'package:ans/leaves/leave_form.dart';
 import 'package:ans/views/Events_read.dart';
@@ -14,6 +16,9 @@ class LeaveList extends StatefulWidget {
 class _LeaveListState extends State<LeaveList> {
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -28,6 +33,34 @@ class _LeaveListState extends State<LeaveList> {
           }),
 
       // The body part is here
+
+      // favorite icon
+      // IconButton(
+      //   icon: Icon(_detail.isStared
+      //       ? Icons.favorite
+      //       : Icons.favorite_border),
+      //   onPressed: () {
+      //     setState(() {
+      //       _detail.isStared = !_detail.isStared;
+      //     });
+      //   },
+      // )
+
+      // body: Container(
+      //   height: height,
+      //   width: width,
+      //   color: Colors.white,
+      //   child: ListView.builder(
+      //       itemCount: 4,
+      //       itemBuilder: (context, position) {
+      //         return Container(
+      //           child: ListTile(
+      //             leading: CircleAvatar(),
+      //           ),
+      //         );
+      //       }),
+      // ),
+
       body: ListView.builder(
           itemCount: 4,
           itemBuilder: (context, position) {
