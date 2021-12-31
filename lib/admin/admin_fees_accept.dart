@@ -1,25 +1,22 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:ans/adminformwidgets/admin_fee_form.dart';
+import 'package:ans/fees/fees_form.dart';
 import 'package:ans/views/Events_read.dart';
+import 'package:ans/views/account.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
-class UserEventPage extends StatelessWidget {
-  const UserEventPage({Key? key}) : super(key: key);
+class AdminFeesAcceptPage extends StatelessWidget {
+  const AdminFeesAcceptPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text("List of Events"),
-      ),
-
-      // The body part is here
-      body: ListView.builder(
+    return Material(
+      child: ListView.builder(
           itemCount: 4,
           itemBuilder: (context, position) {
             return Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 SizedBox(
                   height: 10,
@@ -28,36 +25,38 @@ class UserEventPage extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                   child: InkWell(
                     child: Container(
-                      height: 60,
+                      height: 80,
                       width: 420,
                       decoration: BoxDecoration(
                         //borderRadius: Radius.circular(),
-                        color: Colors.tealAccent.shade400,
-                        borderRadius: BorderRadius.circular(16),
+                        color: Colors.lightGreenAccent,
                         border: Border.all(
-                          color: Colors.tealAccent,
+                          color: Colors.cyan,
                           width: 2,
                         ),
                       ),
-                      // ignore: prefer_const_constructors
                       child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 15.0, top: 15, bottom: 10, right: 8),
-                        // ignore: prefer_const_constructors
+                        padding: const EdgeInsets.only(left: 15.0, top: 20),
                         child: Row(
-                          // ignore: prefer_const_literals_to_create_immutables
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              "Title is here",
-                              style: TextStyle(
-                                  fontSize: 22, fontWeight: FontWeight.bold),
-                            ),
-                            Spacer(),
-                            Text(
-                              DateFormat('KK:mm a').format(DateTime.now()),
-                              style: TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.normal),
+                            Column(
+                              children: [
+                                Text(
+                                  "Decrease fee amount",
+                                  style: TextStyle(
+                                      fontSize: 22,
+                                      fontWeight: FontWeight.bold),
+                                ),
+
+                                // status code is here
+                                // Text(
+                                //   "Approve",
+                                //   style: TextStyle(
+                                //       fontSize: 22,
+                                //       fontWeight: FontWeight.bold),
+                                // ),
+                              ],
                             ),
                           ],
                         ),
@@ -69,7 +68,7 @@ class UserEventPage extends StatelessWidget {
                       Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => EventReadPage()));
+                              builder: (context) => AdminFeesFormPage()));
                     },
                   ),
                 ),

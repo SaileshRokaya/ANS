@@ -39,13 +39,13 @@ class _HomePageState extends State<HomePage> {
             ),
             InkWell(
               child: CircleAvatar(
-                backgroundImage: NetworkImage(""),
-                radius: 25.0,
+                //backgroundImage: AssetImage("logo.png"),
+                radius: 22.0,
                 backgroundColor: Colors.cyanAccent,
               ),
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => MyProfile()));
+                    MaterialPageRoute(builder: (context) => UserProfile()));
               },
             )
           ],

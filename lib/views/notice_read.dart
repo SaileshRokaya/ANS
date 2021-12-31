@@ -1,42 +1,22 @@
-// ignore_for_file: prefer_const_constructors, file_names
-
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
-class EventReadPage extends StatefulWidget {
-  const EventReadPage({Key? key}) : super(key: key);
+class NoticeReadPage extends StatelessWidget {
+  const NoticeReadPage({Key? key}) : super(key: key);
 
-  @override
-  State<EventReadPage> createState() => _EventReadPageState();
-}
-
-class _EventReadPageState extends State<EventReadPage> {
-  String bodyMessage =
-      "Hello sir i am manis gir from kathmadu nepal. I love to join in your college";
-  String title = "Notice for upcoming exams upcoming december";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text("Event News"),
+          title: Text("Notice News"),
         ),
         body: Container(
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.start,
             children: [
-              // date time is here
-              Padding(
-                padding: const EdgeInsets.only(top: 25, left: 188),
-                child: Text(
-                  DateFormat('dd-MM-yyyy, KK:mm a').format(DateTime.now()),
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal),
-                ),
-              ),
               // Title is here
               Padding(
-                padding: const EdgeInsets.only(
-                    top: 50, bottom: 22, right: 8, left: 19),
+                padding: const EdgeInsets.only(top: 22, bottom: 22, right: 8),
                 child: Container(
                   constraints: BoxConstraints(
                     maxHeight: double.infinity,
@@ -52,8 +32,7 @@ class _EventReadPageState extends State<EventReadPage> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 4, top: 15),
                     child: Text(
-                      "Title: " + title,
-                      maxLines: 3,
+                      "Notice for upcoming exams",
                       style:
                           TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                     ),
@@ -79,9 +58,9 @@ class _EventReadPageState extends State<EventReadPage> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 15.0, top: 15),
                     child: Text(
-                      bodyMessage,
-                      style: TextStyle(
-                          fontSize: 22, fontWeight: FontWeight.normal),
+                      "Hello sir i am manis gir from kathmadu nepal. I love to join in your college",
+                      style:
+                          TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),
