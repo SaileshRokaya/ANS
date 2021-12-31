@@ -2,16 +2,24 @@ import 'package:ans/fees/fees_form.dart';
 import 'package:ans/views/Events_read.dart';
 import 'package:ans/views/account.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-class FeeList extends StatelessWidget {
+class FeeList extends StatefulWidget {
   const FeeList({Key? key}) : super(key: key);
+
+  @override
+  State<FeeList> createState() => _FeeListState();
+}
+
+class _FeeListState extends State<FeeList> {
+  String heading = "About fee payment date extend";
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
-        title: Text("List Of Fees Form"),
+        title: Text("Fees"),
       ),
 
       floatingActionButton: FloatingActionButton(
@@ -23,73 +31,60 @@ class FeeList extends StatelessWidget {
 
       // The body part is here
       body: ListView.builder(
-          itemCount: 4,
-          itemBuilder: (context, position) {
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                SizedBox(
-                  height: 10,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                  child: InkWell(
-                    child: Container(
-                      height: 80,
-                      width: 420,
-                      decoration: BoxDecoration(
-                        //borderRadius: Radius.circular(),
-                        color: Colors.black54,
-                        border: Border.all(
-                          color: Colors.cyan,
-                          width: 2,
-                        ),
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 15.0, top: 16),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Column(
-                              children: [
-                                Text(
-                                  "Decrease fee amount",
-                                  style: TextStyle(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.bold),
-                                ),
-
-                                // status code is here
-                                Text(
-                                  "Approve",
-                                  style: TextStyle(
-                                      fontSize: 22,
-                                      fontWeight: FontWeight.bold),
-                                ),
-                              ],
-                            ),
-                            Padding(
-                              padding: const EdgeInsets.only(right: 30),
-                              child: Icon(
-                                Icons.delete,
-                                size: 30,
-                              ),
-                            )
-                          ],
-                        ),
+        itemCount: 4,
+        itemBuilder: (context, position) {
+          return Column(
+            children: [
+              SizedBox(
+                height: 10,
+              ),
+              Padding(
+                padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+                child: InkWell(
+                  child: Container(
+                    constraints: BoxConstraints(
+                      maxHeight: double.infinity,
+                    ),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(16),
+                      color: Colors.tealAccent.shade400,
+                      border: Border.all(
+                        color: Colors.redAccent.shade400,
+                        width: 2,
                       ),
                     ),
-
-                    // Ontap function is here
-                    onTap: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => FeesForm()));
-                    },
+                    child: ListTile(
+                      title: Text(
+                        heading,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                      subtitle: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceAround,
+                        children: [
+                          Text(
+                            "status: Approve",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                          Text(DateFormat('KK:mm a').format(DateTime.now())),
+                        ],
+                      ),
+                      trailing: Icon(
+                        Icons.delete,
+                      ),
+                      onTap: () {
+                        setState(() {
+                          print("deleted successfully");
+                        });
+                      },
+                    ),
                   ),
                 ),
-              ],
-            );
-          }),
+              ),
+            ],
+          );
+        },
+      ),
     );
   }
 }
