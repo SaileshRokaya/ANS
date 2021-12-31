@@ -1,11 +1,21 @@
+import 'package:ans/admin/leave_fee_detail_form.dart';
 import 'package:ans/adminformwidgets/admin_leave_form.dart';
 import 'package:ans/fees/fees_form.dart';
 import 'package:ans/views/Events_read.dart';
 import 'package:ans/views/account.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-class AdminLeaveNewPage extends StatelessWidget {
+class AdminLeaveNewPage extends StatefulWidget {
   const AdminLeaveNewPage({Key? key}) : super(key: key);
+
+  @override
+  State<AdminLeaveNewPage> createState() => _AdminLeaveNewPageState();
+}
+
+class _AdminLeaveNewPageState extends State<AdminLeaveNewPage> {
+  String name = "Saroj Chhetri";
+  String title = "Leave request for two day";
 
   @override
   Widget build(BuildContext context) {
@@ -22,55 +32,38 @@ class AdminLeaveNewPage extends StatelessWidget {
                 padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                 child: InkWell(
                   child: Container(
-                    height: 80,
-                    width: 420,
+                    constraints: BoxConstraints(
+                      maxHeight: double.infinity,
+                    ),
                     decoration: BoxDecoration(
-                      //borderRadius: Radius.circular(),
-                      color: Colors.blueGrey,
+                      borderRadius: BorderRadius.circular(16),
+                      color: Colors.tealAccent.shade400,
                       border: Border.all(
-                        color: Colors.cyan,
+                        color: Colors.redAccent.shade400,
                         width: 2,
                       ),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 15.0, top: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            children: [
-                              Text(
-                                "Decrease fee amount",
-                                style: TextStyle(
-                                    fontSize: 22, fontWeight: FontWeight.bold),
-                              ),
-
-                              // status code is here
-                              // Text(
-                              //   "Approve",
-                              //   style: TextStyle(
-                              //       fontSize: 22, fontWeight: FontWeight.bold),
-                              // ),
-                            ],
-                          ),
-                          // Padding(
-                          //   padding: const EdgeInsets.only(right: 30),
-                          //   child: Icon(
-                          //     Icons.delete,
-                          //     size: 30,
-                          //   ),
-                          // ),
-                        ],
+                    child: ListTile(
+                      title: Text(
+                        name,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
                       ),
+                      subtitle: Text(
+                        title,
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      trailing:
+                          Text(DateFormat('MMM d').format(DateTime.now())),
                     ),
                   ),
 
-                  // Ontap function is here
+                  // On tap function here
                   onTap: () {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => AdminLeaveFormPage()));
+                            builder: (context) => LeaveFeeDetail()));
                   },
                 ),
               ),

@@ -2,6 +2,7 @@
 
 import 'package:ans/fees/fees_form.dart';
 import 'package:ans/leaves/leave_form.dart';
+import 'package:ans/leaves/reason_leave.dart';
 import 'package:ans/views/Events_read.dart';
 import 'package:ans/views/account.dart';
 import 'package:flutter/material.dart';
@@ -60,29 +61,27 @@ class _LeaveListState extends State<LeaveList> {
                       ),
                     ),
                     child: ListTile(
-                        title: Text(
-                          heading,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 16),
-                        ),
-                        subtitle: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Text(
-                              "status: Approve",
-                              style: TextStyle(fontWeight: FontWeight.bold),
-                            ),
-                            Text(DateFormat('KK:mm a').format(DateTime.now())),
-                          ],
-                        ),
-                        trailing: Icon(
-                          Icons.delete,
-                        )
-                        // onTap: () {
-
-                        // },
-                        ),
+                      title: Text(
+                        heading,
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold, fontSize: 16),
+                      ),
+                      subtitle: Text(
+                        "status: Approve",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                      trailing:
+                          Text(DateFormat('MMM d').format(DateTime.now())),
+                    ),
                   ),
+
+                  // On press function here
+                  onTap: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => LeaveReasonPage()));
+                  },
                 ),
               ),
             ],
