@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors, file_names
 
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 
 class EventReadPage extends StatefulWidget {
@@ -20,6 +21,16 @@ class _EventReadPageState extends State<EventReadPage> {
         appBar: AppBar(
           centerTitle: true,
           title: Text("Event News"),
+          actions: [
+            IconButton(
+              icon: Icon(Icons.delete),
+              onPressed: () {
+                setState(() {
+                  Fluttertoast.showToast(msg: "Deleted Successfully");
+                });
+              },
+            )
+          ],
         ),
         body: Container(
           child: Column(

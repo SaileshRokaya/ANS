@@ -1,9 +1,19 @@
 import 'package:ans/views/Events_read.dart';
 import 'package:ans/views/notice_read.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
-class UserNoticePage extends StatelessWidget {
+class UserNoticePage extends StatefulWidget {
   const UserNoticePage({Key? key}) : super(key: key);
+
+  @override
+  State<UserNoticePage> createState() => _UserNoticePageState();
+}
+
+class _UserNoticePageState extends State<UserNoticePage> {
+  String heading = "Notice for upcoming new events on last january";
+
+  // Datetime format
 
   @override
   Widget build(BuildContext context) {
@@ -26,24 +36,25 @@ class UserNoticePage extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 8.0, right: 8.0),
                   child: InkWell(
                     child: Container(
-                      height: 60,
-                      width: 420,
+                      constraints: BoxConstraints(
+                        maxHeight: double.infinity,
+                      ),
                       decoration: BoxDecoration(
-                        //borderRadius: Radius.circular(),
-                        color: Colors.teal,
                         borderRadius: BorderRadius.circular(16),
+                        color: Colors.tealAccent.shade400,
                         border: Border.all(
-                          color: Colors.teal,
+                          color: Colors.redAccent.shade400,
                           width: 2,
                         ),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.only(left: 15.0, top: 15),
-                        child: Text(
-                          "Title is here",
+                      child: ListTile(
+                        title: Text(
+                          heading,
                           style: TextStyle(
-                              fontSize: 22, fontWeight: FontWeight.bold),
+                              fontWeight: FontWeight.bold, fontSize: 16),
                         ),
+                        trailing:
+                            Text(DateFormat("MMM d").format(DateTime.now())),
                       ),
                     ),
 
