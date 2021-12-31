@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:ans/views/Emails.dart';
 import 'package:ans/views/account.dart';
 import 'package:ans/views/attendance.dart';
 import 'package:ans/views/events.dart';
@@ -35,7 +36,7 @@ class _HomeGridState extends State<HomeGrid> {
                 ),
                 Text(
                   "My Subject",
-                  style: TextStyle(fontSize: 22, color: Colors.white),
+                  style: TextStyle(fontSize: 18, color: Colors.white),
                 ),
               ],
             ),
@@ -64,7 +65,7 @@ class _HomeGridState extends State<HomeGrid> {
                 ),
                 Text(
                   "Routine",
-                  style: TextStyle(fontSize: 22, color: Colors.white),
+                  style: TextStyle(fontSize: 18, color: Colors.white),
                 )
               ],
             ),
@@ -93,7 +94,7 @@ class _HomeGridState extends State<HomeGrid> {
                 ),
                 Text(
                   "Attendence",
-                  style: TextStyle(fontSize: 22, color: Colors.white),
+                  style: TextStyle(fontSize: 18, color: Colors.white),
                 )
               ],
             ),
@@ -122,7 +123,7 @@ class _HomeGridState extends State<HomeGrid> {
                 ),
                 Text(
                   "Events",
-                  style: TextStyle(fontSize: 22, color: Colors.white),
+                  style: TextStyle(fontSize: 18, color: Colors.white),
                 )
               ],
             ),
@@ -152,7 +153,7 @@ class _HomeGridState extends State<HomeGrid> {
                 ),
                 Text(
                   "Fees Detail",
-                  style: TextStyle(fontSize: 22, color: Colors.white),
+                  style: TextStyle(fontSize: 18, color: Colors.white),
                 )
               ],
             ),
@@ -178,13 +179,13 @@ class _HomeGridState extends State<HomeGrid> {
               // ignore: prefer_const_literals_to_create_immutables
               children: [
                 Icon(
-                  Icons.notifications,
+                  Icons.notifications_active,
                   size: 50,
                   color: Colors.white,
                 ),
                 Text(
                   "Notice",
-                  style: TextStyle(fontSize: 22, color: Colors.white),
+                  style: TextStyle(fontSize: 18, color: Colors.white),
                 )
               ],
             ),
@@ -201,6 +202,33 @@ class _HomeGridState extends State<HomeGrid> {
           },
         ),
 
+        // Email container
+        InkWell(
+          child: Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  Icons.mark_email_unread,
+                  size: 50,
+                  color: Colors.white,
+                ),
+                Text(
+                  "Email",
+                  style: TextStyle(fontSize: 18, color: Colors.white),
+                ),
+              ],
+            ),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(16),
+                color: Colors.blueGrey),
+          ),
+          onTap: () {
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => EmailPage()));
+          },
+        ),
+
         // Admit card container
         InkWell(
           child: Container(
@@ -214,7 +242,7 @@ class _HomeGridState extends State<HomeGrid> {
                 ),
                 Text(
                   "Admit Card",
-                  style: TextStyle(fontSize: 22, color: Colors.white),
+                  style: TextStyle(fontSize: 18, color: Colors.white),
                 ),
               ],
             ),
