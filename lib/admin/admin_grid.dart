@@ -39,7 +39,7 @@ class _AdminGridState extends State<AdminGrid> {
                 ),
                 Text(
                   "Events",
-                  style: TextStyle(fontSize: 22, color: Colors.white),
+                  style: TextStyle(fontSize: 18, color: Colors.white),
                 )
               ],
             ),
@@ -70,7 +70,7 @@ class _AdminGridState extends State<AdminGrid> {
                 ),
                 Text(
                   "Notice",
-                  style: TextStyle(fontSize: 22, color: Colors.white),
+                  style: TextStyle(fontSize: 18, color: Colors.white),
                 )
               ],
             ),
@@ -100,7 +100,7 @@ class _AdminGridState extends State<AdminGrid> {
                 ),
                 Text(
                   "Leave",
-                  style: TextStyle(fontSize: 22, color: Colors.white),
+                  style: TextStyle(fontSize: 18, color: Colors.white),
                 ),
               ],
             ),
@@ -128,7 +128,7 @@ class _AdminGridState extends State<AdminGrid> {
                 ),
                 Text(
                   "Fees",
-                  style: TextStyle(fontSize: 22, color: Colors.white),
+                  style: TextStyle(fontSize: 18, color: Colors.white),
                 ),
               ],
             ),
