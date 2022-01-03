@@ -55,7 +55,7 @@ class EventService {
 
       //List<EventModel> list = eventFromJson(response.body);
 
-      print(jsonData);
+      //print(jsonData);
 
       return jsonData;
     } else {

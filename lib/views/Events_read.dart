@@ -5,19 +5,34 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 
-class EventReadPage extends StatefulWidget {
-  final EventModel? eventModel;
-  final int? index;
-  EventReadPage({this.eventModel, this.index});
+class EventReadPage extends StatelessWidget {
+  final String? eventTitle;
+  final String? eventMessage;
 
-  @override
-  State<EventReadPage> createState() => _EventReadPageState();
-}
+  EventReadPage(this.eventTitle, this.eventMessage);
 
-class _EventReadPageState extends State<EventReadPage> {
+  // final String eventTime;
+  // final String eventDate;
+
+  // final EventModel? eventModel;
+  // final int? index;
+  // EventReadPage({this.eventModel, this.index});
+
+  // String get title => title;
+
+  // String get bodyMessage => bodyMessage;
+
   String bodyMessage =
       "Hello sir i am manis gir from kathmadu nepal. I love to join in your college";
+
   String title = "Notice for upcoming exams upcoming december";
+
+  //EventReadPage(this.eventTitle, this.eventMessage);
+
+  //String get eventTitle => eventTitle;
+
+  //String get eventMessage => eventMessage;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,9 +43,9 @@ class _EventReadPageState extends State<EventReadPage> {
             IconButton(
               icon: Icon(Icons.delete),
               onPressed: () {
-                setState(() {
-                  Fluttertoast.showToast(msg: "Deleted Successfully");
-                });
+                // setState(() {
+                //   Fluttertoast.showToast(msg: "Deleted Successfully");
+                // });
               },
             )
           ],
@@ -66,7 +81,7 @@ class _EventReadPageState extends State<EventReadPage> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 4, top: 15),
                     child: Text(
-                      "Title: " + title,
+                      "Title: " + eventTitle!,
                       maxLines: 3,
                       style:
                           TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
@@ -93,7 +108,7 @@ class _EventReadPageState extends State<EventReadPage> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 15.0, top: 15),
                     child: Text(
-                      bodyMessage,
+                      eventMessage!,
                       style: TextStyle(
                           fontSize: 22, fontWeight: FontWeight.normal),
                     ),
