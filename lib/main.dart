@@ -1,8 +1,10 @@
 import 'package:ans/admin/admin_events.dart';
 import 'package:ans/admin/admin_notice.dart';
 import 'package:ans/admin/admin_panel.dart';
+import 'package:ans/service/event_service.dart';
 import 'package:ans/views/account.dart';
 import 'package:ans/views/caraousel.dart';
+import 'package:ans/views/events.dart';
 import 'package:ans/views/home_grid.dart';
 import 'package:ans/views/home_page.dart';
 import 'package:ans/views/login.dart';
@@ -16,8 +18,15 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 Future<void> main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp();
+  EventService eventService = new EventService();
+  eventService.getEvent();
+
+  EventView eventView = new EventView();
+
+  // eventService.eventFromJson;
+  print("Hello world");
   runApp(MyApp());
 }
 
