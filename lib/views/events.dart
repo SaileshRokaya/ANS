@@ -116,10 +116,21 @@ class _EventViewState extends State<EventView> {
 
                             // Ontap function is here
                             onTap: () {
-                              // Navigator.push(
-                              //     context,
-                              //     MaterialPageRoute(
-                              //         builder: (context) => NoticeReadPage()));
+                              String t1 = (snapshot.data![index]['event_title'])
+                                  .toString();
+                              String m1 = (snapshot.data![index]
+                                      ['event_message'])
+                                  .toString();
+                              print(t1);
+                              print('---------------------------');
+                              print(m1);
+
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) =>
+                                          EventReadPage(t1, m1)));
+                              // print(snapshot.data![index]['event_title']);
                             },
                           ),
                         )
