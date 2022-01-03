@@ -17,6 +17,7 @@ class MondayPage extends StatelessWidget {
               width: 460,
               height: 150,
               decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
                   color: Colors.lightBlue.shade400,
                   border: Border.all(
                     color: Colors.red,
@@ -78,6 +79,7 @@ class MondayPage extends StatelessWidget {
               width: 460,
               height: 150,
               decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(10),
                   color: Colors.lightGreen,
                   border: Border.all(
                     color: Colors.redAccent,
@@ -126,6 +128,7 @@ class MondayPage extends StatelessWidget {
               width: 460,
               height: 150,
               decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(10),
                 color: Colors.tealAccent.shade700,
                 border: Border.all(
                   color: Colors.red.shade600,

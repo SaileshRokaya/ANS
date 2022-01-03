@@ -1,11 +1,14 @@
 // ignore_for_file: prefer_const_constructors, file_names
 
+import 'package:ans/model/event_model.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 
 class EventReadPage extends StatefulWidget {
-  const EventReadPage({Key? key}) : super(key: key);
+  final EventModel? eventModel;
+  final int? index;
+  EventReadPage({this.eventModel, this.index});
 
   @override
   State<EventReadPage> createState() => _EventReadPageState();

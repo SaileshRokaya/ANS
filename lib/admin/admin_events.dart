@@ -1,7 +1,10 @@
+import 'package:ans/model/event_model.dart';
 import 'package:flutter/material.dart';
 
 class AdminEventPage extends StatefulWidget {
-  const AdminEventPage({Key? key}) : super(key: key);
+  final EventModel? eventModel;
+  final int? index;
+  AdminEventPage({this.eventModel, this.index});
 
   @override
   _AdminEventPageState createState() => _AdminEventPageState();
