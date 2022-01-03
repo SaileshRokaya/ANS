@@ -135,8 +135,8 @@ class _HomeGridState extends State<HomeGrid> {
 
           // Ontap function is here
           onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => UserEventPage()));
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => EventView()));
           },
         ),
 

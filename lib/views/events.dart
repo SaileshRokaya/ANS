@@ -1,74 +1,92 @@
-// ignore_for_file: prefer_const_constructors
-
+import 'package:ans/model/event_model.dart';
+import 'package:ans/service/event_service.dart';
 import 'package:ans/views/Events_read.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
-class UserEventPage extends StatefulWidget {
-  const UserEventPage({Key? key}) : super(key: key);
+class EventView extends StatefulWidget {
+  const EventView({Key? key, String? title}) : super(key: key);
 
   @override
-  State<UserEventPage> createState() => _UserEventPageState();
+  _EventViewState createState() => _EventViewState();
 }
 
-class _UserEventPageState extends State<UserEventPage> {
-  String heading = "Notice for upcoming new events on last january";
+class _EventViewState extends State<EventView> {
+  late List<EventModel> eventList;
+  bool loading = true;
+
+  getAllEvent() async {
+    eventList = await EventService().getEvent();
+    setState(() {
+      loading = false;
+    });
+    print("Event: ${eventList.length}");
+  }
+
+  delete(EventModel eventModel) async {
+    await EventService().deleteEvent(eventModel);
+    setState(() {
+      loading = true;
+      getAllEvent();
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Delete Sucessful"),
+      ));
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        centerTitle: true,
-        title: Text("List of Events"),
+        title: Text('Event List'),
+        actions: <Widget>[
+          IconButton(
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => EventReadPage(),
+                ),
+              ).then((value) => getAllEvent);
+            },
+            icon: Icon(Icons.add),
+          ),
+        ],
       ),
-
-      // The body part is here
-      body: ListView.builder(
-          itemCount: 4,
-          itemBuilder: (context, position) {
-            return Column(
-              children: [
-                SizedBox(
-                  height: 10,
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                  child: InkWell(
-                    child: Container(
-                      constraints: BoxConstraints(
-                        maxHeight: double.infinity,
-                      ),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(16),
-                        color: Colors.tealAccent.shade400,
-                        border: Border.all(
-                          color: Colors.redAccent.shade400,
-                          width: 2,
-                        ),
-                      ),
-                      child: ListTile(
-                        title: Text(
-                          heading,
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 16),
-                        ),
-                        trailing:
-                            Text(DateFormat("MMM d").format(DateTime.now())),
-                      ),
-                    ),
-
-                    // Ontap function is here
-                    onTap: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => EventReadPage()));
-                    },
+      body: loading
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : ListView.builder(
+              itemCount: eventList.length,
+              itemBuilder: (context, index) {
+                EventModel user = eventList[index];
+                return ListTile(
+                  // onTap: () {
+                  //   Navigator.push(
+                  //     context,
+                  //     MaterialPageRoute(
+                  //       builder: (context) => EventReadPage(),
+                  //     ),
+                  //   );
+                  // },
+                  leading: CircleAvatar(
+                    child: Text(user.event_title[0]),
                   ),
-                ),
-              ],
-            );
-          }),
+                  title: Text(user.event_title),
+                  // subtitle: Text(user.event_message),
+                  // trailing: IconButton(
+                  //     icon: Icon(Icons.delete),
+                  //     onPressed: () {
+                  //       delete(user);
+                  //     }),
+                );
+              }),
     );
   }
 }
