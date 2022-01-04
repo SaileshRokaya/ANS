@@ -1,6 +1,7 @@
 import 'package:ans/admin/admin_events.dart';
 import 'package:ans/admin/admin_notice.dart';
 import 'package:ans/admin/admin_panel.dart';
+import 'package:ans/model/event_model.dart';
 import 'package:ans/service/event_service.dart';
 import 'package:ans/views/account.dart';
 import 'package:ans/views/caraousel.dart';
@@ -20,8 +21,9 @@ import 'package:flutter/material.dart';
 Future<void> main() async {
   // WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
+  EventModel eventModel = new EventModel();
   EventService eventService = new EventService();
-  eventService.getEvent();
+  //eventService.addEvent(eventModel);
 
   EventView eventView = new EventView();
 
@@ -41,7 +43,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: AdminHomePage(),
     );
   }
 }

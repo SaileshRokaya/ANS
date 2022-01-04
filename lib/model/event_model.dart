@@ -13,12 +13,12 @@ class EventModel {
         event_message: json['event_message']);
   }
 
-  // Map<String, dynamic> toJsonAdd() {
-  //   return {
-  //     "event_title": event_title,
-  //     "event_message": event_message,
-  //   };
-  // }
+  Map<String, dynamic> toJsonAdd() {
+    return {
+      "event_title": event_title,
+      "event_message": event_message,
+    };
+  }
 
   // Map<String, dynamic> toJsonUpdate() {
   //   return {
