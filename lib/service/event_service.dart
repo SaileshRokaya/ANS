@@ -4,24 +4,44 @@ import 'package:ans/model/event_model.dart';
 import 'package:http/http.dart' as http;
 
 class EventService {
-  static const ADD_URL = "http://localhost/pcps_api/EventCreate.php";
+  static const ADD_URL = "http://192.168.1.73/pcps_api/EventCreate.php";
   static const VIEW_URL = "http://192.168.1.73/pcps_api/EventRead.php";
   static const UPDATE_URL = "http://localhost/pcps_api/EventUpdate.php";
   static const DELETE_URL = "http://localhost/pcps_api/EventDelete.php";
 
-  // Future<String> addEvent(EventModel eventModel) async {
+  // Future<String> createEvent(Map<String, dynamic> data) async {
   //   print("hello");
   //   final response =
-  //       await http.post(Uri.parse(ADD_URL), body: eventModel.toJsonAdd());
+  //       await http.post(Uri.parse(ADD_URL), body: jsonEncode(data));
+  //   print(response.body);
   //   if (response.statusCode == 200) {
+  //     print(response.statusCode);
   //     print("save");
   //     print("Add Response: " + response.body);
   //     print("Exit");
+
   //     return response.body;
   //   } else {
   //     return "Error";
   //   }
   // }
+
+  Future<String> addEvent(EventModel eventModel) async {
+    print("hello flutter developer");
+    final response =
+        await http.post(Uri.parse(ADD_URL), body: eventModel.toJsonAdd());
+    print("Hello Flutter Developer");
+
+    print(response.body);
+
+    if (response.statusCode == 200) {
+      print(response.statusCode);
+      print("Add Response: " + response.body);
+      return response.body;
+    } else {
+      return "Error";
+    }
+  }
 
   // List<EventModel> eventFromJson(String jsonString) {
   //   final data = json.decode(jsonString);

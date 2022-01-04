@@ -1,9 +1,11 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:ans/admin/admin_event_list.dart';
 import 'package:ans/admin/admin_events.dart';
 import 'package:ans/admin/admin_fees.dart';
 import 'package:ans/admin/admin_leave.dart';
 import 'package:ans/admin/admin_notice.dart';
+import 'package:ans/admin/admin_notice_list.dart';
 import 'package:ans/views/account.dart';
 import 'package:ans/views/attendance.dart';
 import 'package:ans/views/events.dart';
@@ -52,7 +54,7 @@ class _AdminGridState extends State<AdminGrid> {
           // Ontap function is here
           onTap: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => AdminEventPage()));
+                MaterialPageRoute(builder: (context) => AdminEventListPage()));
           },
         ),
 
@@ -83,7 +85,7 @@ class _AdminGridState extends State<AdminGrid> {
           // Ontap function is here
           onTap: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => AdminNoticePage()));
+                MaterialPageRoute(builder: (context) => AdminNoticeListPage()));
           },
         ),
 
