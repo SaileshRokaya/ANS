@@ -7,7 +7,7 @@ class EventService {
   static const ADD_URL = "http://192.168.1.73/pcps_api/EventCreate.php";
   static const VIEW_URL = "http://192.168.1.73/pcps_api/EventRead.php";
   static const UPDATE_URL = "http://localhost/pcps_api/EventUpdate.php";
-  static const DELETE_URL = "http://localhost/pcps_api/EventDelete.php";
+  static const DELETE_URL = "http://192.168.1.73/pcps_api/EventDelete.php";
 
   // Future<String> createEvent(Map<String, dynamic> data) async {
   //   print("hello");
@@ -31,8 +31,6 @@ class EventService {
     final response =
         await http.post(Uri.parse(ADD_URL), body: eventModel.toJsonAdd());
     print("Hello Flutter Developer");
-
-    print(response.body);
 
     if (response.statusCode == 200) {
       print(response.statusCode);
@@ -81,6 +79,12 @@ class EventService {
     } else {
       return Future.error('Failed to load');
     }
+  }
+
+  deleteEvent(Map<String, dynamic> data) async {
+    var response =
+        await http.delete(Uri.parse(DELETE_URL), body: jsonEncode(data));
+    print("The id is ${response.body}");
   }
 
   // Future<String> updateEvent(EventModel eventModel) async {

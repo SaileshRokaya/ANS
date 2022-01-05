@@ -21,14 +21,7 @@ import 'package:flutter/material.dart';
 Future<void> main() async {
   // WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
-  EventModel eventModel = new EventModel();
-  EventService eventService = new EventService();
-  //eventService.addEvent(eventModel);
 
-  EventView eventView = new EventView();
-
-  // eventService.eventFromJson;
-  print("Hello world");
   runApp(MyApp());
 }
 
@@ -43,7 +36,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: AdminHomePage(),
+      home: Login(),
     );
   }
 }

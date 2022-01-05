@@ -1,7 +1,9 @@
 import 'dart:ui';
 
+import 'package:ans/admin/admin_panel.dart';
 import 'package:ans/views/email_verification.dart';
 import 'package:ans/views/home_page.dart';
+import 'package:ans/views/navigation_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -26,13 +28,13 @@ class _LoginState extends State<Login> {
   final TextEditingController passwordController = new TextEditingController();
 
   // Firebase Authentication
-  final _auth = FirebaseAuth.instance;
+  // final _auth = FirebaseAuth.instance;
 
   @override
   void dispose() {
     // TODO: implement dispose
     emailController.clear();
-    passwordController.clear();
+    // passwordController.clear();
     super.dispose();
   }
 
@@ -86,18 +88,18 @@ class _LoginState extends State<Login> {
                             controller: emailController,
 
                             // The validator receives the text that the user has entered Validation
-                            validator: (value) {
-                              if (value!.isEmpty) {
-                                return "Please enter your email";
-                              }
-                              // Regular expression for email validation
-                              if (!RegExp(
-                                      "^[a-zA-Z0-9.a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]+")
-                                  .hasMatch(value)) {
-                                return "Please enter a valid email";
-                              }
-                              return null;
-                            },
+                            // validator: (value) {
+                            //   if (value!.isEmpty) {
+                            //     return "Please enter your email";
+                            //   }
+                            //   // Regular expression for email validation
+                            //   // if (!RegExp(
+                            //   //         "^[a-zA-Z0-9.a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]+")
+                            //   //     .hasMatch(value)) {
+                            //   //   return "Please enter a valid email";
+                            //   // }
+                            //   return null;
+                            // },
                             onSaved: (value) {
                               emailController.text = value!;
                             },
@@ -121,15 +123,15 @@ class _LoginState extends State<Login> {
                             controller: passwordController,
 
                             // The validator receives the text that the user has entered Validation for password
-                            validator: (value) {
-                              RegExp regex = new RegExp(r'^.{6,}$');
-                              if (value!.isEmpty) {
-                                return "Password is required";
-                              }
-                              if (!regex.hasMatch(value)) {
-                                return "Enter valid password (Min. 6 character";
-                              }
-                            },
+                            // validator: (value) {
+                            //   RegExp regex = new RegExp(r'^.{6,}$');
+                            //   if (value!.isEmpty) {
+                            //     return "Password is required";
+                            //   }
+                            //   if (!regex.hasMatch(value)) {
+                            //     return "Enter valid password (Min. 6 character";
+                            //   }
+                            // },
 
                             onSaved: (value) {
                               passwordController.text = value!;
@@ -167,8 +169,25 @@ class _LoginState extends State<Login> {
                             style: TextButton.styleFrom(
                                 minimumSize: Size(395, 55)),
                             onPressed: () {
-                              signIn(emailController.text,
-                                  passwordController.text);
+                              if (emailController.text == "email" &&
+                                  passwordController.text == "password") {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) =>
+                                            NavigationBarPage()));
+                              } else if (emailController.text == "admin" &&
+                                  passwordController.text == "admin") {
+                                Navigator.push(
+                                    context,
+                                    MaterialPageRoute(
+                                        builder: (context) => AdminHomePage()));
+                              } else {
+                                Fluttertoast.showToast(
+                                    msg: "Email and password doesnot match");
+                              }
+                              // signIn(emailController.text,
+                              //    passwordController.text);
                             },
                           ),
                           const SizedBox(
