@@ -1,6 +1,7 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:ans/admin/admin_grid.dart';
+import 'package:ans/views/login.dart';
 import 'package:flutter/material.dart';
 
 class AdminHomePage extends StatefulWidget {
@@ -28,8 +29,8 @@ class _AdminHomePageState extends State<AdminHomePage> {
             InkWell(
               child: Icon(Icons.logout),
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AdminHomePage()));
+                Navigator.push(
+                    context, MaterialPageRoute(builder: (context) => Login()));
                 print("Log out successfully");
               },
             ),

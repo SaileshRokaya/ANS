@@ -55,19 +55,6 @@ class _EventViewState extends State<EventView> {
     return Scaffold(
         appBar: AppBar(
           title: Text('Event List'),
-          actions: <Widget>[
-            IconButton(
-              onPressed: () {
-                // Navigator.push(
-                //   context,
-                //   MaterialPageRoute(
-                //     builder: (context) => EventReadPage(),
-                //   ),
-                // ).then((value) => getAllEvent);
-              },
-              icon: Icon(Icons.add),
-            ),
-          ],
         ),
         body: FutureBuilder<List>(
           future: eventService.getEvent(),
@@ -82,61 +69,120 @@ class _EventViewState extends State<EventView> {
               return ListView.builder(
                   itemCount: snapshot.data!.length,
                   itemBuilder: (context, index) {
-                    return Column(
-                      children: [
-                        SizedBox(
-                          height: 10,
+                    DateTime date = DateTime.parse(DateTime.now().toString());
+                    return Card(
+                      margin: EdgeInsets.all(8.0),
+                      elevation: 5.0,
+                      shadowColor: Colors.grey,
+                      child: ListTile(
+                        onTap: () {
+                          showDialog(
+                              context: context,
+                              builder: (context) => AlertDialog(
+                                    scrollable: true,
+                                    content: Text(
+                                        snapshot.data![index]['event_message']),
+                                  ));
+                        },
+
+                        contentPadding: EdgeInsets.symmetric(
+                          vertical: 15.0,
+                          horizontal: 15.0,
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                          child: InkWell(
-                            child: Container(
-                              constraints: BoxConstraints(
-                                maxHeight: double.infinity,
-                              ),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(16),
-                                color: Colors.tealAccent.shade400,
-                                border: Border.all(
-                                  color: Colors.redAccent.shade400,
-                                  width: 2,
-                                ),
-                              ),
-                              child: ListTile(
-                                title: Text(
-                                  snapshot.data![index]['event_title'],
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16),
-                                ),
-                                trailing: Text(
-                                    DateFormat("MMM d").format(DateTime.now())),
-                              ),
-                            ),
 
-                            // Ontap function is here
-                            onTap: () {
-                              String t1 = (snapshot.data![index]['event_title'])
-                                  .toString();
-                              String m1 = (snapshot.data![index]
-                                      ['event_message'])
-                                  .toString();
-                              print(t1);
-                              print('---------------------------');
-                              print(m1);
+                        // title is here
+                        title: Text(
+                          snapshot.data![index]['event_title'],
+                          style: TextStyle(
+                              fontWeight: FontWeight.w600, fontSize: 20.0),
+                          maxLines: 2,
+                          overflow: TextOverflow.ellipsis,
+                        ),
 
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          EventReadPage(t1, m1)));
-                              // print(snapshot.data![index]['event_title']);
-                            },
+                        subtitle: Text(
+                          DateFormat("\ndd-MM-yyyy kk:mm a")
+                              .format(date)
+                              .toString(),
+                          style: TextStyle(fontSize: 16),
+                        ),
+
+                        trailing: IconButton(
+                          onPressed: () async {
+                            print(snapshot.data![index]['id']);
+                            Map<String, dynamic> data = {
+                              "id": snapshot.data![index]['id']
+                            };
+                            await eventService.deleteEvent(data);
+                            print("Deleted successfully");
+                            setState(() {});
+                          },
+                          icon: Icon(
+                            Icons.delete_forever_rounded,
+                            color: Colors.red,
                           ),
-                        )
-                      ],
+                        ),
+                      ),
                     );
                   });
+
+              // return ListView.builder(
+              //     itemCount: snapshot.data!.length,
+              //     itemBuilder: (context, index) {
+              //       return Column(
+              //         children: [
+              //           SizedBox(
+              //             height: 10,
+              //           ),
+              //           Padding(
+              //             padding: const EdgeInsets.only(left: 8.0, right: 8.0),
+              //             child: InkWell(
+              //               child: Container(
+              //                 constraints: BoxConstraints(
+              //                   maxHeight: double.infinity,
+              //                 ),
+              //                 decoration: BoxDecoration(
+              //                   borderRadius: BorderRadius.circular(16),
+              //                   color: Colors.tealAccent.shade400,
+              //                   border: Border.all(
+              //                     color: Colors.redAccent.shade400,
+              //                     width: 2,
+              //                   ),
+              //                 ),
+              //                 child: ListTile(
+              //                   title: Text(
+              //                     snapshot.data![index]['event_title'],
+              //                     style: TextStyle(
+              //                         fontWeight: FontWeight.bold,
+              //                         fontSize: 16),
+              //                   ),
+              //                   trailing: Text(
+              //                       DateFormat("MMM d").format(DateTime.now())),
+              //                 ),
+              //               ),
+
+              //               // Ontap function is here
+              //               onTap: () {
+              //                 String t1 = (snapshot.data![index]['event_title'])
+              //                     .toString();
+              //                 String m1 = (snapshot.data![index]
+              //                         ['event_message'])
+              //                     .toString();
+              //                 print(t1);
+              //                 print('---------------------------');
+              //                 print(m1);
+
+              //                 Navigator.push(
+              //                     context,
+              //                     MaterialPageRoute(
+              //                         builder: (context) =>
+              //                             EventReadPage(t1, m1)));
+              //                 // print(snapshot.data![index]['event_title']);
+              //               },
+              //             ),
+              //           )
+              //         ],
+              //       );
+              //     });
             } else {
               return Center(
                 child: CircularProgressIndicator(),
