@@ -1,36 +1,34 @@
+import 'dart:convert';
+
+EventModel eventModelFromJson(String str) =>
+    EventModel.fromJson(json.decode(str));
+
+String eventModelToJson(EventModel data) => json.encode(data.toJson());
+
 class EventModel {
-  String? id;
-  String? event_title;
-  String? event_message;
+  EventModel({
+    required this.id,
+    required this.eventTitle,
+    required this.eventMessage,
+    required this.eventCreated,
+  });
 
-  EventModel({this.id, this.event_title, this.event_message});
+  String id;
+  String eventTitle;
+  String eventMessage;
+  String eventCreated;
 
-  // Create a model class named EventModel and convert JSON response into Dart Object.
-  factory EventModel.fromJson(Map<String, dynamic> json) {
-    return EventModel(
-        id: json['id'],
-        event_title: json['event_title'],
-        event_message: json['event_message']);
-  }
+  factory EventModel.fromJson(Map<String, dynamic> json) => EventModel(
+        id: json["id"],
+        eventTitle: json["event_title"],
+        eventMessage: json["event_message"],
+        eventCreated: json["event_created"],
+      );
 
-  Map<String, dynamic> toJsonAdd() {
-    return {
-      "event_title": event_title,
-      "event_message": event_message,
-    };
-  }
-
-  // Map<String, dynamic> toJsonUpdate() {
-  //   return {
-  //     "id": id,
-  //     "event_title": event_title,
-  //     "event_message": event_message,
-  //   };
-  // }
-
-  // Map<String, dynamic> toJsonDelete() {
-  //   return {
-  //     "id": id,
-  //   };
-  // }
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "event_title": eventTitle,
+        "event_message": eventMessage,
+        "event_created": eventCreated,
+      };
 }

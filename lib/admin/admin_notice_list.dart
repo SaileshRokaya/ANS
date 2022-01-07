@@ -62,7 +62,7 @@ class _AdminNoticeListPageState extends State<AdminNoticeListPage> {
                   MaterialPageRoute(builder: (context) => AdminNoticePage()));
             }),
         body: FutureBuilder<List>(
-          future: eventService.getEvent(),
+          //  future: eventService.getEventData(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               if (snapshot.data!.length == 0) {
