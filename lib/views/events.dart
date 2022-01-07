@@ -70,7 +70,7 @@ class _EventViewState extends State<EventView> {
           ],
         ),
         body: FutureBuilder<List>(
-          future: eventService.getEvent(),
+          // future: eventService.getEvent(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               if (snapshot.data!.length == 0) {

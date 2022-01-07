@@ -1,4 +1,5 @@
 import 'package:ans/model/event_model.dart';
+import 'package:ans/service/event_service.dart';
 import 'package:flutter/material.dart';
 
 class AdminEventPage extends StatefulWidget {
@@ -11,6 +12,33 @@ class AdminEventPage extends StatefulWidget {
 }
 
 class _AdminEventPageState extends State<AdminEventPage> {
+  TextEditingController id = TextEditingController();
+  TextEditingController eventTitle = TextEditingController();
+  TextEditingController eventMessage = TextEditingController();
+  TextEditingController eventCreated = TextEditingController();
+
+  EventService eventService = EventService();
+
+  add(EventModel eventModel) async {
+    await eventService.addEvent(eventModel).then((sucess) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Add Sucessful"),
+      ));
+      // print("Add Sucessful");
+      Navigator.pop(context);
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.index != null) {
+      // editMode = true;
+      eventTitle.text = widget.eventModel!.event_title;
+      eventMessage.text = widget.eventModel!.event_message;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -35,6 +63,7 @@ class _AdminEventPageState extends State<AdminEventPage> {
                 hintText: "Enter your title here",
                 //labelText: "Email",
               ),
+              controller: eventTitle,
             ),
           ),
 
@@ -51,6 +80,7 @@ class _AdminEventPageState extends State<AdminEventPage> {
                 hintText: "Message here",
                 //labelText: "Email",
               ),
+              controller: eventMessage,
             ),
           ),
 
@@ -64,6 +94,18 @@ class _AdminEventPageState extends State<AdminEventPage> {
             ),
             style: TextButton.styleFrom(minimumSize: Size(110, 55)),
             onPressed: () {
+              if (eventTitle.text.isEmpty) {
+                ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                  content: Text("This field is required"),
+                ));
+              } else {
+                EventModel eventModel = EventModel(
+                    id: id.text,
+                    event_title: eventTitle.text,
+                    event_message: eventMessage.text,
+                    event_created: eventCreated.text);
+                add(eventModel);
+              }
               print("Send successfully");
             },
           ),

@@ -21,7 +21,7 @@ Future<void> main() async {
   // WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp();
   EventService eventService = new EventService();
-  eventService.getEvent();
+  // eventService.getEvent();
 
   EventView eventView = new EventView();
 
@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: HomePage(),
+      home: AdminHomePage(),
     );
   }
 }
