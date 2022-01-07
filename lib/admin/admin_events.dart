@@ -21,15 +21,15 @@ class _AdminEventPageState extends State<AdminEventPage> {
 
   EventService eventService = new EventService();
 
-  add(EventModel eventModel) async {
-    await eventService.addEvent(eventModel).then((sucess) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("Added Sucessfully"),
-      ));
-      print("Add Sucessful");
-      // Navigator.pop(context);
-    });
-  }
+  // add(EventModel eventModel) async {
+  //   await eventService.addEvent(eventModel).then((sucess) {
+  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  //       content: Text("Added Sucessfully"),
+  //     ));
+  //     print("Add Sucessful");
+  //     // Navigator.pop(context);
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -100,9 +100,9 @@ class _AdminEventPageState extends State<AdminEventPage> {
                   content: Text("This field is required"),
                 ));
               } else {
-                EventModel eventModel =
-                    EventModel(event_title: title, event_message: message);
-                add(eventModel);
+                // EventModel eventModel =
+                //     EventModel(event_title: title, event_message: message);
+                // add(eventModel);
               }
 
               //   Map<String, dynamic> data = {

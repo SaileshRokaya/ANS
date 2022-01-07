@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:ans/provider/event_service_provider.dart';
 import 'package:ans/views/Emails.dart';
 import 'package:ans/views/account.dart';
 import 'package:ans/views/attendance.dart';
@@ -8,6 +9,7 @@ import 'package:ans/views/myroutine.dart';
 import 'package:ans/views/notice.dart';
 import 'package:flutter/material.dart';
 import 'package:ans/views/mysubject.dart';
+import 'package:provider/provider.dart';
 
 class HomeGrid extends StatefulWidget {
   const HomeGrid({Key? key}) : super(key: key);
@@ -19,6 +21,7 @@ class HomeGrid extends StatefulWidget {
 class _HomeGridState extends State<HomeGrid> {
   @override
   Widget build(BuildContext context) {
+    //  final eventProvider = Provider.of<EventProvider>(context, listen: false);
     return GridView(
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           crossAxisCount: 2, mainAxisSpacing: 10, crossAxisSpacing: 10),

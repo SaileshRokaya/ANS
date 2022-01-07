@@ -2,7 +2,9 @@ import 'package:ans/admin/admin_events.dart';
 import 'package:ans/admin/admin_notice.dart';
 import 'package:ans/admin/admin_panel.dart';
 import 'package:ans/model/event_model.dart';
+import 'package:ans/provider/event_service_provider.dart';
 import 'package:ans/service/event_service.dart';
+import 'package:ans/views/academic_app.dart';
 import 'package:ans/views/account.dart';
 import 'package:ans/views/caraousel.dart';
 import 'package:ans/views/events.dart';
@@ -17,26 +19,10 @@ import 'package:firebase_auth/firebase_auth.dart';
 // import 'package:ans/views/home_page.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
-Future<void> main() async {
-  // WidgetsFlutterBinding.ensureInitialized();
-  // await Firebase.initializeApp();
-
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  // This widget is the root of your application.
-  // This is the main page of the application
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Firestore Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: Login(),
-    );
-  }
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
+  runApp(AcademicApp());
 }
