@@ -1,49 +1,53 @@
 import 'package:ans/views/colors.dart';
 import 'package:flutter/material.dart';
 
-class TuesdayPage extends StatelessWidget {
-  const TuesdayPage({Key? key}) : super(key: key);
+class MondayPage extends StatelessWidget {
+  const MondayPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: scaffoldBackgroundColor,
+      color: whiteBackground,
       child: Column(
         children: [
           // Container for first subject
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Container(
-              width: 460,
-              height: 150,
+              width: 350,
+              height: 130,
               decoration: BoxDecoration(
-                  color: Colors.lightBlue.shade400,
-                  border: Border.all(
-                    color: Colors.red,
-                    width: 2,
-                  )),
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.lightBlue,
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 15.0,
+                      offset: Offset(0.0, 0.75))
+                ],
+              ),
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // Subject code
-                    Text(
+                    const Text(
                       "Mobile Application ",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     // Teacher name
-                    Text(
-                      "Ajay Sharma",
+                    const Text(
+                      "08:00 AM - 10:00 AM",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
                     ),
 
-                    SizedBox(
+                    const SizedBox(
                       height: 15,
                     ),
                     // Time
@@ -52,9 +56,9 @@ class TuesdayPage extends StatelessWidget {
                       children: [
                         // subect time
                         Text(
-                          "08:00 - 10:00 AM",
+                          "Ajay Sharma",
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20),
+                              fontWeight: FontWeight.bold, fontSize: 16),
                         ),
 
                         // Room Number
@@ -75,14 +79,18 @@ class TuesdayPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Container(
-              width: 460,
-              height: 150,
+              width: 350,
+              height: 130,
               decoration: BoxDecoration(
-                  color: Colors.lightGreen,
-                  border: Border.all(
-                    color: Colors.redAccent,
-                    width: 2,
-                  )),
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.lightBlue,
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 15.0,
+                      offset: Offset(0.0, 0.75))
+                ],
+              ),
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
                 child: Column(
@@ -92,16 +100,16 @@ class TuesdayPage extends StatelessWidget {
                     Text(
                       "Break",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
                     ),
                     SizedBox(
                       height: 15,
                     ),
                     // Teacher name
                     Text(
-                      "No Faculty",
+                      "10:00 AM - 11:00 AM",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
                     ),
 
                     SizedBox(
@@ -109,9 +117,9 @@ class TuesdayPage extends StatelessWidget {
                     ),
                     // Time
                     Text(
-                      "08:00 - 10:00 AM",
+                      "No Faculty",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                     ),
                   ],
                 ),
@@ -123,14 +131,17 @@ class TuesdayPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(16.0),
             child: Container(
-              width: 460,
-              height: 150,
+              width: 350,
+              height: 130,
               decoration: BoxDecoration(
-                color: Colors.tealAccent.shade700,
-                border: Border.all(
-                  color: Colors.red.shade600,
-                  width: 2,
-                ),
+                borderRadius: BorderRadius.circular(10),
+                color: Colors.lightBlue,
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                      color: Colors.black12,
+                      blurRadius: 15.0,
+                      offset: Offset(0.0, 0.75))
+                ],
               ),
               child: Padding(
                 padding: const EdgeInsets.all(10.0),
@@ -139,18 +150,18 @@ class TuesdayPage extends StatelessWidget {
                   children: [
                     // Subject code
                     Text(
-                      "Mobile Application ",
+                      "Software Design ",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
                     ),
                     SizedBox(
                       height: 15,
                     ),
                     // Teacher name
                     Text(
-                      "Ajay Sharma",
+                      "11:00 AM - 1:00 PM",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 20),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
                     ),
 
                     SizedBox(
@@ -162,9 +173,9 @@ class TuesdayPage extends StatelessWidget {
                       children: [
                         // subect time
                         Text(
-                          "08:00 - 10:00 AM",
+                          "Sudhir kumar",
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20),
+                              fontWeight: FontWeight.bold, fontSize: 16),
                         ),
 
                         // Room Number

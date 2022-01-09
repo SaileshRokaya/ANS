@@ -1,8 +1,8 @@
 import 'package:ans/views/colors.dart';
 import 'package:flutter/material.dart';
 
-class MondayPage extends StatelessWidget {
-  const MondayPage({Key? key}) : super(key: key);
+class SundayPage extends StatelessWidget {
+  const SundayPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +12,7 @@ class MondayPage extends StatelessWidget {
         children: [
           // Container for first subject
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(20.0),
             child: Container(
               width: 350,
               height: 130,
@@ -32,22 +32,22 @@ class MondayPage extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     // Subject code
-                    const Text(
-                      "Mobile Application ",
+                    Text(
+                      "Independent Study",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
                     ),
-                    const SizedBox(
+                    SizedBox(
                       height: 15,
                     ),
                     // Teacher name
-                    const Text(
+                    Text(
                       "08:00 AM - 10:00 AM",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
                     ),
 
-                    const SizedBox(
+                    SizedBox(
                       height: 15,
                     ),
                     // Time
@@ -56,7 +56,7 @@ class MondayPage extends StatelessWidget {
                       children: [
                         // subect time
                         Text(
-                          "Ajay Sharma",
+                          "No Facutly",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 16),
                         ),
@@ -77,7 +77,7 @@ class MondayPage extends StatelessWidget {
 
           // Container for break / lunch
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(20.0),
             child: Container(
               width: 350,
               height: 130,
@@ -129,7 +129,7 @@ class MondayPage extends StatelessWidget {
 
           // Container for second subject
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(20.0),
             child: Container(
               width: 350,
               height: 130,
@@ -150,7 +150,7 @@ class MondayPage extends StatelessWidget {
                   children: [
                     // Subject code
                     Text(
-                      "Software Design ",
+                      "Indepentent Study",
                       style:
                           TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
                     ),
@@ -173,7 +173,7 @@ class MondayPage extends StatelessWidget {
                       children: [
                         // subect time
                         Text(
-                          "Sudhir kumar",
+                          "No Faculty ",
                           style: TextStyle(
                               fontWeight: FontWeight.bold, fontSize: 16),
                         ),
