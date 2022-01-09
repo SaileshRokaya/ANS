@@ -17,7 +17,7 @@ class _RoutinePageState extends State<RoutinePage> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-        length: 5,
+        length: 6,
         child: Scaffold(
             appBar: AppBar(
               title: Text("Routine"),
@@ -25,6 +25,9 @@ class _RoutinePageState extends State<RoutinePage> {
 
               // bottom
               bottom: TabBar(tabs: [
+                Tab(
+                  text: "Sun",
+                ),
                 Tab(
                   text: "Mon",
                 ),
@@ -44,6 +47,7 @@ class _RoutinePageState extends State<RoutinePage> {
             ),
             body: TabBarView(
               children: [
+                SundayPage(),
                 MondayPage(),
                 TuesdayPage(),
                 WednesdayPage(),
