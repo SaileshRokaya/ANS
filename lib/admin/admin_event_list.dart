@@ -1,10 +1,15 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'dart:async';
 import 'package:ans/admin/admin_events.dart';
 import 'package:ans/model/event_model.dart';
+import 'package:ans/provider/event_service_provider.dart';
 import 'package:ans/service/event_service.dart';
 import 'package:ans/views/Events_read.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
 
 class AdminEventListPage extends StatefulWidget {
   const AdminEventListPage({Key? key, String? title}) : super(key: key);
@@ -16,24 +21,21 @@ class AdminEventListPage extends StatefulWidget {
 class _AdminEventListPageState extends State<AdminEventListPage> {
   EventService eventService = new EventService();
 
-  //late List<EventModel> eventList;
+  List<EventModel> eventDatas = [];
+
+  void reloadData() async {
+    final postMdl = Provider.of<EventProvider>(context, listen: false);
+    eventDatas = await EventService().getEventData();
+    postMdl.updateEvent(eventDatas);
+  }
 
   bool loading = true;
-
-  // getAllEvent() async {
-  //   eventList = await EventService().getEvent();
-  //   print(eventList.length);
-  //   setState(() {
-  //     loading = false;
-  //   });
-  //   print("Event: ${eventList.length}");
-  // }
 
   // delete(EventModel eventModel) async {
   //   await EventService().deleteEvent(eventModel);
   //   setState(() {
   //     loading = true;
-  //     getAllEvent();
+  //     // getAllEvent();
   //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
   //       content: Text("Delete Sucessful"),
   //     ));
@@ -42,129 +44,129 @@ class _AdminEventListPageState extends State<AdminEventListPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
-    super.initState();
-    //getAllEvent();
-    //print("The length is: ${eventList.length}");
+    reloadData();
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        appBar: AppBar(
-          title: Text('Event List'),
-        ),
-        floatingActionButton: FloatingActionButton(
-            child: Icon(Icons.add),
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => AdminEventPage()));
-            }),
-        body: FutureBuilder<List>(
-          future: eventService.getEventData(),
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              if (snapshot.data!.length == 0) {
-                return Center(
-                  child: Text("No data available"),
-                );
-              }
+    return Consumer<EventProvider>(
+      builder: (context, provider, child) {
+        return Scaffold(
+          floatingActionButton: FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AdminEventPage()));
+              }),
+          appBar: AppBar(
+            title: Text("API view list"),
+            actions: <Widget>[
+              Padding(
+                  padding: EdgeInsets.only(right: 20.0),
+                  child: GestureDetector(
+                    onTap: () async {
+                      List<EventModel> eventDatas =
+                          await EventService().getEventData();
+                      provider.updateEvent(eventDatas);
+                      print("The datas are: $eventDatas");
+                    },
+                    child: Icon(
+                      Icons.refresh_rounded,
+                      size: 26.0,
+                    ),
+                  )),
+            ],
+          ),
+          body: Container(
+              child: provider.eventList.isEmpty
+                  ? Center(
+                      child: const Text(
+                      "No data found",
+                      style:
+                          TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    ))
+                  : ListView.builder(
+                      itemCount: provider.eventList.length,
+                      itemBuilder: (contex, index) {
+                        DateTime date = DateTime.parse(
+                            provider.eventList[index].eventCreated.toString());
+                        return Card(
+                          margin: EdgeInsets.all(8.0),
+                          elevation: 5.0,
+                          shadowColor: Colors.grey,
+                          child: ListTile(
+                            contentPadding: EdgeInsets.symmetric(
+                              vertical: 15.0,
+                              horizontal: 15.0,
+                            ),
+                            title: Text(provider.eventList[index].eventTitle,
+                                maxLines: 2,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 20.0)),
+                            subtitle: Text(
+                              DateFormat("\ndd-MM-yyyy kk:mm a")
+                                  .format(date)
+                                  .toString(),
+                              style: TextStyle(fontSize: 16),
+                            ),
+                            trailing: IconButton(
+                              onPressed: () async {
+                                int data =
+                                    int.parse(provider.eventList[index].id);
 
-              return ListView.builder(
-                  itemCount: snapshot.data!.length,
-                  itemBuilder: (context, index) {
-                    return Column(
-                      children: [
-                        SizedBox(
-                          height: 10,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 8.0, right: 8.0),
-                          child: InkWell(
-                            child: Container(
-                              constraints: BoxConstraints(
-                                maxHeight: double.infinity,
-                              ),
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(16),
-                                color: Colors.tealAccent.shade400,
-                                border: Border.all(
-                                  color: Colors.redAccent.shade400,
-                                  width: 2,
-                                ),
-                              ),
-                              child: ListTile(
-                                title: Text(
-                                  snapshot.data![index]['event_title'],
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 16),
-                                ),
-                                trailing: Text(
-                                    DateFormat("MMM d").format(DateTime.now())),
+                                await EventService().deleteEvent(data);
+                                print("My deleteable id is: $data");
+                                eventDatas =
+                                    await EventService().getEventData();
+                                provider.updateEvent(eventDatas);
+                                // }
+
+                                // print("Deleted successfully");A
+                                // // List<EventModel> eventDatas =
+                                // //     await EventService().getEventData();
+                                // // provider.updateEvent(eventDatas);
+                              },
+                              icon: Icon(
+                                Icons.delete_forever_rounded,
+                                color: Colors.red,
                               ),
                             ),
-
-                            // Ontap function is here
-                            onTap: () {
-                              String t1 = (snapshot.data![index]['event_title'])
-                                  .toString();
-                              String m1 = (snapshot.data![index]
-                                      ['event_message'])
-                                  .toString();
-                              print(t1);
-                              print('---------------------------');
-                              print(m1);
-
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          EventReadPage(t1, m1)));
-                              // print(snapshot.data![index]['event_title']);
-                            },
                           ),
-                        )
-                      ],
-                    );
-                  });
-            } else {
-              return Center(
-                child: CircularProgressIndicator(),
-              );
-            }
-          },
-        )
-
-        // body: loading
-        //     ? Center(
-        //         child: CircularProgressIndicator(),
-        //       )
-        //     : ListView.builder(
-        //         itemCount: eventList.length,
-        //         itemBuilder: (context, index) {
-        //           EventModel user = eventList[index];
-        //           return ListTile(
-        //             // onTap: () {
-        //             //   Navigator.push(
-        //             //     context,
-        //             //     MaterialPageRoute(
-        //             //       builder: (context) => EventReadPage(),
-        //             //     ),
-        //             //   );
-        //             // },
-        //             leading: CircleAvatar(
-        //               child: Text(user.event_title[0]),
-        //             ),
-        //             title: Text(user.event_title),
-        //             // subtitle: Text(user.event_message),
-        //             // trailing: IconButton(
-        //             //     icon: Icon(Icons.delete),
-        //             //     onPressed: () {
-        //             //       delete(user);
-        //             //     }),
-        //           );
-        //         }),
+                        );
+                      })),
         );
+      },
+    );
+
+    // body: loading
+    //     ? Center(
+    //         child: CircularProgressIndicator(),
+    //       )
+    //     : ListView.builder(
+    //         itemCount: eventList.length,
+    //         itemBuilder: (context, index) {
+    //           EventModel user = eventList[index];
+    //           return ListTile(
+    //             // onTap: () {
+    //             //   Navigator.push(
+    //             //     context,
+    //             //     MaterialPageRoute(
+    //             //       builder: (context) => EventReadPage(),
+    //             //     ),
+    //             //   );
+    //             // },
+    //             leading: CircleAvatar(
+    //               child: Text(user.event_title[0]),
+    //             ),
+    //             title: Text(user.event_title),
+    //             // subtitle: Text(user.event_message),
+    //             // trailing: IconButton(
+    //             //     icon: Icon(Icons.delete),
+    //             //     onPressed: () {
+    //             //       delete(user);
+    //             //     }),
+    //           );
+    //         }),
   }
 }

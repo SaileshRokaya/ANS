@@ -7,14 +7,16 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 
 class EventService {
-  static const ADD_URL = "http://192.168.1.73/pcps_api/EventCreate.php";
-  static const VIEW_URL = "http://192.168.40.81/pcps_ans_api/api/read.php";
+  static const ADD_URL =
+      "http://192.168.40.52/pcps_ans_api/api/EventCreate.php";
+  static const VIEW_URL = "http://192.168.40.52/pcps_ans_api/api/EventRead.php";
   static const UPDATE_URL = "http://localhost/pcps_api/EventUpdate.php";
-  static const DELETE_URL = "http://192.168.1.73/pcps_api/EventDelete.php";
+  static const DELETE_URL =
+      "http://192.168.40.52/pcps_ans_api/api/EventDelete.php";
 
   List<EventModel> eventFromJson(String jsonString) {
     final Map<String, dynamic> data = json.decode(jsonString);
-    print("Event Model Data: $data");
+    // print("Event Model Data: $data");
 
     return List<EventModel>.from(
         data['body'].map((item) => EventModel.fromJson(item)));
@@ -23,7 +25,7 @@ class EventService {
   Future<List<EventModel>> getEventData() async {
     final response = await http.get(Uri.parse(VIEW_URL));
     if (response.statusCode == 200) {
-      print(response.body);
+      // print(response.body);
       print(response.statusCode);
       List<EventModel> list = eventFromJson(response.body);
 
@@ -35,119 +37,40 @@ class EventService {
     }
   }
 
-  Future<String> createEvent(Map<String, dynamic> data) async {
-    print("hello");
+  // Insert data to the database
+  Future<String> addEvent(EventModel eventModel) async {
     final response =
-        await http.post(Uri.parse(ADD_URL), body: jsonEncode(data));
-    print(response.body);
+        await http.post(Uri.parse(ADD_URL), body: eventModel.toJsonAdd());
     if (response.statusCode == 200) {
-      print(response.statusCode);
-      print("save");
-      print("Add Response: " + response.body);
-      print("Exit");
-
       return response.body;
     } else {
       return "Error";
     }
   }
 
-  // Future<String> addEvent(EventModel eventModel) async {
-  //   print("hello flutter developer");
-  //   final response =
-  //       await http.post(Uri.parse(ADD_URL), body: eventModel.toJsonAdd());
-  //   print("Hello Flutter Developer");
+  deleteEvent(int id) async {
+    //print(DELETE_URL + "?id=" + id.toString());
+    var response =
+        await http.get(Uri.parse(DELETE_URL + "?id=" + id.toString()));
+    print("The response id is ${response.body}");
+    print("The response code is: ${response.statusCode}");
+  }
 
+  // Future<String> deleteEvent(EventModel eventModel) async {
+  //   final response = await http.post(
+  //       Uri.parse(
+  //         DELETE_URL,
+  //       ),
+  //       // it returns the id of the user from the toJsonDelete method
+  //       body: eventModel.toJsonDelete());
+  //   // response.body = jsonEncode("id":id);
   //   if (response.statusCode == 200) {
-  //     print(response.statusCode);
-  //     print("Add Response: " + response.body);
+  //     print("Delete Response: " + response.body);
+
   //     return response.body;
   //   } else {
   //     return "Error";
   //   }
-  // }
-
-  // List<EventModel> eventFromJson(String jsonString) {
-  //   final data = json.decode(jsonString);
-  //   print("Event Model Data: $data");
-
-  //   return List<EventModel>.from(data.map((item) => EventModel.fromJson(item)));
-  // }
-
-//   Future<EventModel> getEvent(context) async {
-//     EventModel result;
-
-//     final response = await http.get(
-//       Uri.parse(VIEW_URL));
-
-//     if (response.statusCode == 200) {
-//       final item = json.decode(response.body);
-//       result = EventModel.fromJson(item);
-//       return result;
-//     } else {
-//       // Toast.show("Data not found", context,
-//       //     duration: 2, backgroundColor: Colors.redAccent);
-//       //Fluttertoast.showToast(msg: "Data not found");
-//       return Future.error(e);
-
-//   }
-
-// }
-
-  // Future<EventModel> getSinglePostData(context) async {
-  //   EventModel result;
-
-  //   final response = await http.get(
-  //     Uri.parse(VIEW_URL),
-  //   );
-  //   if (response.statusCode == 200) {
-  //     final item = json.decode(response.body);
-  //     result = EventModel.fromJson(item);
-  //     return result;
-  //   } else {
-  //     // String res = Fluttertoast.showToast(msg: "Data not found");
-  //     return Future.error("Data not found");
-  //   }
-  // }
-
-  // Future<Map<String, dynamic>> getEvent() async {
-  //   print("hello123");
-  //   final response = await http.get(Uri.parse(VIEW_URL));
-  //   if (response.statusCode == 200) {
-  //     var jsonData = jsonDecode(response.body);
-
-  //     // List<EventModel> events = [];
-
-  //     // print("Response body: $jsonData");
-
-  //     // for (var e in jsonData) {
-  //     //   EventModel event = EventModel(
-  //     //       e['event_message'],
-  //     //       e['event_title'],
-  //     //       e['id']);
-  //     //   events.add(event);
-  //     // }
-
-  //     // print("Save");
-
-  //     // print(events.length);
-  //     // print(events);
-
-  //     //List<EventModel> list = eventFromJson(response.body);
-
-  //     print(jsonData);
-
-  //     return jsonData;
-  //   } else {
-  //     return Future.error('Failed to load');
-  //   }
-  // }
-
-  deleteEvent(Map<String, dynamic> data) async {
-    var response =
-        await http.delete(Uri.parse(DELETE_URL), body: jsonEncode(data));
-    print("The id is ${response.body}");
-  }
 
   // Future<String> updateEvent(EventModel eventModel) async {
   //   final response =
