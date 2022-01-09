@@ -31,4 +31,17 @@ class EventModel {
         "event_message": eventMessage,
         "event_created": eventCreated,
       };
+
+  Map<String, dynamic> toJsonAdd() {
+    return {
+      "event_title": eventTitle,
+      "event_message": eventMessage,
+    };
+  }
+
+  Map<String, dynamic> toJsonDelete() {
+    return {
+      "id": id,
+    };
+  }
 }

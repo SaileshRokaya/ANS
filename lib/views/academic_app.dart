@@ -1,3 +1,4 @@
+import 'package:ans/admin/admin_panel.dart';
 import 'package:ans/provider/event_service_provider.dart';
 import 'package:ans/views/home_page.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ class _AcademicAppState extends State<AcademicApp> {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: HomePage(),
+        home: AdminHomePage(),
         theme: ThemeData(
           primaryColor: Colors.black,
         ),

@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_is_empty
+// ignore_for_file: prefer_is_empty, prefer_const_constructors
 
 import 'dart:async';
 
@@ -56,20 +56,6 @@ class _EventViewState extends State<EventView> {
   //   postEvent.getPostData(context);
   // }
 
-  // @override
-  // void initState() {
-  //   final entryProvider =
-  //       Provider.of<EventProvider>(context, listen: false);
-  //   if (widget != null) {
-  //     // Edit
-  //     entryController.text = widget.entry!.entry;
-  //     entryProvider.loadAll(widget.entry);
-  //   } else {
-  //     entryProvider.loadAll(null);
-  //   }
-  //   super.initState();
-  // }
-
   @override
   Widget build(BuildContext context) {
     return Consumer<EventProvider>(
@@ -97,17 +83,30 @@ class _EventViewState extends State<EventView> {
                   : ListView.builder(
                       itemCount: provider.eventList.length,
                       itemBuilder: (contex, index) {
+                        DateTime date = DateTime.parse(
+                            provider.eventList[index].eventCreated.toString());
                         return Card(
                           margin: EdgeInsets.all(8.0),
                           elevation: 5.0,
                           shadowColor: Colors.grey,
                           child: ListTile(
-                            title: Text(
-                              provider.eventList[index].eventTitle,
-                              maxLines: 2,
+                            contentPadding: EdgeInsets.symmetric(
+                              vertical: 15.0,
+                              horizontal: 15.0,
                             ),
-                            subtitle:
-                                Text(provider.eventList[index].eventCreated),
+                            title: Text(provider.eventList[index].eventTitle,
+                                maxLines: 2,
+                                style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 20.0)),
+                            // subtitle:
+                            //     Text(provider.eventList[index].eventCreated),
+                            subtitle: Text(
+                              DateFormat("\ndd-MM-yyyy kk:mm a")
+                                  .format(date)
+                                  .toString(),
+                              style: TextStyle(fontSize: 16),
+                            ),
                           ),
                         );
                       })),
