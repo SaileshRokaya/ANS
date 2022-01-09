@@ -1,8 +1,8 @@
 import 'package:ans/views/colors.dart';
 import 'package:flutter/material.dart';
 
-class MondayPage extends StatelessWidget {
-  const MondayPage({Key? key}) : super(key: key);
+class WednesdayPage extends StatelessWidget {
+  const WednesdayPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
