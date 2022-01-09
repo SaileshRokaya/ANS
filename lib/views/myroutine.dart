@@ -1,5 +1,6 @@
 import 'package:ans/routinewidgets/fri.dart';
 import 'package:ans/routinewidgets/mon.dart';
+import 'package:ans/routinewidgets/sun.dart';
 import 'package:ans/routinewidgets/thu.dart';
 import 'package:ans/routinewidgets/tue.dart';
 import 'package:ans/routinewidgets/wed.dart';

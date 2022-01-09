@@ -120,7 +120,7 @@ class _EventViewState extends State<EventView> {
                             provider.eventList[index].eventCreated.toString());
 
                         // All the event data will be added to eventGetList
-                        EventModel eventGetList = eventDatas[index];
+                        //  EventModel eventGetList = eventDatas[index];
                         return Card(
                           margin: EdgeInsets.all(8.0),
                           elevation: 5.0,

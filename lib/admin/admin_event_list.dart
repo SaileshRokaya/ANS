@@ -77,22 +77,22 @@ class _AdminEventListPageState extends State<AdminEventListPage> {
               "List Of Event",
               style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
             ),
-            // actions: <Widget>[
-            //   Padding(
-            //       padding: EdgeInsets.only(right: 20.0),
-            //       child: GestureDetector(
-            //         onTap: () async {
-            //           List<EventModel> eventDatas =
-            //               await EventService().getEventData();
-            //           provider.updateEvent(eventDatas);
-            //           print("The datas are: $eventDatas");
-            //         },
-            //         child: Icon(
-            //           Icons.refresh_rounded,
-            //           size: 26.0,
-            //         ),
-            //       )),
-            // ],
+            actions: <Widget>[
+              Padding(
+                  padding: EdgeInsets.only(right: 20.0),
+                  child: GestureDetector(
+                    onTap: () async {
+                      List<EventModel> eventDatas =
+                          await EventService().getEventData();
+                      provider.updateEvent(eventDatas);
+                      print("The datas are: $eventDatas");
+                    },
+                    child: Icon(
+                      Icons.refresh_rounded,
+                      size: 26.0,
+                    ),
+                  )),
+            ],
           ),
           body: Container(
 
