@@ -28,10 +28,11 @@ class UserProfile extends StatelessWidget {
           child: Column(
             children: [
               Padding(
-                padding: const EdgeInsets.all(12.0),
+                padding: const EdgeInsets.only(
+                    left: 100, top: 12, bottom: 12, right: 20),
                 child: CircleAvatar(
                   radius: 75,
-                  backgroundColor: Colors.teal.shade400,
+                  backgroundColor: Colors.lightBlue,
                   //backgroundImage: AssetImage("logo.png"),
                 ),
               ),
@@ -133,49 +134,8 @@ class UserProfile extends StatelessWidget {
                         style: TextStyle(
                             fontSize: 18, fontWeight: FontWeight.bold),
                       ),
-                      SizedBox(
-                        height: 50,
-                      ),
 
                       // Create row for two buttons
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          // change password button
-                          ElevatedButton(
-                            child: Text(
-                              "Change password",
-                              style: TextStyle(
-                                  fontSize: 22, fontWeight: FontWeight.bold),
-                            ),
-                            style:
-                                TextButton.styleFrom(minimumSize: Size(30, 45)),
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => ChangePassword()));
-                            },
-                          ),
-
-                          // Log out button
-                          ElevatedButton(
-                            child: Text(
-                              "Log Out",
-                              style: TextStyle(
-                                  fontSize: 22, fontWeight: FontWeight.bold),
-                            ),
-                            style:
-                                TextButton.styleFrom(minimumSize: Size(30, 45)),
-                            onPressed: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => HomePage()));
-                            },
-                          ),
-                        ],
-                      )
                     ],
                   ),
                 ),
