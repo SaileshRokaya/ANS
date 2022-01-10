@@ -7,8 +7,11 @@ import 'package:provider/provider.dart';
 import 'admin_event_list.dart';
 
 class AdminEventPage extends StatefulWidget {
+  // Create an instance
   final EventModel? eventModel;
   final int? index;
+
+  // Create a constructor
   AdminEventPage({this.eventModel, this.index});
 
   @override
@@ -23,9 +26,13 @@ class _AdminEventPageState extends State<AdminEventPage> {
 
   EventService eventService = EventService();
 
+  // Create an empty list eventData to store the event data
   List<EventModel> eventDatas = [];
 
+  // Add method was created
   add(EventModel eventModel) async {
+    // Call the addEvent method from EventService class to add the data on the database
+    // from the user
     await eventService.addEvent(eventModel).then((sucess) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Add Sucessful"),
@@ -51,8 +58,8 @@ class _AdminEventPageState extends State<AdminEventPage> {
       appBar: AppBar(
         centerTitle: true,
         title: Text(
-          "Send Events",
-          style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+          "Events",
+          style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
         ),
       ),
       body: Column(
@@ -84,7 +91,6 @@ class _AdminEventPageState extends State<AdminEventPage> {
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: "Message here",
-                //labelText: "Email",
               ),
               controller: eventMessage,
             ),
@@ -96,23 +102,29 @@ class _AdminEventPageState extends State<AdminEventPage> {
           ElevatedButton(
             child: Text(
               "Send",
-              style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
-            style: TextButton.styleFrom(minimumSize: Size(110, 55)),
+            style: TextButton.styleFrom(minimumSize: Size(200, 55)),
             onPressed: () {
+              // If the user didnot input text on title form field
+              // then it will show an error with the message
               if (eventTitle.text.isEmpty) {
                 ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                   content: Text("This field is required"),
                 ));
               } else {
+                // Value were input on the eventmodel constructor
                 EventModel eventModel = EventModel(
                   id: id.text,
                   eventTitle: eventTitle.text,
                   eventMessage: eventMessage.text,
                   eventCreated: eventCreated.text,
                 );
+
+                // Add method was called
                 add(eventModel);
 
+                // To update the UI Screen
                 void reloadData() async {
                   final postMdl =
                       Provider.of<EventProvider>(context, listen: false);
