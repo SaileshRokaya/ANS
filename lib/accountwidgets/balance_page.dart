@@ -12,31 +12,33 @@ class BalancePage extends StatelessWidget {
         child: Column(
           children: [
             Container(
-              height: 125,
+              height: 135,
               width: 450,
               decoration: BoxDecoration(
-                color: Colors.black54,
-                border: Border.all(
-                  color: Colors.cyan,
-                  width: 2,
-                ),
-              ),
+                  borderRadius: BorderRadius.circular(10),
+                  color: Colors.blue,
+                  boxShadow: const <BoxShadow>[
+                    BoxShadow(
+                        color: Colors.black12,
+                        blurRadius: 50.0,
+                        offset: Offset(0.0, 0.75))
+                  ]),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Total due and total paid
+                  // Total due and Balance
                   Padding(
                     padding: const EdgeInsets.all(10.0),
-                    child: Row(
+                    child: Column(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(
-                          "Total Due:",
+                          "Balance:",
                           style: TextStyle(
                               fontSize: 20, fontWeight: FontWeight.bold),
                         ),
                         SizedBox(
-                          height: 15,
+                          height: 18,
                         ),
                         Text(
                           "Total Paid:",
@@ -47,11 +49,11 @@ class BalancePage extends StatelessWidget {
                     ),
                   ),
 
-                  // Balance
+                  // Total Due
                   Padding(
                     padding: const EdgeInsets.all(10.0),
                     child: Text(
-                      "Balance:",
+                      "Total Due:",
                       style:
                           TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                     ),
