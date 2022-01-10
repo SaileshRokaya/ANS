@@ -117,9 +117,10 @@ class _AdminEventListPageState extends State<AdminEventListPage> {
                         // and will be converted in string
                         DateTime date = DateTime.parse(
                             provider.eventList[index].eventCreated.toString());
-
+                        print("Index $index");
                         // All the event data will be added to eventGetList
                         EventModel eventGetList = eventDatas[index];
+                        print("The list is $eventGetList");
                         return Card(
                           margin: EdgeInsets.all(8.0),
                           elevation: 5.0,
