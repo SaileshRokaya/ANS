@@ -6,6 +6,7 @@ EventModel eventModelFromJson(String str) =>
 String eventModelToJson(EventModel data) => json.encode(data.toJson());
 
 class EventModel {
+  // Create a constructor
   EventModel({
     required this.id,
     required this.eventTitle,
@@ -13,6 +14,7 @@ class EventModel {
     required this.eventCreated,
   });
 
+  // Create an instance of class
   String id;
   String eventTitle;
   String eventMessage;
@@ -36,6 +38,15 @@ class EventModel {
     return {
       "event_title": eventTitle,
       "event_message": eventMessage,
+    };
+  }
+
+  Map<String, dynamic> toJsonUpdate() {
+    return {
+      "id": id,
+      "event_title": eventTitle,
+      "event_message": eventMessage,
+      "event_created": eventCreated,
     };
   }
 

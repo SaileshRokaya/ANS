@@ -1,58 +1,55 @@
 import 'dart:convert';
 import 'dart:math';
-
-import 'package:ans/model/event_model.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
+import 'package:ans/model/leave_model.dart';
 
-class EventService {
-  // Variables with the url as a value in string form
+class LeaveService {
   static const ADD_URL =
-      "http://192.168.40.52/pcps_ans_api/api/EventCreate.php";
-  static const VIEW_URL = "http://192.168.40.52/pcps_ans_api/api/EventRead.php";
+      "http://192.168.40.52/pcps_ans_api/api/LeaveReqCreate.php";
+  static const VIEW_URL =
+      "http://192.168.40.52/pcps_ans_api/api/LeaveReqRead.php";
   static const UPDATE_URL =
-      "http://192.168.40.52/pcps_ans_api/api/EventUpdate.php";
+      "http://192.168.40.52/pcps_ans_api/api/LeaveReqUpdate.php";
   static const DELETE_URL =
-      "http://192.168.40.52/pcps_ans_api/api/EventDelete.php";
+      "http://192.168.40.52/pcps_ans_api/api/LeaveReqDelete.php";
+
+  // Create a method addEvent with the parameter EventModel class
+  // In the future, data will be returned as a string
+  Future<String> addLeave(LeaveModel leaveModel) async {
+    final response =
+        await http.post(Uri.parse(ADD_URL), body: leaveModel.toJsonAdd());
+    if (response.statusCode == 200) {
+      return response.body;
+    } else {
+      return "Error";
+    }
+  }
 
   // Create a method eventFromJson which accept one parameter as a string
   //It will decode the string value and store in variable named data as a map
-  List<EventModel> eventFromJson(String jsonString) {
+  List<LeaveModel> eventFromJson(String jsonString) {
     final Map<String, dynamic> data = json.decode(jsonString);
     // print("Event Model Data: $data");
 
     // Convert the json data into map and return as a list
-    return List<EventModel>.from(
-        data['body'].map((item) => EventModel.fromJson(item)));
+    return List<LeaveModel>.from(
+        data['body'].map((item) => LeaveModel.fromJson(item)));
   }
 
   // Create a method getEventData with asynchoruous operation
   // In the future data will be returned in a list form
-  Future<List<EventModel>> getEventData() async {
+  Future<List<LeaveModel>> getLeaveData() async {
     final response = await http.get(Uri.parse(VIEW_URL));
     if (response.statusCode == 200) {
       // print(response.body);
       print(response.statusCode);
-      List<EventModel> list = eventFromJson(response.body);
+      List<LeaveModel> list = eventFromJson(response.body);
 
       return list;
     } else {
       // throw Exception('Failed to load');
       return Future.error('Failed to load');
       // return List<UserModel>();
-    }
-  }
-
-  // Create a method addEvent with the parameter EventModel class
-  // In the future, data will be returned as a string
-  Future<String> addEvent(EventModel eventModel) async {
-    final response =
-        await http.post(Uri.parse(ADD_URL), body: eventModel.toJsonAdd());
-    if (response.statusCode == 200) {
-      return response.body;
-    } else {
-      return "Error";
     }
   }
 
@@ -68,9 +65,9 @@ class EventService {
 
   // Create a method updateEVent which takes EventModel as a prameter
   // The data will be stored as a string in the database in future.
-  Future<String> updateEvent(EventModel eventModel) async {
+  Future<String> updateEvent(LeaveModel leaveModel) async {
     final response =
-        await http.post(Uri.parse(UPDATE_URL), body: eventModel.toJsonUpdate());
+        await http.post(Uri.parse(UPDATE_URL), body: leaveModel.toJsonUpdate());
     if (response.statusCode == 200) {
       print("Update Response: " + response.body);
       return response.body;
