@@ -85,6 +85,7 @@ class _LeaveUpdateFormState extends State<LeaveUpdateForm> {
                         hintText: "Full Name",
                         labelText: "Name",
                       ),
+                      // enabled: false,
                       controller: name,
                       //controller: nameController,
                       validator: (value) {
@@ -97,7 +98,7 @@ class _LeaveUpdateFormState extends State<LeaveUpdateForm> {
                         //nameController.text = value!;
                       }),
                   const SizedBox(
-                    height: 20,
+                    height: 30,
                   ),
 
                   // College roll number text is here
@@ -255,20 +256,20 @@ class _LeaveUpdateFormState extends State<LeaveUpdateForm> {
                   ),
 
                   // Cancel button is here
-                  ElevatedButton(
-                    child: Text(
-                      "Cancel",
-                      style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
-                    ),
-                    style: TextButton.styleFrom(minimumSize: Size(395, 55)),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => LeaveUpdateForm()));
-                    },
-                  ),
+                  // ElevatedButton(
+                  //   child: Text(
+                  //     "Cancel",
+                  //     style:
+                  //         TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                  //   ),
+                  //   style: TextButton.styleFrom(minimumSize: Size(395, 55)),
+                  //   onPressed: () {
+                  //     Navigator.push(
+                  //         context,
+                  //         MaterialPageRoute(
+                  //             builder: (context) => LeaveUpdateForm()));
+                  //   },
+                  // ),
                 ],
               ),
             ),
