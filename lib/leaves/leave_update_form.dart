@@ -5,15 +5,15 @@ import 'package:ans/service/leave_service.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class LeaveForm extends StatefulWidget {
+class LeaveUpdateForm extends StatefulWidget {
   final LeaveModel? leaveModel;
-  const LeaveForm({Key? key, this.leaveModel}) : super(key: key);
+  const LeaveUpdateForm({Key? key, this.leaveModel}) : super(key: key);
 
   @override
-  _LeaveFormState createState() => _LeaveFormState();
+  _LeaveUpdateFormState createState() => _LeaveUpdateFormState();
 }
 
-class _LeaveFormState extends State<LeaveForm> {
+class _LeaveUpdateFormState extends State<LeaveUpdateForm> {
   TextEditingController id = TextEditingController();
   TextEditingController name = TextEditingController();
   TextEditingController rollno = TextEditingController();
@@ -36,6 +36,31 @@ class _LeaveFormState extends State<LeaveForm> {
       // print("Add Sucessful");
       Navigator.pop(context);
     });
+  }
+
+  // Create an update method with the parameter EventModel class
+  update(LeaveModel eventModel) async {
+    // Call the updateEvent method from the EventService class
+    // to update the event title or event message or both
+    await LeaveService().updateEvent(eventModel).then((sucess) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Update Sucessful"),
+      ));
+      // print("Add Sucessful");
+      Navigator.pop(context);
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    if (widget.leaveModel != null) {
+      name.text = widget.leaveModel!.name;
+      rollno.text = widget.leaveModel!.rollNo;
+      level.text = widget.leaveModel!.level;
+      course.text = widget.leaveModel!.course;
+      reqReason.text = widget.leaveModel!.reqReason;
+    }
   }
 
   @override
@@ -181,7 +206,7 @@ class _LeaveFormState extends State<LeaveForm> {
                   // Request button is here
                   ElevatedButton(
                     child: Text(
-                      "Request",
+                      "Update",
                       style:
                           TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     ),
@@ -196,7 +221,7 @@ class _LeaveFormState extends State<LeaveForm> {
                       } else {
                         // Value were input on the eventmodel constructor
                         LeaveModel leaveModel = LeaveModel(
-                          id: id.text,
+                          id: widget.leaveModel!.id,
                           name: name.text,
                           rollNo: rollno.text,
                           reqReason: reqReason.text,
@@ -208,8 +233,8 @@ class _LeaveFormState extends State<LeaveForm> {
                         );
 
                         // Add method was called
-                        add(leaveModel);
-                        print("Added successfully");
+                        update(leaveModel);
+                        print("Update successfully");
 
                         // To update the UI Screen
                         void reloadData() async {
@@ -238,8 +263,10 @@ class _LeaveFormState extends State<LeaveForm> {
                     ),
                     style: TextButton.styleFrom(minimumSize: Size(395, 55)),
                     onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => LeaveForm()));
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => LeaveUpdateForm()));
                     },
                   ),
                 ],
