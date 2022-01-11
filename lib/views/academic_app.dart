@@ -26,7 +26,7 @@ class _AcademicAppState extends State<AcademicApp> {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: HomePage(),
+        home: AdminHomePage(),
         theme: ThemeData(
           primaryColor: Colors.black,
         ),

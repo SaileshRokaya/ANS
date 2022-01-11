@@ -1,7 +1,9 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:ans/fees/fees_form.dart';
+import 'package:ans/leaves/leave_detail_show.dart';
 import 'package:ans/leaves/leave_form.dart';
+import 'package:ans/leaves/leave_update_form.dart';
 import 'package:ans/leaves/reason_leave.dart';
 import 'package:ans/model/leave_model.dart';
 import 'package:ans/provider/leave_service_provider.dart';
@@ -39,6 +41,19 @@ class _LeaveListState extends State<LeaveList> {
   getEventUser() async {
     // All the event list will be stored in eventDatas
     leaveDatas = await LeaveService().getLeaveData();
+  }
+
+  // Create an update method to update the event title and message
+  update(LeaveModel leaveModel) async {
+    // Call the updateEvent method from the class EventService to update the
+    // event title and event message
+    await LeaveService().updateEvent(leaveModel).then((sucess) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Update Sucessful"),
+      ));
+      // print("Add Sucessful");
+      //Navigator.pop(context);
+    });
   }
 
   String heading = "About fee payment date extend";
@@ -81,6 +96,26 @@ class _LeaveListState extends State<LeaveList> {
                 : ListView.builder(
                     itemCount: provider.leaveList.length,
                     itemBuilder: (context, position) {
+                      // All the event data will be added to eventGetList
+                      //  EventModel eventGetList = eventDatas![index];
+                      //  print("The list is $eventGetList");
+                      Map<String, dynamic> data = {
+                        "id": provider.leaveList[position].id,
+                        "name": provider.leaveList[position].name,
+                        "course": provider.leaveList[position].course,
+                        "level": provider.leaveList[position].level,
+                        "roll_no": provider.leaveList[position].rollNo,
+                        "leave_date": provider.leaveList[position].leaveDate,
+                        "status": provider.leaveList[position].status,
+                        "req_reason": provider.leaveList[position].reqReason,
+                        "acc_rej_reason":
+                            provider.leaveList[position].accRejReason
+                      };
+                      int ids = int.parse(provider.leaveList[position].id);
+                      print("THe updated id is: $ids");
+
+                      LeaveModel model = LeaveModel.fromJson(data);
+
                       return Card(
                         margin: EdgeInsets.all(8.0),
                         elevation: 5.0,
@@ -117,12 +152,12 @@ class _LeaveListState extends State<LeaveList> {
                                     // After pressing the edit button the page will forward to admin event update page
                                     // with two value eventGetList which is list
                                     // Other was index
-                                    // Navigator.of(context).push(
-                                    //     MaterialPageRoute(
-                                    //         builder: (context) =>
-                                    //             AdminEventUpdatePage(
-                                    //               eventModel: model,
-                                    //             )));
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                LeaveUpdateForm(
+                                                  leaveModel: model,
+                                                )));
                                   },
                                   icon: Icon(Icons.edit)),
 
@@ -151,13 +186,12 @@ class _LeaveListState extends State<LeaveList> {
                           // By tapping the particular card, it will show the body content of event
                           // With the help of alerdialog method
                           onTap: () {
-                            showDialog(
-                                context: context,
-                                builder: (context) => AlertDialog(
-                                      scrollable: true,
-                                      content: Text(provider
-                                          .leaveList[position].reqReason),
-                                    ));
+                            Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => LeaveDetailPage(
+                                          leaveModel: model,
+                                        )));
                           },
                         ),
                       );
