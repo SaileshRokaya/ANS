@@ -1,6 +1,9 @@
 import 'package:ans/admin/admin_leave.dart';
 import 'package:ans/model/leave_model.dart';
+import 'package:ans/provider/leave_service_provider.dart';
+import 'package:ans/service/leave_service.dart';
 import "package:flutter/material.dart";
+import 'package:provider/provider.dart';
 
 class AdminLeaveInformationPage extends StatefulWidget {
   final LeaveModel? leaveModel;
@@ -21,6 +24,21 @@ class _AdminLeaveInformationPageState extends State<AdminLeaveInformationPage> {
   String rollNo = "";
   String course = "";
   String reason = "";
+
+  List<LeaveModel> leaveDatas = [];
+
+  // Create an update method with the parameter EventModel class
+  update(LeaveModel leaveModel) async {
+    // Call the updateEvent method from the EventService class
+    // to update the event title or event message or both
+    await LeaveService().updateEvent(leaveModel).then((sucess) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Update Sucessful"),
+      ));
+      // print("Add Sucessful");
+      Navigator.pop(context);
+    });
+  }
 
   @override
   void initState() {
@@ -46,107 +64,150 @@ class _AdminLeaveInformationPageState extends State<AdminLeaveInformationPage> {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        child: Padding(
-          padding: const EdgeInsets.only(top: 100.0),
-          child: Column(
-            children: [
-              // Name
-              Text(
-                "Name:" + " " + name,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: 20,
-              ),
+        child: Column(
+          children: [
+            // Name
+            Text(
+              "Name:" + " " + name,
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 20,
+            ),
 
-              // Email
-              Text(
-                "Roll No: " + rollNo,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: 20,
-              ),
+            // Email
+            Text(
+              "Roll No: " + rollNo,
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 20,
+            ),
 
-              // Registration Date
-              Text(
-                "Course: " + course,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: 20,
-              ),
+            // Registration Date
+            Text(
+              "Course: " + course,
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 20,
+            ),
 
-              // Mobile Number
-              Text(
-                "Level: " + level,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: 20,
-              ),
+            // Mobile Number
+            Text(
+              "Level: " + level,
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 20,
+            ),
 
-              // Roll No
-              Text(
-                "Status: " + status,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: 20,
-              ),
+            // Roll No
+            Text(
+              "Status: " + status,
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 20,
+            ),
 
-              // Nationality
-              Text(
-                "Reason: " + reason,
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(
-                height: 20,
-              ),
+            // Nationality
+            Text(
+              "Reason: " + reason,
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+            ),
+            SizedBox(
+              height: 20,
+            ),
 
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  // change password button
-                  Padding(
-                    padding: const EdgeInsets.only(right: 30.0),
-                    child: ElevatedButton(
-                      child: Text(
-                        "Accept",
-                        style: TextStyle(
-                            fontSize: 15, fontWeight: FontWeight.bold),
-                      ),
-                      style: TextButton.styleFrom(minimumSize: Size(30, 45)),
-                      onPressed: () {
-                        Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => AdminLeavePage()));
-                      },
-                    ),
+            Row(
+              children: [
+                // change password button
+                ElevatedButton(
+                  child: Text(
+                    "Accept",
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
+                  style: TextButton.styleFrom(minimumSize: Size(30, 45)),
+                  onPressed: () {
+                    // Value were input on the eventmodel constructor
+                    LeaveModel leaveModel = LeaveModel(
+                      id: widget.leaveModel!.id,
+                      name: widget.leaveModel!.name,
+                      rollNo: widget.leaveModel!.rollNo,
+                      reqReason: widget.leaveModel!.reqReason,
+                      level: widget.leaveModel!.level,
+                      leaveDate: "",
+                      status: widget.leaveModel!.status,
+                      accRejReason: '',
+                      course: widget.leaveModel!.course,
+                    );
 
-                  // Log out button
-                  ElevatedButton(
-                    child: Text(
-                      "Reject",
-                      style:
-                          TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                    ),
-                    style: TextButton.styleFrom(minimumSize: Size(30, 45)),
-                    onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => AdminLeavePage()));
-                    },
+                    // Add method was called
+                    update(leaveModel);
+                    print("Update successfully");
+
+                    // To update the UI Screen
+                    void reloadData() async {
+                      final postMdl = Provider.of<LeaveServiceProvider>(context,
+                          listen: false);
+                      leaveDatas = await LeaveService().getLeaveData();
+                      postMdl.updateEvent(leaveDatas);
+                    }
+
+                    reloadData();
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AdminLeavePage()));
+                  },
+                ),
+
+                // Log out button
+                ElevatedButton(
+                  child: Text(
+                    "Reject",
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ),
-                ],
-              )
+                  style: TextButton.styleFrom(minimumSize: Size(30, 45)),
+                  onPressed: () {
+                    // Value were input on the eventmodel constructor
+                    LeaveModel leaveModel = LeaveModel(
+                      id: widget.leaveModel!.id,
+                      name: widget.leaveModel!.name,
+                      rollNo: widget.leaveModel!.rollNo,
+                      reqReason: widget.leaveModel!.reqReason,
+                      level: widget.leaveModel!.level,
+                      leaveDate: "",
+                      status: widget.leaveModel!.status,
+                      accRejReason: '',
+                      course: widget.leaveModel!.course,
+                    );
 
-              // Course
-            ],
-          ),
+                    // Add method was called
+                    update(leaveModel);
+                    print("Update successfully");
+
+                    // To update the UI Screen
+                    void reloadData() async {
+                      final postMdl = Provider.of<LeaveServiceProvider>(context,
+                          listen: false);
+                      leaveDatas = await LeaveService().getLeaveData();
+                      postMdl.updateEvent(leaveDatas);
+                    }
+
+                    reloadData();
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => AdminLeavePage()));
+                  },
+                ),
+              ],
+            )
+
+            // Course
+          ],
         ),
       ),
     );

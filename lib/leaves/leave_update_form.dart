@@ -23,7 +23,7 @@ class _LeaveUpdateFormState extends State<LeaveUpdateForm> {
   TextEditingController accReason = TextEditingController();
 
   // Create an empty list eventData to store the event data
-  List<LeaveModel> eventDatas = [];
+  List<LeaveModel> leaveDatas = [];
 
   // Add method was created
   add(LeaveModel eventModel) async {
@@ -39,10 +39,10 @@ class _LeaveUpdateFormState extends State<LeaveUpdateForm> {
   }
 
   // Create an update method with the parameter EventModel class
-  update(LeaveModel eventModel) async {
+  update(LeaveModel leaveModel) async {
     // Call the updateEvent method from the EventService class
     // to update the event title or event message or both
-    await LeaveService().updateEvent(eventModel).then((sucess) {
+    await LeaveService().updateEvent(leaveModel).then((sucess) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Update Sucessful"),
       ));
@@ -241,8 +241,8 @@ class _LeaveUpdateFormState extends State<LeaveUpdateForm> {
                           final postMdl = Provider.of<LeaveServiceProvider>(
                               context,
                               listen: false);
-                          eventDatas = await LeaveService().getLeaveData();
-                          postMdl.updateEvent(eventDatas);
+                          leaveDatas = await LeaveService().getLeaveData();
+                          postMdl.updateEvent(leaveDatas);
                         }
 
                         reloadData();
