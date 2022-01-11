@@ -1,13 +1,43 @@
+import 'package:ans/model/leave_model.dart';
+import 'package:ans/provider/event_service_provider.dart';
+import 'package:ans/provider/leave_service_provider.dart';
+import 'package:ans/service/leave_service.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class LeaveForm extends StatefulWidget {
-  const LeaveForm({Key? key}) : super(key: key);
+  final LeaveModel? leaveModel;
+  const LeaveForm({Key? key, this.leaveModel}) : super(key: key);
 
   @override
   _LeaveFormState createState() => _LeaveFormState();
 }
 
 class _LeaveFormState extends State<LeaveForm> {
+  TextEditingController id = TextEditingController();
+  TextEditingController name = TextEditingController();
+  TextEditingController rollno = TextEditingController();
+  TextEditingController level = TextEditingController();
+  TextEditingController reqReason = TextEditingController();
+  TextEditingController course = TextEditingController();
+  TextEditingController accReason = TextEditingController();
+
+  // Create an empty list eventData to store the event data
+  List<LeaveModel> eventDatas = [];
+
+  // Add method was created
+  add(LeaveModel eventModel) async {
+    // Call the addEvent method from EventService class to add the data on the database
+    // from the user
+    await LeaveService().addLeave(eventModel).then((sucess) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Add Sucessful"),
+      ));
+      // print("Add Sucessful");
+      Navigator.pop(context);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,6 +60,7 @@ class _LeaveFormState extends State<LeaveForm> {
                         hintText: "Full Name",
                         labelText: "Name",
                       ),
+                      controller: name,
                       //controller: nameController,
                       validator: (value) {
                         if (value!.isEmpty) {
@@ -52,6 +83,7 @@ class _LeaveFormState extends State<LeaveForm> {
                       hintText: "Enter your college roll number",
                       labelText: "Roll Number",
                     ),
+                    controller: rollno,
                     //controller: emailController,
                     // The validator receives the text that the user has entered Validation
                     validator: (value) {
@@ -76,6 +108,7 @@ class _LeaveFormState extends State<LeaveForm> {
                         hintText: "Your course name",
                         labelText: "Course",
                       ),
+                      controller: course,
                       //controller: phoneController,
                       // The validator receives the text that the user has entered Validation
                       validator: (value) {
@@ -97,8 +130,9 @@ class _LeaveFormState extends State<LeaveForm> {
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: "Enter your college roll number",
-                      labelText: "Roll Number",
+                      labelText: "Level",
                     ),
+                    controller: level,
                     //controller: emailController,
                     // The validator receives the text that the user has entered Validation
                     validator: (value) {
@@ -125,6 +159,7 @@ class _LeaveFormState extends State<LeaveForm> {
                       hintText: "Write your reason here",
                       labelText: "Reason",
                     ),
+                    controller: reqReason,
                     //controller: passwordController,
 
                     // The validator receives the text that the user has entered
@@ -151,7 +186,42 @@ class _LeaveFormState extends State<LeaveForm> {
                           TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
                     ),
                     style: TextButton.styleFrom(minimumSize: Size(395, 55)),
-                    onPressed: () {},
+                    onPressed: () {
+                      // If the user didnot input text on title form field
+                      // then it will show an error with the message
+                      if (name.text.isEmpty) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text("This field is required"),
+                        ));
+                      } else {
+                        // Value were input on the eventmodel constructor
+                        LeaveModel leaveModel = LeaveModel(
+                          id: id.text,
+                          name: name.text,
+                          rollNo: rollno.text,
+                          reqReason: reqReason.text,
+                          level: level.text,
+                          leaveDate: "",
+                          status: "Pending",
+                          accRejReason: '',
+                        );
+
+                        // Add method was called
+                        add(leaveModel);
+                        print("Added successfully");
+
+                        // To update the UI Screen
+                        void reloadData() async {
+                          final postMdl = Provider.of<LeaveServiceProvider>(
+                              context,
+                              listen: false);
+                          eventDatas = await LeaveService().getLeaveData();
+                          postMdl.updateEvent(eventDatas);
+                        }
+
+                        reloadData();
+                      }
+                    },
                   ),
 
                   SizedBox(

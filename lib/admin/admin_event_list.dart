@@ -25,13 +25,13 @@ class _AdminEventListPageState extends State<AdminEventListPage> {
   // late final int? index;
 
   // Create an empty list to store the list of event coming from the database
-  List<EventModel> eventDatas = [];
+  List<EventModel>? eventDatas;
 
   // Create a method reloadData to update the UI screen
   void reloadData() async {
     final postMdl = Provider.of<EventProvider>(context, listen: false);
     eventDatas = await EventService().getEventData();
-    postMdl.updateEvent(eventDatas);
+    postMdl.updateEvent(eventDatas!);
   }
 
   // Create a method getEventUser to get all the event list
@@ -49,7 +49,7 @@ class _AdminEventListPageState extends State<AdminEventListPage> {
         content: Text("Update Sucessful"),
       ));
       // print("Add Sucessful");
-      Navigator.pop(context);
+      //Navigator.pop(context);
     });
   }
 
@@ -66,13 +66,12 @@ class _AdminEventListPageState extends State<AdminEventListPage> {
     return Consumer<EventProvider>(
       builder: (context, provider, child) {
         return Scaffold(
-          floatingActionButton: FloatingActionButton(
-              child: Icon(Icons.add),
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => AdminEventPage()));
-              }),
           appBar: AppBar(
+            leading: IconButton(
+                icon: Icon(Icons.backspace),
+                onPressed: () {
+                  Navigator.pop(context);
+                }),
             title: Text(
               "List Of Event",
               style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
@@ -119,8 +118,18 @@ class _AdminEventListPageState extends State<AdminEventListPage> {
                             provider.eventList[index].eventCreated.toString());
                         print("Index $index");
                         // All the event data will be added to eventGetList
-                        EventModel eventGetList = eventDatas[index];
-                        print("The list is $eventGetList");
+                        //  EventModel eventGetList = eventDatas![index];
+                        //  print("The list is $eventGetList");
+                        Map<String, dynamic> data = {
+                          "id": provider.eventList[index].id,
+                          "event_message":
+                              provider.eventList[index].eventMessage,
+                          "event_title": provider.eventList[index].eventTitle,
+                          "event_created":
+                              provider.eventList[index].eventCreated
+                        };
+
+                        EventModel model = EventModel.fromJson(data);
                         return Card(
                           margin: EdgeInsets.all(8.0),
                           elevation: 5.0,
@@ -156,13 +165,12 @@ class _AdminEventListPageState extends State<AdminEventListPage> {
                                       // After pressing the edit button the page will forward to admin event update page
                                       // with two value eventGetList which is list
                                       // Other was index
-                                      Navigator.push(
-                                          context,
+                                      Navigator.of(context).push(
                                           MaterialPageRoute(
                                               builder: (context) =>
                                                   AdminEventUpdatePage(
-                                                      eventModel: eventGetList,
-                                                      index: index)));
+                                                    eventModel: model,
+                                                  )));
                                     },
                                     icon: Icon(Icons.edit)),
 
@@ -182,7 +190,7 @@ class _AdminEventListPageState extends State<AdminEventListPage> {
                                       // to update the UI screen of event list
                                       eventDatas =
                                           await EventService().getEventData();
-                                      provider.updateEvent(eventDatas);
+                                      provider.updateEvent(eventDatas!);
                                     },
                                     icon: Icon(Icons.delete)),
                               ],
@@ -202,6 +210,12 @@ class _AdminEventListPageState extends State<AdminEventListPage> {
                           ),
                         );
                       })),
+          floatingActionButton: FloatingActionButton(
+              child: Icon(Icons.add),
+              onPressed: () {
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => AdminEventPage()));
+              }),
         );
       },
     );
