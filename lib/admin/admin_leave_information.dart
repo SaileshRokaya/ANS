@@ -1,6 +1,9 @@
 import 'package:ans/admin/admin_leave.dart';
 import 'package:ans/model/leave_model.dart';
+import 'package:ans/provider/leave_service_provider.dart';
+import 'package:ans/service/leave_service.dart';
 import "package:flutter/material.dart";
+import 'package:provider/provider.dart';
 
 class AdminLeaveInformationPage extends StatefulWidget {
   final LeaveModel? leaveModel;
@@ -15,12 +18,27 @@ class AdminLeaveInformationPage extends StatefulWidget {
 
 class _AdminLeaveInformationPageState extends State<AdminLeaveInformationPage> {
   // Variables
-  String name = "saroj";
-  String level = "L5";
-  String status = "Status";
-  String rollNo = "200213";
-  String course = "Bsc(Hone) CSSE";
-  String reason = "I cannot pay the fee right now";
+  String name = "";
+  String level = "";
+  String status = "";
+  String rollNo = "";
+  String course = "";
+  String reason = "";
+
+  List<LeaveModel> leaveDatas = [];
+
+  // Create an update method with the parameter EventModel class
+  update(LeaveModel leaveModel) async {
+    // Call the updateEvent method from the EventService class
+    // to update the event title or event message or both
+    await LeaveService().updateEvent(leaveModel).then((sucess) {
+      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+        content: Text("Update Sucessful"),
+      ));
+      // print("Add Sucessful");
+      Navigator.pop(context);
+    });
+  }
 
   @override
   void initState() {
@@ -112,6 +130,32 @@ class _AdminLeaveInformationPageState extends State<AdminLeaveInformationPage> {
                   ),
                   style: TextButton.styleFrom(minimumSize: Size(30, 45)),
                   onPressed: () {
+                    // Value were input on the eventmodel constructor
+                    LeaveModel leaveModel = LeaveModel(
+                      id: widget.leaveModel!.id,
+                      name: widget.leaveModel!.name,
+                      rollNo: widget.leaveModel!.rollNo,
+                      reqReason: widget.leaveModel!.reqReason,
+                      level: widget.leaveModel!.level,
+                      leaveDate: "",
+                      status: widget.leaveModel!.status,
+                      accRejReason: '',
+                      course: widget.leaveModel!.course,
+                    );
+
+                    // Add method was called
+                    update(leaveModel);
+                    print("Update successfully");
+
+                    // To update the UI Screen
+                    void reloadData() async {
+                      final postMdl = Provider.of<LeaveServiceProvider>(context,
+                          listen: false);
+                      leaveDatas = await LeaveService().getLeaveData();
+                      postMdl.updateEvent(leaveDatas);
+                    }
+
+                    reloadData();
                     Navigator.push(
                         context,
                         MaterialPageRoute(
@@ -127,10 +171,36 @@ class _AdminLeaveInformationPageState extends State<AdminLeaveInformationPage> {
                   ),
                   style: TextButton.styleFrom(minimumSize: Size(30, 45)),
                   onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => AdminLeavePage()));
+                    // Value were input on the eventmodel constructor
+                    LeaveModel leaveModel = LeaveModel(
+                      id: widget.leaveModel!.id,
+                      name: widget.leaveModel!.name,
+                      rollNo: widget.leaveModel!.rollNo,
+                      reqReason: widget.leaveModel!.reqReason,
+                      level: widget.leaveModel!.level,
+                      leaveDate: "",
+                      status: widget.leaveModel!.status,
+                      accRejReason: '',
+                      course: widget.leaveModel!.course,
+                    );
+
+                    // Add method was called
+                    update(leaveModel);
+                    print("Update successfully");
+
+                    // To update the UI Screen
+                    void reloadData() async {
+                      final postMdl = Provider.of<LeaveServiceProvider>(context,
+                          listen: false);
+                      leaveDatas = await LeaveService().getLeaveData();
+                      postMdl.updateEvent(leaveDatas);
+                    }
+
+                    reloadData();
+                    // Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => AdminLeavePage()));
                   },
                 ),
               ],
