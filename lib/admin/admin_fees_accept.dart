@@ -40,9 +40,9 @@ class _AdminFeesAcceptPageState extends State<AdminFeesAcceptPage> {
                         ),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16),
-                          color: Colors.tealAccent.shade400,
+                          color: Colors.white,
                           border: Border.all(
-                            color: Colors.redAccent.shade400,
+                            color: Colors.black12,
                             width: 2,
                           ),
                         ),

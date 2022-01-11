@@ -19,12 +19,15 @@ class _SubjectPageState extends State<SubjectPage> {
           itemCount: 4,
           itemBuilder: (context, position) {
             return Card(
-              color: Colors.green.shade400,
+              color: Colors.blue,
               child: Padding(
-                padding: const EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(15.0),
                 child: Container(
+                  padding: const EdgeInsets.all(15.0),
+                  width: 250,
+                  height: 120,
                   decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(30),
+                    borderRadius: BorderRadius.circular(50),
                   ),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,11 +36,11 @@ class _SubjectPageState extends State<SubjectPage> {
                       Text(
                         "Object oriented and software engineering",
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 20),
+                            fontWeight: FontWeight.bold, fontSize: 22),
                       ),
 
                       SizedBox(
-                        height: 22,
+                        height: 15,
                       ),
 
                       Row(
@@ -47,12 +50,12 @@ class _SubjectPageState extends State<SubjectPage> {
                           Text(
                             "Unit Code: CIS019",
                             style: TextStyle(
-                                fontWeight: FontWeight.normal, fontSize: 20),
+                                fontWeight: FontWeight.normal, fontSize: 17),
                           ),
                           Text(
                             "Credit: 30",
                             style: TextStyle(
-                                fontWeight: FontWeight.normal, fontSize: 20),
+                                fontWeight: FontWeight.normal, fontSize: 16),
                           ),
                         ],
                       )

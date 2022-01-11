@@ -7,64 +7,75 @@ class ReceiptPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Material(
       child: Padding(
-        padding: const EdgeInsets.only(left: 8, right: 8, top: 12, bottom: 12),
-        child: Column(
-          children: [
-            // User Receipt details
-            Container(
-              height: 125,
-              width: 450,
-              decoration: BoxDecoration(
-                color: Colors.black54,
-                border: Border.all(
-                  color: Colors.cyan,
-                  width: 2,
-                ),
-              ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Date and Receipt Number
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          "Date:",
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                        SizedBox(
-                          height: 15,
-                        ),
-                        Text(
-                          "Receipt No:",
-                          style: TextStyle(
-                              fontSize: 20, fontWeight: FontWeight.bold),
-                        ),
-                      ],
+          padding:
+              const EdgeInsets.only(left: 15, right: 10, top: 20, bottom: 8),
+          child: ListView.builder(
+              itemCount: 4,
+              itemBuilder: (context, position) {
+                return Column(
+                  children: [
+                    // User Receipt details
+                    SizedBox(
+                      height: 15,
                     ),
-                  ),
+                    Container(
+                      height: 145,
+                      width: 450,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                          color: Colors.blue,
+                          boxShadow: const <BoxShadow>[
+                            BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 20.0,
+                                offset: Offset(0.0, 0.75))
+                          ]),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Date and Receipt Number
+                          Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  "Receipt No",
+                                  style: TextStyle(
+                                      fontSize: 21,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
 
-                  // Course and level
-                  Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Text(
-                      "Amount:",
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                                Text(
+                                  "Date:",
+                                  style: TextStyle(
+                                      fontSize: 21,
+                                      fontWeight: FontWeight.bold),
+                                ),
+
+                                const SizedBox(
+                                  height: 15,
+                                ),
+
+                                // Course and level
+                                Text(
+                                  "Amount:",
+                                  style: TextStyle(
+                                      fontSize: 21,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
-                  ),
-                ],
-              ),
-            ),
-            SizedBox(
-              height: 20,
-            ),
-          ],
-        ),
-      ),
+                  ],
+                );
+              })),
     );
   }
 }
