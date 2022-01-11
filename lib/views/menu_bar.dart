@@ -2,6 +2,7 @@
 import 'package:ans/fees/fees_list.dart';
 import 'package:ans/leaves/leave_form.dart';
 import 'package:ans/leaves/leave_list.dart';
+import 'package:ans/views/login.dart';
 import 'package:flutter/material.dart';
 
 class MenuBarPage extends StatelessWidget {
@@ -60,7 +61,10 @@ class MenuBarPage extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.exit_to_app),
             title: Text('Logout'),
-            onTap: () => {Navigator.of(context).pop()},
+            onTap: () => {
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => Login())),
+            },
           ),
         ],
       ),

@@ -174,8 +174,7 @@ class _LoginState extends State<Login> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) =>
-                                            NavigationBarPage()));
+                                        builder: (context) => HomePage()));
                               } else if (emailController.text == "admin" &&
                                   passwordController.text == "admin") {
                                 Navigator.push(
