@@ -64,150 +64,156 @@ class _AdminLeaveInformationPageState extends State<AdminLeaveInformationPage> {
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        child: Column(
-          children: [
-            // Name
-            Text(
-              "Name:" + " " + name,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: 20,
-            ),
+        child: Padding(
+          padding: const EdgeInsets.only(top: 50.0, left: 12),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // Name
+              Text(
+                "Name:" + " " + name,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 20,
+              ),
 
-            // Email
-            Text(
-              "Roll No: " + rollNo,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: 20,
-            ),
+              // Email
+              Text(
+                "Roll No: " + rollNo,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 20,
+              ),
 
-            // Registration Date
-            Text(
-              "Course: " + course,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: 20,
-            ),
+              // Registration Date
+              Text(
+                "Course: " + course,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 20,
+              ),
 
-            // Mobile Number
-            Text(
-              "Level: " + level,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: 20,
-            ),
+              // Mobile Number
+              Text(
+                "Level: " + level,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 20,
+              ),
 
-            // Roll No
-            Text(
-              "Status: " + status,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: 20,
-            ),
+              // Roll No
+              Text(
+                "Status: " + status,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 20,
+              ),
 
-            // Nationality
-            Text(
-              "Reason: " + reason,
-              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-            ),
-            SizedBox(
-              height: 20,
-            ),
+              // Nationality
+              Text(
+                "Reason: " + reason,
+                style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(
+                height: 20,
+              ),
 
-            Row(
-              children: [
-                // change password button
-                ElevatedButton(
-                  child: Text(
-                    "Accept",
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                  ),
-                  style: TextButton.styleFrom(minimumSize: Size(30, 45)),
-                  onPressed: () {
-                    // Value were input on the eventmodel constructor
-                    LeaveModel leaveModel = LeaveModel(
-                      id: widget.leaveModel!.id,
-                      name: widget.leaveModel!.name,
-                      rollNo: widget.leaveModel!.rollNo,
-                      reqReason: widget.leaveModel!.reqReason,
-                      level: widget.leaveModel!.level,
-                      leaveDate: "",
-                      status: widget.leaveModel!.status,
-                      accRejReason: '',
-                      course: widget.leaveModel!.course,
-                    );
+              Padding(
+                padding: const EdgeInsets.only(top: 28.0, left: 60),
+                child: Row(
+                  children: [
+                    // change password button
+                    ElevatedButton(
+                      child: Text(
+                        "Accept",
+                        style: TextStyle(
+                            fontSize: 22, fontWeight: FontWeight.bold),
+                      ),
+                      style: TextButton.styleFrom(minimumSize: Size(30, 45)),
+                      onPressed: () {
+                        // Value were input on the eventmodel constructor
+                        LeaveModel leaveModel = LeaveModel(
+                          id: widget.leaveModel!.id,
+                          name: widget.leaveModel!.name,
+                          rollNo: widget.leaveModel!.rollNo,
+                          reqReason: widget.leaveModel!.reqReason,
+                          level: widget.leaveModel!.level,
+                          leaveDate: "",
+                          status: "Accept",
+                          accRejReason: '',
+                          course: widget.leaveModel!.course,
+                        );
 
-                    // Add method was called
-                    update(leaveModel);
-                    print("Update successfully");
+                        // Add method was called
+                        update(leaveModel);
+                        print("Update successfully");
 
-                    // To update the UI Screen
-                    void reloadData() async {
-                      final postMdl = Provider.of<LeaveServiceProvider>(context,
-                          listen: false);
-                      leaveDatas = await LeaveService().getLeaveData();
-                      postMdl.updateEvent(leaveDatas);
-                    }
+                        // To update the UI Screen
+                        void reloadData() async {
+                          final postMdl = Provider.of<LeaveServiceProvider>(
+                              context,
+                              listen: false);
+                          leaveDatas = await LeaveService().getLeaveData();
+                          postMdl.updateEvent(leaveDatas);
+                        }
 
-                    reloadData();
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => AdminLeavePage()));
-                  },
+                        reloadData();
+                      },
+                    ),
+
+                    // Log out button
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: ElevatedButton(
+                        child: Text(
+                          "Reject",
+                          style: TextStyle(
+                              fontSize: 22, fontWeight: FontWeight.bold),
+                        ),
+                        style: TextButton.styleFrom(minimumSize: Size(30, 45)),
+                        onPressed: () {
+                          // Value were input on the eventmodel constructor
+                          LeaveModel leaveModel = LeaveModel(
+                            id: widget.leaveModel!.id,
+                            name: widget.leaveModel!.name,
+                            rollNo: widget.leaveModel!.rollNo,
+                            reqReason: widget.leaveModel!.reqReason,
+                            level: widget.leaveModel!.level,
+                            leaveDate: "",
+                            status: "Reject",
+                            accRejReason: '',
+                            course: widget.leaveModel!.course,
+                          );
+
+                          // Add method was called
+                          update(leaveModel);
+                          print("Update successfully");
+
+                          // To update the UI Screen
+                          void reloadData() async {
+                            final postMdl = Provider.of<LeaveServiceProvider>(
+                                context,
+                                listen: false);
+                            leaveDatas = await LeaveService().getLeaveData();
+                            postMdl.updateEvent(leaveDatas);
+                          }
+
+                          reloadData();
+                        },
+                      ),
+                    ),
+                  ],
                 ),
+              )
 
-                // Log out button
-                ElevatedButton(
-                  child: Text(
-                    "Reject",
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
-                  ),
-                  style: TextButton.styleFrom(minimumSize: Size(30, 45)),
-                  onPressed: () {
-                    // Value were input on the eventmodel constructor
-                    LeaveModel leaveModel = LeaveModel(
-                      id: widget.leaveModel!.id,
-                      name: widget.leaveModel!.name,
-                      rollNo: widget.leaveModel!.rollNo,
-                      reqReason: widget.leaveModel!.reqReason,
-                      level: widget.leaveModel!.level,
-                      leaveDate: "",
-                      status: widget.leaveModel!.status,
-                      accRejReason: '',
-                      course: widget.leaveModel!.course,
-                    );
-
-                    // Add method was called
-                    update(leaveModel);
-                    print("Update successfully");
-
-                    // To update the UI Screen
-                    void reloadData() async {
-                      final postMdl = Provider.of<LeaveServiceProvider>(context,
-                          listen: false);
-                      leaveDatas = await LeaveService().getLeaveData();
-                      postMdl.updateEvent(leaveDatas);
-                    }
-
-                    reloadData();
-                    // Navigator.push(
-                    //     context,
-                    //     MaterialPageRoute(
-                    //         builder: (context) => AdminLeavePage()));
-                  },
-                ),
-              ],
-            )
-
-            // Course
-          ],
+              // Course
+            ],
+          ),
         ),
       ),
     );

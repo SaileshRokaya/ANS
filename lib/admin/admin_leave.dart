@@ -76,12 +76,6 @@ class _AdminLeavePageState extends State<AdminLeavePage> {
             centerTitle: true,
             title: Text("List Of Leaves Form"),
           ),
-          floatingActionButton: FloatingActionButton(
-              child: Icon(Icons.add),
-              onPressed: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => LeaveForm()));
-              }),
 
           // The body part is here
           body: Container(
