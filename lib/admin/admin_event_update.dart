@@ -9,10 +9,9 @@ import 'admin_event_list.dart';
 class AdminEventUpdatePage extends StatefulWidget {
   // Create an instance of a class
   final EventModel? eventModel;
-  final int? index;
 
   // Create a constructor
-  AdminEventUpdatePage({this.eventModel, this.index});
+  AdminEventUpdatePage({Key? key, this.eventModel}) : super(key: key);
 
   @override
   _AdminEventUpdatePageState createState() => _AdminEventUpdatePageState();
@@ -55,7 +54,7 @@ class _AdminEventUpdatePageState extends State<AdminEventUpdatePage> {
   @override
   void initState() {
     super.initState();
-    if (widget.index != null) {
+    if (widget.eventModel != null) {
       eventTitle.text = widget.eventModel!.eventTitle;
       eventMessage.text = widget.eventModel!.eventMessage;
     }
@@ -73,78 +72,81 @@ class _AdminEventUpdatePageState extends State<AdminEventUpdatePage> {
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
           ),
-          body: Column(
-            children: [
-              // container for notice title
-              SizedBox(
-                height: 80,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-
-                // Title content is here
-                child: TextFormField(
-                  style: const TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.normal),
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: "Enter your title here",
-                    //labelText: "Email",
-                  ),
-                  controller: eventTitle,
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                // container for notice title
+                SizedBox(
+                  height: 80,
                 ),
-              ),
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
 
-              // Message content is here
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: TextFormField(
-                  keyboardType: TextInputType.multiline,
-                  minLines: 1, //Normal textInputField will be displayed
-                  maxLines: 5, // when user presses enter it will adapt to it
-                  style: const TextStyle(
-                      fontSize: 18, fontWeight: FontWeight.normal),
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    hintText: "Message here",
-                    //labelText: "Email",
+                  // Title content is here
+                  child: TextFormField(
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.normal),
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: "Enter your title here",
+                      //labelText: "Email",
+                    ),
+                    controller: eventTitle,
                   ),
-                  controller: eventMessage,
                 ),
-              ),
 
-              const SizedBox(
-                height: 20,
-              ),
-              ElevatedButton(
-                  child: Text(
-                    "Update",
-                    style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                // Message content is here
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: TextFormField(
+                    keyboardType: TextInputType.multiline,
+                    minLines: 1, //Normal textInputField will be displayed
+                    maxLines: 5, // when user presses enter it will adapt to it
+                    style: const TextStyle(
+                        fontSize: 18, fontWeight: FontWeight.normal),
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: "Message here",
+                      //labelText: "Email",
+                    ),
+                    controller: eventMessage,
                   ),
-                  style: TextButton.styleFrom(minimumSize: Size(200, 55)),
-                  onPressed: () {
-                    //  To update the event part
-                    EventModel eventModel = EventModel(
-                        id: widget.eventModel!.id,
-                        eventTitle: eventTitle.text,
-                        eventMessage: eventMessage.text,
-                        eventCreated: widget.eventModel!.eventCreated);
+                ),
 
-                    // Call the event update method which was instance of calss
-                    update(eventModel);
+                const SizedBox(
+                  height: 20,
+                ),
+                ElevatedButton(
+                    child: Text(
+                      "Update",
+                      style:
+                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                    ),
+                    style: TextButton.styleFrom(minimumSize: Size(200, 55)),
+                    onPressed: () {
+                      //  To update the event part
+                      EventModel eventModel = EventModel(
+                          id: widget.eventModel!.id,
+                          eventTitle: eventTitle.text,
+                          eventMessage: eventMessage.text,
+                          eventCreated: widget.eventModel!.eventCreated);
 
-                    // To update the UI screen
-                    void reloadData() async {
-                      final postMdl =
-                          Provider.of<EventProvider>(context, listen: false);
-                      eventDatas = await EventService().getEventData();
-                      postMdl.updateEvent(eventDatas);
-                    }
+                      // Call the event update method which was instance of calss
+                      update(eventModel);
 
-                    // Call the reloadData method
-                    reloadData();
-                  }),
-            ],
+                      // To update the UI screen
+                      void reloadData() async {
+                        final postMdl =
+                            Provider.of<EventProvider>(context, listen: false);
+                        eventDatas = await EventService().getEventData();
+                        postMdl.updateEvent(eventDatas);
+                      }
+
+                      // Call the reloadData method
+                      reloadData();
+                    }),
+              ],
+            ),
           ),
         );
       },
