@@ -5,13 +5,13 @@ import 'package:ans/model/leave_model.dart';
 
 class LeaveService {
   static const ADD_URL =
-      "http://192.168.1.73/pcps_ans_api/api/LeaveReqCreate.php";
+      "http://192.168.40.54/pcps_ans_api/api/LeaveReqCreate.php";
   static const VIEW_URL =
-      "http://192.168.1.73/pcps_ans_api/api/LeaveReqRead.php";
+      "http://192.168.40.54/pcps_ans_api/api/LeaveReqRead.php";
   static const UPDATE_URL =
-      "http://192.168.1.73/pcps_ans_api/api/LeaveReqUpdate.php";
+      "http://192.168.40.54/pcps_ans_api/api/LeaveReqUpdate.php";
   static const DELETE_URL =
-      "http://192.168.1.73/pcps_ans_api/api/LeaveReqDelete.php";
+      "http://192.168.40.54/pcps_ans_api/api/LeaveReqDelete.php";
 
   // Create a method addEvent with the parameter EventModel class
   // In the future, data will be returned as a string
