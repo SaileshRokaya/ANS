@@ -4,8 +4,14 @@ import 'package:ans/leaves/leave_form.dart';
 import 'package:ans/leaves/leave_list.dart';
 import 'package:ans/views/login.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class MenuBarPage extends StatelessWidget {
+  void getCred() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    String? val = pref.getString("login");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -61,9 +67,14 @@ class MenuBarPage extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.exit_to_app),
             title: Text('Logout'),
-            onTap: () => {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => Login())),
+            onTap: () async {
+              SharedPreferences pref = await SharedPreferences.getInstance();
+              await pref.getString("login");
+              print("The token is: $pref");
+              await pref.clear();
+              Navigator.of(context).pushAndRemoveUntil(
+                  MaterialPageRoute(builder: (context) => Login()),
+                  (route) => false);
             },
           ),
         ],

@@ -2,7 +2,9 @@ import 'package:ans/admin/admin_event_list.dart';
 import 'package:ans/model/event_model.dart';
 import 'package:ans/provider/event_service_provider.dart';
 import 'package:ans/service/event_service.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'admin_event_list.dart';
 
@@ -50,6 +52,38 @@ class _AdminEventPageState extends State<AdminEventPage> {
       eventTitle.text = widget.eventModel!.eventTitle;
       eventMessage.text = widget.eventModel!.eventMessage;
     }
+
+    DateTime now = DateTime.now();
+    String formattedDate = DateFormat('yyyy-MM-dd  kk:mm a').format(now);
+
+    // Terminated state
+    // FirebaseMessaging.instance.getInitialMessage().then((event) {
+    //   setState(() {
+    //     FirebaseMessaging.onMessage.listen((event) {
+    //       eventTitle.text = "${event.notification!.title}";
+    //       formattedDate = "${event.notification!.body}";
+    //     });
+    //   });
+    // });
+
+    // Foreground state
+    // FirebaseMessaging.onMessage.listen((event) {
+    //   setState(() {
+    //     eventTitle.text = "${event.notification!.title}";
+    //     formattedDate = "${event.notification!.body}";
+    //   });
+    // });
+
+    // Back ground state
+    //   FirebaseMessaging.onMessageOpenedApp.listen((event) {
+    //     setState(() {
+    //       FirebaseMessaging.onMessage.listen((event) {
+    //         eventTitle.text = "${event.notification!.title}";
+    //         formattedDate = "${event.notification!.body}";
+    //       });
+    //     });
+    //   });
+    // }
   }
 
   @override
