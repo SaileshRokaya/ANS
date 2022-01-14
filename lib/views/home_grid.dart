@@ -1,4 +1,4 @@
-// ignore_for_file: prefer_const_constructors
+// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:ans/provider/event_service_provider.dart';
 import 'package:ans/views/Emails.dart';
@@ -194,7 +194,7 @@ class _HomeGridState extends State<HomeGrid> {
             ),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
-              color: Colors.grey,
+              color: Colors.brown,
             ),
           ),
 
@@ -237,21 +237,22 @@ class _HomeGridState extends State<HomeGrid> {
           child: Container(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
+              // ignore: prefer_const_literals_to_create_immutables
               children: [
                 Icon(
-                  Icons.card_giftcard,
+                  Icons.sms,
                   size: 50,
                   color: Colors.white,
                 ),
                 Text(
-                  "Admit Card",
+                  "SMS",
                   style: TextStyle(fontSize: 18, color: Colors.white),
                 ),
               ],
             ),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(16),
-              color: Colors.green,
+              color: Colors.purple,
             ),
           ),
           onTap: () {
