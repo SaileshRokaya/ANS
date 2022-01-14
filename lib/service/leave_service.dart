@@ -5,6 +5,7 @@ import 'package:ans/model/leave_model.dart';
 
 class LeaveService {
   static const ADD_URL =
+<<<<<<< HEAD
       "http://192.168.40.58/pcps_ans_api/api/LeaveReqCreate.php";
   static const VIEW_URL =
       "http://192.168.40.58/pcps_ans_api/api/LeaveReqRead.php";
@@ -12,6 +13,15 @@ class LeaveService {
       "http://192.168.40.58/pcps_ans_api/api/LeaveReqUpdate.php";
   static const DELETE_URL =
       "http://192.168.40.58/pcps_ans_api/api/LeaveReqDelete.php";
+=======
+      "http://192.168.40.54/pcps_ans_api/api/LeaveReqCreate.php";
+  static const VIEW_URL =
+      "http://192.168.40.54/pcps_ans_api/api/LeaveReqRead.php";
+  static const UPDATE_URL =
+      "http://192.168.40.54/pcps_ans_api/api/LeaveReqUpdate.php";
+  static const DELETE_URL =
+      "http://192.168.40.54/pcps_ans_api/api/LeaveReqDelete.php";
+>>>>>>> 18d0ccd108b0a11baf6dc196fa4056d8e6f67d17
 
   // Create a method addEvent with the parameter EventModel class
   // In the future, data will be returned as a string
