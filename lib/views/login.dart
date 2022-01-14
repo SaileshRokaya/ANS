@@ -1,6 +1,11 @@
+import 'dart:convert';
 import 'dart:ui';
-
+import 'package:http/http.dart' as http;
 import 'package:ans/admin/admin_panel.dart';
+import 'package:ans/api/api_service.dart';
+import 'package:ans/api/http_exception.dart';
+import 'package:ans/model/login_model.dart';
+import 'package:ans/provider/auth_service.dart';
 import 'package:ans/views/email_verification.dart';
 import 'package:ans/views/home_page.dart';
 import 'package:ans/views/navigation_bar.dart';
@@ -10,6 +15,8 @@ import 'package:flutter/material.dart';
 import 'package:ans/views/register.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class Login extends StatefulWidget {
   Login({Key? key}) : super(key: key);
@@ -19,9 +26,12 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+  // LoginRequestModel? requestModel;
+
   // Create a global key that uniquely identifies the form widget
   // and allows validation of the form
   final _formKey = GlobalKey<FormState>();
+  final scaffoldKey = GlobalKey<ScaffoldState>();
 
   // Textediting controller
   final TextEditingController emailController = new TextEditingController();
@@ -30,12 +40,44 @@ class _LoginState extends State<Login> {
   // Firebase Authentication
   // final _auth = FirebaseAuth.instance;
 
-  @override
-  void dispose() {
-    // TODO: implement dispose
-    emailController.clear();
-    // passwordController.clear();
-    super.dispose();
+  Map<String, dynamic> _authData = {'username': '', 'password': ''};
+
+  // Future _submit() async {
+  //   if (!_formKey.currentState!.validate()) {
+  //     //invalid
+  //     return;
+  //   }
+  //   _formKey.currentState!.save();
+  //   try {
+  //     await Provider.of<Auth>(context, listen: false)
+  //         .login(_authData['username'], _authData['password']);
+  //   } on HttpException catch (e) {
+  //     var errorMessage = 'Authentication Failed';
+  //     if (e.toString().contains('INVALID_EMAIL')) {
+  //       errorMessage = 'Invalid email';
+  //       _showerrorDialog(errorMessage);
+  //     } else if (e.toString().contains('EMAIL_NOT_FOUND')) {
+  //       errorMessage = 'This email not found';
+  //       _showerrorDialog(errorMessage);
+  //     } else if (e.toString().contains('INVALID_PASSWORD')) {
+  //       errorMessage = 'Invalid Password';
+  //       _showerrorDialog(errorMessage);
+  //     }
+  //   } catch (error) {
+  //     var errorMessage = 'Plaese try again later';
+  //     _showerrorDialog(errorMessage);
+  //   }
+  // }
+
+  void checkLogin() async {
+    // Here we check if user already login or credential already available or not
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    String? val = pref.getString("login");
+    if (val != null && val.isNotEmpty) {
+      Navigator.of(context).pushAndRemoveUntil(
+          MaterialPageRoute(builder: (context) => HomePage()),
+          (route) => false);
+    }
   }
 
   @override
@@ -88,20 +130,20 @@ class _LoginState extends State<Login> {
                             controller: emailController,
 
                             // The validator receives the text that the user has entered Validation
-                            // validator: (value) {
-                            //   if (value!.isEmpty) {
-                            //     return "Please enter your email";
-                            //   }
-                            //   // Regular expression for email validation
-                            //   // if (!RegExp(
-                            //   //         "^[a-zA-Z0-9.a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]+")
-                            //   //     .hasMatch(value)) {
-                            //   //   return "Please enter a valid email";
-                            //   // }
-                            //   return null;
-                            // },
+                            validator: (value) {
+                              if (value!.isEmpty) {
+                                return "Please enter your username";
+                              }
+                              // Regular expression for email validation
+                              // if (!RegExp(
+                              //         "^[a-zA-Z0-9.a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]+")
+                              //     .hasMatch(value)) {
+                              //   return "Please enter a valid email";
+                              // }
+                              return null;
+                            },
                             onSaved: (value) {
-                              emailController.text = value!;
+                              _authData['username'] = value!;
                             },
                           ),
 
@@ -123,18 +165,15 @@ class _LoginState extends State<Login> {
                             controller: passwordController,
 
                             // The validator receives the text that the user has entered Validation for password
-                            // validator: (value) {
-                            //   RegExp regex = new RegExp(r'^.{6,}$');
-                            //   if (value!.isEmpty) {
-                            //     return "Password is required";
-                            //   }
-                            //   if (!regex.hasMatch(value)) {
-                            //     return "Enter valid password (Min. 6 character";
-                            //   }
-                            // },
+                            validator: (value) {
+                              // RegExp regex = new RegExp(r'^.{6,}$');
+                              if (value!.isEmpty) {
+                                return "Password is required";
+                              }
+                            },
 
                             onSaved: (value) {
-                              passwordController.text = value!;
+                              _authData['password'] = value!;
                             },
                           ),
                           Row(
@@ -161,34 +200,18 @@ class _LoginState extends State<Login> {
                             height: 20,
                           ),
                           ElevatedButton(
-                            child: Text(
-                              "Login",
-                              style: TextStyle(
-                                  fontSize: 30, fontWeight: FontWeight.bold),
-                            ),
-                            style: TextButton.styleFrom(
-                                minimumSize: Size(395, 55)),
-                            onPressed: () {
-                              if (emailController.text == "email" &&
-                                  passwordController.text == "password") {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => HomePage()));
-                              } else if (emailController.text == "admin" &&
-                                  passwordController.text == "admin") {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                        builder: (context) => AdminHomePage()));
-                              } else {
-                                Fluttertoast.showToast(
-                                    msg: "Email and password doesnot match");
-                              }
-                              // signIn(emailController.text,
-                              //    passwordController.text);
-                            },
-                          ),
+                              child: Text(
+                                "Login",
+                                style: TextStyle(
+                                    fontSize: 30, fontWeight: FontWeight.bold),
+                              ),
+                              style: TextButton.styleFrom(
+                                  minimumSize: Size(395, 55)),
+                              onPressed: () {
+                                login();
+                                // print("Login successfull");
+                              }),
+
                           const SizedBox(
                             height: 20,
                           ),
@@ -232,60 +255,70 @@ class _LoginState extends State<Login> {
   }
 
   // Login method
-  void signIn(String email, String password) async {
-    if (_formKey.currentState!.validate()) {
-      try {
-        print(email + " " + password);
-        UserCredential userCredential = await FirebaseAuth.instance
-            .signInWithEmailAndPassword(email: email, password: password);
-        Fluttertoast.showToast(msg: "Login successfull");
-        Navigator.push(
-            context, MaterialPageRoute(builder: (context) => HomePage()));
-        print("Good Bye");
-        //dispose();
-      } on FirebaseAuthException catch (e) {
-        if (e.code == 'user-not-found') {
-          print('No user found for that email.');
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              backgroundColor: Colors.orangeAccent,
-              content: Text(
-                'No user found for that email.',
-                style: TextStyle(fontSize: 18.0),
-              ),
-            ),
-          );
-          Fluttertoast.showToast(msg: "No user found for that email");
-        } else if (e.code == 'wrong-password') {
-          print('Wrong password provided for that user.');
-          Fluttertoast.showToast(msg: "Wrong password provided for that user");
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              backgroundColor: Colors.orangeAccent,
-              content: Text(
-                "Wrong password provided for that user",
-                style: TextStyle(fontSize: 18.0),
-              ),
-            ),
-          );
-        }
-      }
-
-      // await _auth
-      //     .signInWithEmailAndPassword(email: email, password: password)
-      //     .then((uid) => {
-      //           print(uid),
-      //           print("Loged In"),
-      //           Fluttertoast.showToast(msg: "Login Successfull"),
-      //           Navigator.of(context).pushReplacement(
-      //               MaterialPageRoute(builder: (context) => EmailVerify())),
-      //           print("Hello world")
-      //         })
-      //     .catchError((error) => print('Failed to add user: $error'));
-      //{
-      //print("Wrong password");
-      //Fluttertoast.showToast(msg: e!.message);
-      //});
+  bool validateAndSave() {
+    final form = _formKey.currentState;
+    if (form!.validate()) {
+      form.save();
+      return true;
+    } else {
+      return false;
     }
   }
+
+  void login() async {
+    if (passwordController.text.isNotEmpty && emailController.text.isNotEmpty) {
+      var response = await http.post(
+          Uri.parse("http://studentapi.patancollege.edu.np/api/login"),
+          body: ({
+            "username": emailController.text,
+            "password": passwordController.text
+          }));
+
+      if (response.statusCode == 200) {
+        final body = jsonDecode(response.body);
+        //  print("Login token: " + body["token"]);
+        // ScaffoldMessenger.of(context)
+        //     .showSnackBar(SnackBar(content: Text("Token : ${body["token"]}")));
+        pageRoute(body['token']);
+
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("Login Successfull")));
+      } else {
+        ScaffoldMessenger.of(context)
+            .showSnackBar(SnackBar(content: Text("Invalid credentials")));
+      }
+    } else {
+      ScaffoldMessenger.of(context)
+          .showSnackBar(SnackBar(content: Text("Fields required")));
+    }
+  }
+
+  void pageRoute(String token) async {
+// Here we store value or token inside shared preferences
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    await pref.setString("login", token);
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => HomePage()));
+  }
+
+  // void _showerrorDialog(String message) {
+  //   showDialog(
+  //     context: context,
+  //     builder: (ctx) => AlertDialog(
+  //       title: Text(
+  //         'An Error Occurs',
+  //         style: TextStyle(color: Colors.blue),
+  //       ),
+  //       content: Text(message),
+  //       actions: <Widget>[
+  //         FlatButton(
+  //           child: Text('Okay'),
+  //           onPressed: () {
+  //             Navigator.of(context).pop();
+  //           },
+  //         )
+  //       ],
+  //     ),
+  //   );
+  // }
 }

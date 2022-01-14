@@ -1,4 +1,5 @@
 import 'package:ans/admin/admin_panel.dart';
+import 'package:ans/provider/auth_service.dart';
 import 'package:ans/provider/event_service_provider.dart';
 import 'package:ans/provider/leave_service_provider.dart';
 import 'package:ans/views/home_page.dart';
@@ -24,6 +25,7 @@ class _AcademicAppState extends State<AcademicApp> {
         ChangeNotifierProvider<EventProvider>(create: (_) => EventProvider()),
         ChangeNotifierProvider<LeaveServiceProvider>(
             create: (_) => LeaveServiceProvider()),
+        ChangeNotifierProvider<Auth>(create: (_) => Auth()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

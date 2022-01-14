@@ -9,12 +9,21 @@ import 'package:http/http.dart' as http;
 class EventService {
   // Variables with the url as a value in string form
   static const ADD_URL =
+<<<<<<< HEAD
+      "http://192.168.40.58/pcps_ans_api/api/EventCreate.php";
+  static const VIEW_URL = "http://192.168.40.58/pcps_ans_api/api/EventRead.php";
+  static const UPDATE_URL =
+      "http://192.168.40.58/pcps_ans_api/api/EventUpdate.php";
+  static const DELETE_URL =
+      "http://192.168.40.58/pcps_ans_api/api/EventDelete.php";
+=======
       "http://192.168.40.54/pcps_ans_api/api/EventCreate.php";
   static const VIEW_URL = "http://192.168.40.54/pcps_ans_api/api/EventRead.php";
   static const UPDATE_URL =
       "http://192.168.40.54/pcps_ans_api/api/EventUpdate.php";
   static const DELETE_URL =
       "http://192.168.40.54/pcps_ans_api/api/EventDelete.php";
+>>>>>>> 18d0ccd108b0a11baf6dc196fa4056d8e6f67d17
 
   // Create a method eventFromJson which accept one parameter as a string
   //It will decode the string value and store in variable named data as a map

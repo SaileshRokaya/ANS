@@ -1,23 +1,41 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:ans/views/change_password.dart';
 import 'package:ans/views/home_page.dart';
 import 'package:ans/views/login.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
-class UserProfile extends StatelessWidget {
+class UserProfile extends StatefulWidget {
   const UserProfile({Key? key}) : super(key: key);
+
+  @override
+  State<UserProfile> createState() => _UserProfileState();
+}
+
+class _UserProfileState extends State<UserProfile> {
+  void getCred() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    String? val = pref.getString("login");
+    print("Token value is: $val");
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getCred();
+  }
 
   @override
   Widget build(BuildContext context) {
     // Variables
     String name = "saroj";
     String email = "Saroj@gmail.com";
-    String regDate = "27 Dec 2021";
+    String username = "27 Dec 2021";
     String mobile = "9874382718";
-    String rollNo = "200213";
-    String nationality = "Nepali";
-    String course = "Bsc(Hone) CSSE";
-    String gender = "Male";
-    String unID = "193433";
+    String edusys_id = "200213";
+    String student_id = "Nepali";
 
     return Scaffold(
         appBar: AppBar(
@@ -50,9 +68,9 @@ class UserProfile extends StatelessWidget {
                     children: [
                       // Name
                       Text(
-                        "Name:" + " " + name,
+                        "Name: " + name,
                         style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
+                            fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
                         height: 20,
@@ -62,7 +80,7 @@ class UserProfile extends StatelessWidget {
                       Text(
                         "Email: " + email,
                         style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
+                            fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
                         height: 20,
@@ -70,9 +88,9 @@ class UserProfile extends StatelessWidget {
 
                       // Registration Date
                       Text(
-                        "Reg. Date: " + regDate,
+                        "Username: " + username,
                         style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
+                            fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
                         height: 20,
@@ -82,7 +100,7 @@ class UserProfile extends StatelessWidget {
                       Text(
                         "Mobile: " + mobile,
                         style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
+                            fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
                         height: 20,
@@ -90,9 +108,9 @@ class UserProfile extends StatelessWidget {
 
                       // Roll No
                       Text(
-                        "Roll No.: " + rollNo,
+                        "EdusysID: " + edusys_id,
                         style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
+                            fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
                         height: 20,
@@ -100,42 +118,13 @@ class UserProfile extends StatelessWidget {
 
                       // Nationality
                       Text(
-                        "Nationality: " + nationality,
+                        "StudentID: " + student_id,
                         style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
+                            fontSize: 20, fontWeight: FontWeight.bold),
                       ),
                       SizedBox(
                         height: 20,
                       ),
-
-                      // Course
-                      Text(
-                        "Course: " + course,
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-
-                      // Gender
-                      Text(
-                        "Gender: " + gender,
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-
-                      // University id
-                      Text(
-                        "University ID: " + unID,
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold),
-                      ),
-
-                      // Create row for two buttons
                     ],
                   ),
                 ),

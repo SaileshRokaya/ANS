@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SubjectPage extends StatefulWidget {
   const SubjectPage({Key? key}) : super(key: key);
@@ -8,6 +9,24 @@ class SubjectPage extends StatefulWidget {
 }
 
 class _SubjectPageState extends State<SubjectPage> {
+  String token = "";
+
+  void getCred() async {
+    SharedPreferences pref = await SharedPreferences.getInstance();
+    // await pref.setString("login", token);
+    setState(() {
+      token = pref.getString("login")!;
+    });
+    print(token);
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    getCred();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
