@@ -15,8 +15,6 @@ class Registration extends StatefulWidget {
 class _RegistrationState extends State<Registration> {
   final _formKey = GlobalKey<FormState>();
 
-  
-
   // Create a text controller and use it to retrieve the current value of the text field
   final nameController = TextEditingController();
   final passwordController = TextEditingController();
@@ -224,8 +222,8 @@ class _RegistrationState extends State<Registration> {
 
         if (user != null && !user.emailVerified) {
           await user.sendEmailVerification();
-          
-         postDetailsToFirebase(); 
+
+          postDetailsToFirebase();
           Fluttertoast.showToast(msg: "Registration Successful");
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -235,8 +233,7 @@ class _RegistrationState extends State<Registration> {
                 style: TextStyle(fontSize: 18.0),
               ),
             ),
-            );
-
+          );
         }
 
         Fluttertoast.showToast(msg: "Registration Successful");
@@ -251,7 +248,7 @@ class _RegistrationState extends State<Registration> {
                 style: TextStyle(fontSize: 18.0),
               ),
             ),
-            );
+          );
         } else if (e.code == 'email-already-in-use') {
           print('The account already exists for that email.');
           ScaffoldMessenger.of(context).showSnackBar(
@@ -262,7 +259,7 @@ class _RegistrationState extends State<Registration> {
                 style: TextStyle(fontSize: 18.0),
               ),
             ),
-            );
+          );
           Fluttertoast.showToast(
               msg: "The account already exists for that email.");
         }
@@ -283,16 +280,16 @@ class _RegistrationState extends State<Registration> {
     UserModel userModel = UserModel();
 
     // Writing all the values
-    userModel.email = user!.email;
-    userModel.uid = user.uid;
-    userModel.phone = phoneController.text;
-    userModel.password = passwordController.text;
-    userModel.name = nameController.text;
+    // userModel.email = user!.email;
+    // userModel.uid = user.uid;
+    // userModel.phone = phoneController.text;
+    // userModel.password = passwordController.text;
+    // userModel.name = nameController.text;
 
-    await firebaseFirestore
-        .collection("users")
-        .doc(user.uid)
-        .set(userModel.toMap());
+    // await firebaseFirestore
+    //     .collection("users")
+    //     .doc(user.uid)
+    //     .set(userModel.toMap());
 
     Fluttertoast.showToast(msg: "Account created successfully");
   }
