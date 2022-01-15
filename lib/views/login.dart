@@ -1,18 +1,17 @@
 import 'dart:convert';
 import 'dart:ui';
+import 'package:ans/api/shared_pre.dart';
 import 'package:http/http.dart' as http;
 import 'package:ans/admin/admin_panel.dart';
 import 'package:ans/api/api_service.dart';
 import 'package:ans/api/http_exception.dart';
 import 'package:ans/model/login_model.dart';
 import 'package:ans/provider/auth_service.dart';
-import 'package:ans/views/email_verification.dart';
 import 'package:ans/views/home_page.dart';
 import 'package:ans/views/navigation_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:ans/views/register.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:provider/provider.dart';
@@ -181,13 +180,7 @@ class _LoginState extends State<Login> {
                             children: [
                               // Navigate to email-verification page to recover password
                               TextButton(
-                                  onPressed: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                EmailVerify()));
-                                  },
+                                  onPressed: () {},
                                   child: Text(
                                     "Forgot Password",
                                     style: TextStyle(
@@ -207,7 +200,7 @@ class _LoginState extends State<Login> {
                               ),
                               style: TextButton.styleFrom(
                                   minimumSize: Size(395, 55)),
-                              onPressed: () {
+                              onPressed: () async {
                                 login();
                                 // print("Login successfull");
                               }),
@@ -230,13 +223,7 @@ class _LoginState extends State<Login> {
                                               color: Colors.blueAccent,
                                               fontSize: 20),
                                           recognizer: TapGestureRecognizer()
-                                            ..onTap = () {
-                                              Navigator.push(
-                                                  context,
-                                                  MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          Registration()));
-                                            }),
+                                            ..onTap = () {}),
                                     ]),
                               ),
                             ],
@@ -265,6 +252,15 @@ class _LoginState extends State<Login> {
     }
   }
 
+  // void LoginState() async {
+  //   if (passwordController.text.isNotEmpty && emailController.text.isNotEmpty) {
+  //     await LoginService()
+  //         .loginService(emailController.text, passwordController.text);
+  //   } else {
+  //     Fluttertoast.showToast(msg: "Invalid Credentials");
+  //   }
+  // }
+
   void login() async {
     if (passwordController.text.isNotEmpty && emailController.text.isNotEmpty) {
       var response = await http.post(
@@ -280,6 +276,7 @@ class _LoginState extends State<Login> {
         // ScaffoldMessenger.of(context)
         //     .showSnackBar(SnackBar(content: Text("Token : ${body["token"]}")));
         pageRoute(body['token']);
+        SharedPre().setAuthToken(body['token']);
 
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text("Login Successfull")));
