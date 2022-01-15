@@ -3,6 +3,7 @@
 import 'package:ans/views/login.dart';
 import 'package:ans/views/menu_bar.dart';
 import 'package:ans/views/my_profile.dart';
+import 'package:ans/views/users_detail.dart';
 import 'package:flutter/material.dart';
 import 'package:ans/views/mysubject.dart';
 import 'package:ans/views/home_grid.dart';
@@ -44,7 +45,7 @@ class _HomePageState extends State<HomePage> {
               ),
               onTap: () {
                 Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => UserProfile()));
+                    MaterialPageRoute(builder: (context) => UserDetail()));
               },
             )
           ],

@@ -42,6 +42,9 @@ class _EmailPageState extends State<EmailPage> {
                     itemBuilder: (context, position) {
                       DateTime date = DateTime.parse(
                           (snapshot.data?[position]["sent_on"]).toString());
+
+                      String dates =
+                          DateFormat("\ndd-MM-yyyy").format(date).toString();
                       return Card(
                         margin: EdgeInsets.all(8.0),
                         elevation: 5.0,
@@ -69,7 +72,15 @@ class _EmailPageState extends State<EmailPage> {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => EmailReadPage()));
+                                    builder: (context) => EmailReadPage(
+                                          dates: dates,
+                                          message: snapshot.data![position]
+                                              ["html_message"],
+                                          title: snapshot.data![position]
+                                              ["subject"],
+                                          emailFrom: snapshot.data![position]
+                                              ["mail_from"],
+                                        )));
                           },
                         ),
                       );
