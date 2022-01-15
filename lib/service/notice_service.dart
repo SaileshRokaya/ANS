@@ -6,8 +6,8 @@ import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:math';
 
-class ReceiptService {
-  static const readURL = "http://studentapi.patancollege.edu.np/api/receipt";
+class NoticeService {
+  static const readURL = "http://studentapi.patancollege.edu.np/api/notice";
 
 // Create a method eventFromJson which accept one parameter as a string
   //It will decode the string value and store in variable named data as a map
@@ -21,7 +21,7 @@ class ReceiptService {
 
   // Create a method getEventData with asynchoruous operation
   // In the future data will be returned in a list form
-  Future<List> getReceiptData() async {
+  Future<List> getNoticeData() async {
     String? token;
     await SharedPre().getAuthToken().then((value) => {token = value!});
     final response = await http.get(Uri.parse(readURL), headers: {
@@ -33,34 +33,12 @@ class ReceiptService {
     if (response.statusCode == 200) {
       print(response.statusCode);
 
-      // final jsonResponse = json.decode(response.body);
-      // final receiptList = jsonResponse['data'] as List;
-      // print("The data is $receiptList");
-      // List<Data> myList =
-      //     receiptList.map((data) => Data.fromJson(data)).toList();
-      // print("My data are $myList");
-      // return myList;
+      Map<String, dynamic> noticeList = jsonDecode(response.body);
+      print(noticeList);
 
-      Map<String, dynamic> receiptList = jsonDecode(response.body);
-      print(receiptList);
+      List<dynamic> notice = noticeList['data'];
 
-      List<dynamic> receipt = receiptList['data'];
-      // print("The dynamic list data is $receipt");
-      // List _data = List<dynamic>.from(
-      //   receipt.map<dynamic>(
-      //     (dynamic item) => item,
-      //   ),
-      // );
-
-      List<Data> list = eventFromJson(response.body);
-
-      // print("The list item is: $list");
-
-      // return list;
-      // print(response.statusCode);
-      // List<Data> list = eventFromJson(response.body);
-      // print("The data are $list");
-      return receipt;
+      return notice;
     } else {
       // throw Exception('Failed to load');
       return Future.error('Failed to load');

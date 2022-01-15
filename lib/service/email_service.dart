@@ -1,28 +1,27 @@
 import 'package:ans/api/shared_pre.dart';
+import 'package:ans/model/fees_model.dart';
 import 'package:ans/model/user_model.dart';
 import 'package:ans/views/user_profile.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
 import 'dart:math';
 
-class UserService {
-  static const readURL =
-      "http://studentapi.patancollege.edu.np/api/registration";
+class EmailService {
+  static const readURL = "http://studentapi.patancollege.edu.np/api/email";
 
 // Create a method eventFromJson which accept one parameter as a string
   //It will decode the string value and store in variable named data as a map
-  List<UserModel> eventFromJson(String jsonString) {
+  List<Data> eventFromJson(String jsonString) {
     final Map<String, dynamic> data = json.decode(jsonString);
     // print("Event Model Data: $data");
 
     // Convert the json data into map and return as a list
-    return List<UserModel>.from(
-        data['body'].map((item) => UserModel.fromJson(item)));
+    return List<Data>.from(data['data'].map((item) => Data.fromJson(item)));
   }
 
   // Create a method getEventData with asynchoruous operation
   // In the future data will be returned in a list form
-  Future<List> getUserData() async {
+  Future<List> getEmailData() async {
     String? token;
     await SharedPre().getAuthToken().then((value) => {token = value!});
     final response = await http.get(Uri.parse(readURL), headers: {
@@ -42,11 +41,10 @@ class UserService {
       // print("My data are $myList");
       // return myList;
 
-      Map<String, dynamic> UserInfo = jsonDecode(response.body);
-      // print(UserInfo);
+      Map<String, dynamic> emailList = jsonDecode(response.body);
+      print(emailList);
 
-      List<dynamic> detail = UserInfo['data']['registration'];
-      print(detail);
+      List<dynamic> receipt = emailList['data'];
       // print("The dynamic list data is $receipt");
       // List _data = List<dynamic>.from(
       //   receipt.map<dynamic>(
@@ -62,7 +60,7 @@ class UserService {
       // print(response.statusCode);
       // List<Data> list = eventFromJson(response.body);
       // print("The data are $list");
-      return detail;
+      return receipt;
     } else {
       // throw Exception('Failed to load');
       return Future.error('Failed to load');

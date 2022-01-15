@@ -4,17 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:intl/intl.dart';
 
-class NoticeReadPage extends StatefulWidget {
-  const NoticeReadPage({Key? key}) : super(key: key);
+class NoticeReadPage extends StatelessWidget {
+  // String message;
+  // String title;
+  // String date;
 
-  @override
-  State<NoticeReadPage> createState() => _NoticeReadPageState();
-}
+  // NoticeReadPage(
+  //     {required this.date, required this.message, required this.title});
 
-class _NoticeReadPageState extends State<NoticeReadPage> {
-  String bodyMessage =
-      "Hello sir i am manis gir from kathmadu nepal. I love to join in your college";
-  String title = "Admission in your college";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -24,11 +21,7 @@ class _NoticeReadPageState extends State<NoticeReadPage> {
           actions: [
             IconButton(
               icon: Icon(Icons.delete),
-              onPressed: () {
-                setState(() {
-                  Fluttertoast.showToast(msg: "Deleted Successfully");
-                });
-              },
+              onPressed: () {},
             )
           ],
         ),
@@ -40,7 +33,9 @@ class _NoticeReadPageState extends State<NoticeReadPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 25, left: 188),
                 child: Text(
-                  DateFormat('dd-MM-yyyy, KK:mm a').format(DateTime.now()),
+                  "Hello",
+                  //  DateFormat('dd-MM-yyyy, KK:mm a').format(DateTime.now()),
+                  //  date.toString(),
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal),
                 ),
               ),
@@ -63,7 +58,7 @@ class _NoticeReadPageState extends State<NoticeReadPage> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 4, top: 15),
                     child: Text(
-                      "Title: " + title,
+                      "Title: ",
                       maxLines: 3,
                       style:
                           TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
@@ -90,7 +85,7 @@ class _NoticeReadPageState extends State<NoticeReadPage> {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 15.0, top: 15),
                     child: Text(
-                      bodyMessage,
+                      "message",
                       style: TextStyle(
                           fontSize: 22, fontWeight: FontWeight.normal),
                     ),
