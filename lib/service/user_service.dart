@@ -6,8 +6,7 @@ import 'dart:convert';
 import 'dart:math';
 
 class UserService {
-  static const readURL =
-      "http://studentapi.patancollege.edu.np/api/registration";
+  static const readURL = "http://studentapi.patancollege.edu.np/api/login";
 
 // Create a method eventFromJson which accept one parameter as a string
   //It will decode the string value and store in variable named data as a map
@@ -22,47 +21,26 @@ class UserService {
 
   // Create a method getEventData with asynchoruous operation
   // In the future data will be returned in a list form
-  Future<List> getUserData() async {
+  Future<Map<String, dynamic>> getUserData() async {
     String? token;
     await SharedPre().getAuthToken().then((value) => {token = value!});
-    final response = await http.get(Uri.parse(readURL), headers: {
-      'Content-Type': 'application/json',
-      'Accept': 'application/json',
-      'Authorization': 'Bearer $token'
-    });
+    final response = await http.post(Uri.parse(readURL));
+    // headers: {
+    //   'Content-Type': 'application/json',
+    //   'Accept': 'application/json',
+    //   'Authorization': 'Bearer $token'
+    // });
     print(response);
     if (response.statusCode == 200) {
       print(response.statusCode);
 
-      // final jsonResponse = json.decode(response.body);
-      // final receiptList = jsonResponse['data'] as List;
-      // print("The data is $receiptList");
-      // List<Data> myList =
-      //     receiptList.map((data) => Data.fromJson(data)).toList();
-      // print("My data are $myList");
-      // return myList;
-
       Map<String, dynamic> UserInfo = jsonDecode(response.body);
       // print(UserInfo);
 
-      List<dynamic> detail = UserInfo['data']['registration'];
+      List<dynamic> detail = UserInfo['data'];
       print(detail);
-      // print("The dynamic list data is $receipt");
-      // List _data = List<dynamic>.from(
-      //   receipt.map<dynamic>(
-      //     (dynamic item) => item,
-      //   ),
-      // );
 
-      // List<Data> list = eventFromJson(response.body);
-
-      // print("The list item is: $list");
-
-      // return list;
-      // print(response.statusCode);
-      // List<Data> list = eventFromJson(response.body);
-      // print("The data are $list");
-      return detail;
+      return UserInfo;
     } else {
       // throw Exception('Failed to load');
       return Future.error('Failed to load');

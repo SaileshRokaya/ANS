@@ -42,12 +42,11 @@ class _UserNoticePageState extends State<UserNoticePage> {
                     //   itemCount: provider.receiptList.length,
                     itemCount: snapshot.data?.length,
                     itemBuilder: (context, position) {
-                      // DateTime date = DateTime.parse(
-                      //     (snapshot.data?[position]["notice_date"]).toString());
+                      DateTime date = DateTime.parse(
+                          (snapshot.data?[position]["notice_date"]).toString());
 
-                      // String dates = DateFormat("\ndd-MM-yyyy kk:mm a")
-                      //     .format(date)
-                      //     .toString();
+                      String dates =
+                          DateFormat("\ndd-MM-yyyy").format(date).toString();
                       return Card(
                         margin: EdgeInsets.all(8.0),
                         elevation: 5.0,
@@ -78,12 +77,13 @@ class _UserNoticePageState extends State<UserNoticePage> {
                                 context,
                                 MaterialPageRoute(
                                     builder: (context) => NoticeReadPage(
-                                        // date: snapshot.data?[position]
-                                        //     ["notice_date"],
-                                        // title: snapshot.data![position]
-                                        //     ["subject"],
-                                        // message: snapshot.data![position]
-                                        //     ["message"],
+                                          // date: snapshot.data?[position]
+                                          //     ["notice_date"],
+                                          title: snapshot.data![position]
+                                              ["subject"],
+                                          message: snapshot.data![position]
+                                              ["message"],
+                                          dates: dates,
                                         )));
                           },
                         ),
