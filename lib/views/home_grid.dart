@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:ans/accountwidgets/receipts_page.dart';
 import 'package:ans/provider/event_service_provider.dart';
 import 'package:ans/views/Emails.dart';
 import 'package:ans/views/account.dart';
@@ -169,8 +170,8 @@ class _HomeGridState extends State<HomeGrid> {
           // After pressing the fees detail grid it takes to the
           // account information page
           onTap: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => FeePage()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => ReceiptPage()));
           },
         ),
 
