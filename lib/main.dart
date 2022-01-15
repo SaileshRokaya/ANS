@@ -1,6 +1,7 @@
 import 'package:ans/api/shared_pre.dart';
 import 'package:ans/provider/auth_service.dart';
 import 'package:ans/service/receipt_service.dart';
+import 'package:ans/service/user_service.dart';
 import 'package:ans/views/academic_app.dart';
 import 'package:ans/views/user_profile.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -21,6 +22,9 @@ void main() async {
 
   SharedPre sha = SharedPre();
   final val = await sha.getAuthToken();
+
+  // UserService user = UserService();
+  // user.getUserData();
   print(val);
 
   // Auth au = Auth();
