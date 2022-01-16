@@ -21,7 +21,7 @@ class UserService {
 
   // Create a method getEventData with asynchoruous operation
   // In the future data will be returned in a list form
-  Future<Map<String, dynamic>> getUserData() async {
+  Future<List> getUserData() async {
     String? token;
     await SharedPre().getAuthToken().then((value) => {token = value!});
     final response = await http.post(Uri.parse(readURL));
@@ -40,7 +40,7 @@ class UserService {
       List<dynamic> detail = UserInfo['data'];
       print(detail);
 
-      return UserInfo;
+      return detail;
     } else {
       // throw Exception('Failed to load');
       return Future.error('Failed to load');

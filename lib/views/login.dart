@@ -36,37 +36,7 @@ class _LoginState extends State<Login> {
   final TextEditingController emailController = new TextEditingController();
   final TextEditingController passwordController = new TextEditingController();
 
-  // Firebase Authentication
-  // final _auth = FirebaseAuth.instance;
-
   Map<String, dynamic> _authData = {'username': '', 'password': ''};
-
-  // Future _submit() async {
-  //   if (!_formKey.currentState!.validate()) {
-  //     //invalid
-  //     return;
-  //   }
-  //   _formKey.currentState!.save();
-  //   try {
-  //     await Provider.of<Auth>(context, listen: false)
-  //         .login(_authData['username'], _authData['password']);
-  //   } on HttpException catch (e) {
-  //     var errorMessage = 'Authentication Failed';
-  //     if (e.toString().contains('INVALID_EMAIL')) {
-  //       errorMessage = 'Invalid email';
-  //       _showerrorDialog(errorMessage);
-  //     } else if (e.toString().contains('EMAIL_NOT_FOUND')) {
-  //       errorMessage = 'This email not found';
-  //       _showerrorDialog(errorMessage);
-  //     } else if (e.toString().contains('INVALID_PASSWORD')) {
-  //       errorMessage = 'Invalid Password';
-  //       _showerrorDialog(errorMessage);
-  //     }
-  //   } catch (error) {
-  //     var errorMessage = 'Plaese try again later';
-  //     _showerrorDialog(errorMessage);
-  //   }
-  // }
 
   void checkLogin() async {
     // Here we check if user already login or credential already available or not
@@ -133,12 +103,7 @@ class _LoginState extends State<Login> {
                               if (value!.isEmpty) {
                                 return "Please enter your username";
                               }
-                              // Regular expression for email validation
-                              // if (!RegExp(
-                              //         "^[a-zA-Z0-9.a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+.[a-z]+")
-                              //     .hasMatch(value)) {
-                              //   return "Please enter a valid email";
-                              // }
+
                               return null;
                             },
                             onSaved: (value) {
@@ -252,15 +217,6 @@ class _LoginState extends State<Login> {
     }
   }
 
-  // void LoginState() async {
-  //   if (passwordController.text.isNotEmpty && emailController.text.isNotEmpty) {
-  //     await LoginService()
-  //         .loginService(emailController.text, passwordController.text);
-  //   } else {
-  //     Fluttertoast.showToast(msg: "Invalid Credentials");
-  //   }
-  // }
-
   void login() async {
     if (passwordController.text.isNotEmpty && emailController.text.isNotEmpty) {
       var response = await http.post(
@@ -272,9 +228,6 @@ class _LoginState extends State<Login> {
 
       if (response.statusCode == 200) {
         final body = jsonDecode(response.body);
-        //  print("Login token: " + body["token"]);
-        // ScaffoldMessenger.of(context)
-        //     .showSnackBar(SnackBar(content: Text("Token : ${body["token"]}")));
         pageRoute(body['token']);
         SharedPre().setAuthToken(body['token']);
 
@@ -290,6 +243,30 @@ class _LoginState extends State<Login> {
     }
   }
 
+  Future<List> getUserData() async {
+    var response = await http.post(
+        Uri.parse("http://studentapi.patancollege.edu.np/api/login"),
+        body: ({
+          "username": emailController.text,
+          "password": passwordController.text
+        }));
+
+    print(response);
+    if (response.statusCode == 200) {
+      print(response.statusCode);
+
+      Map<String, dynamic> UserInfo = jsonDecode(response.body);
+      // print(UserInfo);
+
+      List<dynamic> detail = UserInfo['data'];
+      print(detail);
+
+      return detail;
+    } else {
+      return Future.error('Failed to load');
+    }
+  }
+
   void pageRoute(String token) async {
 // Here we store value or token inside shared preferences
     SharedPreferences pref = await SharedPreferences.getInstance();
@@ -297,25 +274,4 @@ class _LoginState extends State<Login> {
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => HomePage()));
   }
-
-  // void _showerrorDialog(String message) {
-  //   showDialog(
-  //     context: context,
-  //     builder: (ctx) => AlertDialog(
-  //       title: Text(
-  //         'An Error Occurs',
-  //         style: TextStyle(color: Colors.blue),
-  //       ),
-  //       content: Text(message),
-  //       actions: <Widget>[
-  //         FlatButton(
-  //           child: Text('Okay'),
-  //           onPressed: () {
-  //             Navigator.of(context).pop();
-  //           },
-  //         )
-  //       ],
-  //     ),
-  //   );
-  // }
 }
