@@ -19,7 +19,7 @@ class UserDetail extends StatelessWidget {
           title: Text("Profile"),
           centerTitle: true,
         ),
-        body: FutureBuilder<Map<String, dynamic>>(
+        body: FutureBuilder<List>(
             future: UserService().getUserData(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
@@ -28,9 +28,7 @@ class UserDetail extends StatelessWidget {
                     child: Text("No data Available"),
                   );
                 }
-                // Map<String, dynamic> datas = {
-                //   "name" : snapshot.data!['name'],
-                // };
+
                 return SingleChildScrollView(
                   child: Column(
                     children: [
@@ -57,7 +55,7 @@ class UserDetail extends StatelessWidget {
                             children: [
                               // Name
                               Text(
-                                "Name: " + snapshot.data!['name'],
+                                "Name: " + snapshot.data![1]['name'],
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
@@ -67,7 +65,7 @@ class UserDetail extends StatelessWidget {
 
                               // Email
                               Text(
-                                "Email: " + snapshot.data!['email'],
+                                "Email: " + snapshot.data![2]['email'],
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
@@ -77,7 +75,7 @@ class UserDetail extends StatelessWidget {
 
                               // Registration Date
                               Text(
-                                "Username: " + snapshot.data!['username'],
+                                "Username: " + snapshot.data![3]['username'],
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
@@ -87,7 +85,7 @@ class UserDetail extends StatelessWidget {
 
                               // Mobile Number
                               Text(
-                                "Mobile: " + snapshot.data!['mobile_no'],
+                                "Mobile: " + snapshot.data![5]['mobile_no'],
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
@@ -97,7 +95,7 @@ class UserDetail extends StatelessWidget {
 
                               // Roll No
                               Text(
-                                "EdusysID: " + snapshot.data!['edusys_id'],
+                                "EdusysID: " + snapshot.data![4]['edusys_id'],
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
@@ -107,7 +105,7 @@ class UserDetail extends StatelessWidget {
 
                               // Nationality
                               Text(
-                                "StudentID: " + snapshot.data!['student_id'],
+                                "StudentID: " + snapshot.data![6]['student_id'],
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
