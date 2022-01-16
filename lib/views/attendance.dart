@@ -116,7 +116,7 @@ class AttendancePage extends StatelessWidget {
                                       // Total Absent
                                       Text(
                                         "Absent: " +
-                                            snapshot.data?[position]["absent"],
+                                            snapshot.data![position]["absent"],
                                         //  provider.receiptList[position].totalAmount,
                                         style: TextStyle(
                                             fontSize: 21,
