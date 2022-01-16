@@ -83,7 +83,7 @@ class _ReceiptPageState extends State<ReceiptPage> {
                         ),
                         Container(
                           height: 145,
-                          width: 450,
+                          width: 330,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: Colors.blue,
@@ -108,7 +108,7 @@ class _ReceiptPageState extends State<ReceiptPage> {
                                               ["receipt_no"],
                                       //   provider.receiptList[position].receiptNo,
                                       style: TextStyle(
-                                          fontSize: 21,
+                                          fontSize: 16,
                                           fontWeight: FontWeight.bold),
                                     ),
                                     const SizedBox(
@@ -121,7 +121,7 @@ class _ReceiptPageState extends State<ReceiptPage> {
                                               ["receipt_date"],
                                       //  provider.receiptList[position].receiptDate,
                                       style: TextStyle(
-                                          fontSize: 21,
+                                          fontSize: 16,
                                           fontWeight: FontWeight.bold),
                                     ),
 
@@ -136,7 +136,7 @@ class _ReceiptPageState extends State<ReceiptPage> {
                                               ["total_amount"],
                                       //  provider.receiptList[position].totalAmount,
                                       style: TextStyle(
-                                          fontSize: 21,
+                                          fontSize: 16,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ],

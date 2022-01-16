@@ -35,7 +35,7 @@ class ThursdayPage extends StatelessWidget {
                     const Text(
                       "Mobile Application ",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                     ),
                     const SizedBox(
                       height: 15,
