@@ -38,7 +38,7 @@ class _LeaveDetailPageState extends State<LeaveDetailPage> {
       appBar: AppBar(
         title: Text(
           "Information",
-          style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 16),
         ),
         centerTitle: true,
       ),
@@ -51,7 +51,7 @@ class _LeaveDetailPageState extends State<LeaveDetailPage> {
               // Name
               Text(
                 "Name:" + " " + name,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 16),
               ),
               SizedBox(
                 height: 20,
@@ -60,7 +60,7 @@ class _LeaveDetailPageState extends State<LeaveDetailPage> {
               // Email
               Text(
                 "Roll No: " + rollNo,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 16),
               ),
               SizedBox(
                 height: 20,
@@ -69,7 +69,7 @@ class _LeaveDetailPageState extends State<LeaveDetailPage> {
               // Registration Date
               Text(
                 "Course: " + course,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 16),
               ),
               SizedBox(
                 height: 20,
@@ -78,7 +78,7 @@ class _LeaveDetailPageState extends State<LeaveDetailPage> {
               // Mobile Number
               Text(
                 "Level: " + level,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 16),
               ),
               SizedBox(
                 height: 20,
@@ -87,7 +87,7 @@ class _LeaveDetailPageState extends State<LeaveDetailPage> {
               // Roll No
               Text(
                 "Status: " + status,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 16),
               ),
               SizedBox(
                 height: 20,
@@ -96,7 +96,7 @@ class _LeaveDetailPageState extends State<LeaveDetailPage> {
               // Nationality
               Text(
                 "Reason: " + reason,
-                style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 16),
               ),
               SizedBox(
                 height: 20,

@@ -53,8 +53,7 @@ class _LeaveFormState extends State<LeaveForm> {
               child: Column(
                 children: [
                   TextFormField(
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 16),
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: "Full Name",
@@ -77,7 +76,7 @@ class _LeaveFormState extends State<LeaveForm> {
 
                   // College roll number text is here
                   TextFormField(
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 16),
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: "Enter your college roll number",
@@ -101,8 +100,7 @@ class _LeaveFormState extends State<LeaveForm> {
 
                   // Course name text field is here
                   TextFormField(
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 16),
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: "Your course name",
@@ -126,7 +124,7 @@ class _LeaveFormState extends State<LeaveForm> {
 
                   // title text field is here
                   TextFormField(
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 16),
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: "Enter your college roll number",
@@ -153,7 +151,7 @@ class _LeaveFormState extends State<LeaveForm> {
                     keyboardType: TextInputType.multiline,
                     minLines: 1, //Normal textInputField will be displayed
                     maxLines: 5, // when user presses enter it will adapt to it
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 16),
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: "Write your reason here",
@@ -183,9 +181,11 @@ class _LeaveFormState extends State<LeaveForm> {
                     child: Text(
                       "Request",
                       style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
-                    style: TextButton.styleFrom(minimumSize: Size(395, 55)),
+                    style: TextButton.styleFrom(
+                        minimumSize: Size(395, 55),
+                        backgroundColor: Colors.green),
                     onPressed: () {
                       // If the user didnot input text on title form field
                       // then it will show an error with the message
@@ -234,9 +234,11 @@ class _LeaveFormState extends State<LeaveForm> {
                     child: Text(
                       "Cancel",
                       style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
-                    style: TextButton.styleFrom(minimumSize: Size(395, 55)),
+                    style: TextButton.styleFrom(
+                        minimumSize: Size(395, 55),
+                        backgroundColor: Colors.red),
                     onPressed: () {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => LeaveForm()));

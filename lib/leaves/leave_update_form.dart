@@ -78,8 +78,7 @@ class _LeaveUpdateFormState extends State<LeaveUpdateForm> {
               child: Column(
                 children: [
                   TextFormField(
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 16),
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: "Full Name",
@@ -103,7 +102,7 @@ class _LeaveUpdateFormState extends State<LeaveUpdateForm> {
 
                   // College roll number text is here
                   TextFormField(
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 16),
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: "Enter your college roll number",
@@ -127,8 +126,7 @@ class _LeaveUpdateFormState extends State<LeaveUpdateForm> {
 
                   // Course name text field is here
                   TextFormField(
-                      style:
-                          TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                      style: TextStyle(fontSize: 16),
                       decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         hintText: "Your course name",
@@ -152,7 +150,7 @@ class _LeaveUpdateFormState extends State<LeaveUpdateForm> {
 
                   // title text field is here
                   TextFormField(
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 16),
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: "Enter your college roll number",
@@ -179,7 +177,7 @@ class _LeaveUpdateFormState extends State<LeaveUpdateForm> {
                     keyboardType: TextInputType.multiline,
                     minLines: 1, //Normal textInputField will be displayed
                     maxLines: 5, // when user presses enter it will adapt to it
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 16),
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: "Write your reason here",
@@ -209,9 +207,11 @@ class _LeaveUpdateFormState extends State<LeaveUpdateForm> {
                     child: Text(
                       "Update",
                       style:
-                          TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
-                    style: TextButton.styleFrom(minimumSize: Size(395, 55)),
+                    style: TextButton.styleFrom(
+                        minimumSize: Size(395, 55),
+                        backgroundColor: Colors.lightGreen),
                     onPressed: () {
                       // If the user didnot input text on title form field
                       // then it will show an error with the message

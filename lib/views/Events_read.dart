@@ -59,7 +59,7 @@ class EventReadPage extends StatelessWidget {
                 padding: const EdgeInsets.only(top: 25, left: 188),
                 child: Text(
                   DateFormat('dd-MM-yyyy, KK:mm a').format(DateTime.now()),
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.normal),
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
                 ),
               ),
               // Title is here
@@ -84,7 +84,7 @@ class EventReadPage extends StatelessWidget {
                       "Title: " + eventTitle!,
                       maxLines: 3,
                       style:
-                          TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
                   ),
                 ),

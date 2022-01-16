@@ -36,7 +36,7 @@ class EmailReadPage extends StatelessWidget {
                   child: Text(
                     dates,
                     style:
-                        TextStyle(fontSize: 20, fontWeight: FontWeight.normal),
+                        TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
                   ),
                 ),
 
@@ -44,7 +44,7 @@ class EmailReadPage extends StatelessWidget {
                   padding: const EdgeInsets.only(top: 40, left: 19),
                   child: Text(
                     "From: " + emailFrom,
-                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                   ),
                 ),
 
@@ -70,7 +70,7 @@ class EmailReadPage extends StatelessWidget {
                         "Subject: " + title,
                         maxLines: 3,
                         style: TextStyle(
-                            fontSize: 22, fontWeight: FontWeight.bold),
+                            fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
@@ -96,7 +96,7 @@ class EmailReadPage extends StatelessWidget {
                       child: Text(
                         message,
                         style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.normal),
+                            fontSize: 16, fontWeight: FontWeight.normal),
                       ),
                     ),
                   ),

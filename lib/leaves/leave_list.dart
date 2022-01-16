@@ -112,7 +112,7 @@ class _LeaveListState extends State<LeaveList> {
                             provider.leaveList[position].accRejReason
                       };
                       int ids = int.parse(provider.leaveList[position].id);
-                      print("THe updated id is: $ids");
+                      print("The updated id is: $ids");
 
                       LeaveModel model = LeaveModel.fromJson(data);
 
@@ -131,7 +131,10 @@ class _LeaveListState extends State<LeaveList> {
                           title: Text(provider.leaveList[position].name,
                               maxLines: 2,
                               style: TextStyle(
-                                  fontWeight: FontWeight.w800, fontSize: 21.0)),
+                                  fontWeight: FontWeight.w800, fontSize: 18.0)),
+                          leading: CircleAvatar(
+                            child: Text(provider.leaveList[position].name[0]),
+                          ),
 
                           // It will contain the data and time
                           // that coming from the data and convert in string

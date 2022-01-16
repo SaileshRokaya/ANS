@@ -32,7 +32,7 @@ class NoticeReadPage extends StatelessWidget {
                     //  DateFormat('dd-MM-yyyy, KK:mm a').format(DateTime.now()),
                     //  date.toString(),
                     style:
-                        TextStyle(fontSize: 20, fontWeight: FontWeight.normal),
+                        TextStyle(fontSize: 16, fontWeight: FontWeight.normal),
                   ),
                 ),
                 // Title is here
@@ -57,7 +57,7 @@ class NoticeReadPage extends StatelessWidget {
                         "Subject: " + title,
                         maxLines: 3,
                         style: TextStyle(
-                            fontSize: 22, fontWeight: FontWeight.bold),
+                            fontSize: 18, fontWeight: FontWeight.bold),
                       ),
                     ),
                   ),
@@ -83,7 +83,7 @@ class NoticeReadPage extends StatelessWidget {
                       child: Text(
                         message,
                         style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.normal),
+                            fontSize: 16, fontWeight: FontWeight.normal),
                       ),
                     ),
                   ),

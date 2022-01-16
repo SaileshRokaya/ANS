@@ -88,12 +88,11 @@ class _LoginState extends State<Login> {
                         children: [
                           // TextFormField to input email address
                           TextFormField(
-                            style: const TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
+                            style: const TextStyle(fontSize: 16),
                             decoration: const InputDecoration(
                               border: OutlineInputBorder(),
-                              hintText: "Enter your email",
-                              labelText: "Email",
+                              hintText: "Your College Roll No",
+                              labelText: "Username",
                             ),
 
                             controller: emailController,
@@ -118,8 +117,7 @@ class _LoginState extends State<Login> {
                           // TextFormField to input password
                           TextFormField(
                             obscureText: true,
-                            style: const TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
+                            style: const TextStyle(fontSize: 16),
                             decoration: const InputDecoration(
                               border: OutlineInputBorder(),
                               hintText: "Enter your password",
@@ -149,7 +147,7 @@ class _LoginState extends State<Login> {
                                   child: Text(
                                     "Forgot Password",
                                     style: TextStyle(
-                                        color: Colors.blue, fontSize: 20),
+                                        color: Colors.blue, fontSize: 16),
                                   )),
                             ],
                           ),
@@ -161,7 +159,7 @@ class _LoginState extends State<Login> {
                               child: Text(
                                 "Login",
                                 style: TextStyle(
-                                    fontSize: 30, fontWeight: FontWeight.bold),
+                                    fontSize: 18, fontWeight: FontWeight.bold),
                               ),
                               style: TextButton.styleFrom(
                                   minimumSize: Size(395, 55)),
@@ -180,13 +178,13 @@ class _LoginState extends State<Login> {
                                 text: TextSpan(
                                     text: 'Don\'t have an account?',
                                     style: TextStyle(
-                                        color: Colors.black, fontSize: 20),
+                                        color: Colors.black, fontSize: 16),
                                     children: <TextSpan>[
                                       TextSpan(
-                                          text: ' Sign up',
+                                          text: ' Contact to college',
                                           style: TextStyle(
                                               color: Colors.blueAccent,
-                                              fontSize: 20),
+                                              fontSize: 16),
                                           recognizer: TapGestureRecognizer()
                                             ..onTap = () {}),
                                     ]),
