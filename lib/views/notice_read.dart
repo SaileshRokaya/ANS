@@ -26,7 +26,7 @@ class NoticeReadPage extends StatelessWidget {
               children: [
                 // date time is here
                 Padding(
-                  padding: const EdgeInsets.only(top: 25, left: 260),
+                  padding: const EdgeInsets.only(top: 25, left: 250),
                   child: Text(
                     dates,
                     //  DateFormat('dd-MM-yyyy, KK:mm a').format(DateTime.now()),
@@ -83,7 +83,7 @@ class NoticeReadPage extends StatelessWidget {
                       child: Text(
                         message,
                         style: TextStyle(
-                            fontSize: 22, fontWeight: FontWeight.normal),
+                            fontSize: 18, fontWeight: FontWeight.normal),
                       ),
                     ),
                   ),

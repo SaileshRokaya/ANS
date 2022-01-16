@@ -82,14 +82,14 @@ class _ReceiptPageState extends State<ReceiptPage> {
                           height: 15,
                         ),
                         Container(
-                          height: 145,
+                          height: 140,
                           width: 330,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(10),
                               color: Colors.blue,
                               boxShadow: const <BoxShadow>[
                                 BoxShadow(
-                                    color: Colors.black12,
+                                    color: Colors.black38,
                                     blurRadius: 20.0,
                                     offset: Offset(0.0, 0.75))
                               ]),
@@ -108,7 +108,7 @@ class _ReceiptPageState extends State<ReceiptPage> {
                                               ["receipt_no"],
                                       //   provider.receiptList[position].receiptNo,
                                       style: TextStyle(
-                                          fontSize: 16,
+                                          fontSize: 18,
                                           fontWeight: FontWeight.bold),
                                     ),
                                     const SizedBox(
@@ -121,7 +121,7 @@ class _ReceiptPageState extends State<ReceiptPage> {
                                               ["receipt_date"],
                                       //  provider.receiptList[position].receiptDate,
                                       style: TextStyle(
-                                          fontSize: 16,
+                                          fontSize: 18,
                                           fontWeight: FontWeight.bold),
                                     ),
 
@@ -136,7 +136,7 @@ class _ReceiptPageState extends State<ReceiptPage> {
                                               ["total_amount"],
                                       //  provider.receiptList[position].totalAmount,
                                       style: TextStyle(
-                                          fontSize: 16,
+                                          fontSize: 18,
                                           fontWeight: FontWeight.bold),
                                     ),
                                   ],
