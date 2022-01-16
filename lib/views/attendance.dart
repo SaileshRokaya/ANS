@@ -36,8 +36,8 @@ class AttendancePage extends StatelessWidget {
                             height: 15,
                           ),
                           Container(
-                            height: 280,
-                            width: 450,
+                            height: 240,
+                            width: 340,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
                                 color: Colors.blue,
@@ -58,13 +58,13 @@ class AttendancePage extends StatelessWidget {
                                         CrossAxisAlignment.start,
                                     children: [
                                       Text(
-                                        "Subject: " +
-                                            snapshot.data?[position]
-                                                ["subject_name"],
+                                        snapshot.data?[position]
+                                            ["subject_name"],
                                         //   provider.receiptList[position].receiptNo,
                                         style: TextStyle(
-                                            fontSize: 21,
-                                            fontWeight: FontWeight.bold),
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 18,
+                                        ),
                                       ),
                                       const SizedBox(
                                         height: 15,
@@ -76,8 +76,8 @@ class AttendancePage extends StatelessWidget {
                                                 ["subject_code"],
                                         //  provider.receiptList[position].receiptDate,
                                         style: TextStyle(
-                                            fontSize: 21,
-                                            fontWeight: FontWeight.bold),
+                                          fontSize: 18,
+                                        ),
                                       ),
 
                                       const SizedBox(
@@ -91,8 +91,8 @@ class AttendancePage extends StatelessWidget {
                                                 ["total_period"],
                                         //  provider.receiptList[position].totalAmount,
                                         style: TextStyle(
-                                            fontSize: 21,
-                                            fontWeight: FontWeight.bold),
+                                          fontSize: 18,
+                                        ),
                                       ),
 
                                       const SizedBox(
@@ -105,8 +105,8 @@ class AttendancePage extends StatelessWidget {
                                             snapshot.data?[position]["present"],
                                         //  provider.receiptList[position].totalAmount,
                                         style: TextStyle(
-                                            fontSize: 21,
-                                            fontWeight: FontWeight.bold),
+                                          fontSize: 18,
+                                        ),
                                       ),
 
                                       const SizedBox(
@@ -119,8 +119,8 @@ class AttendancePage extends StatelessWidget {
                                             snapshot.data![position]["absent"],
                                         //  provider.receiptList[position].totalAmount,
                                         style: TextStyle(
-                                            fontSize: 21,
-                                            fontWeight: FontWeight.bold),
+                                          fontSize: 18,
+                                        ),
                                       ),
                                     ],
                                   ),

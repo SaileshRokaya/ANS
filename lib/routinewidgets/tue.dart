@@ -35,7 +35,7 @@ class TuesdayPage extends StatelessWidget {
                     const Text(
                       "Mobile Application ",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                     ),
                     const SizedBox(
                       height: 15,
@@ -43,8 +43,7 @@ class TuesdayPage extends StatelessWidget {
                     // Teacher name
                     const Text(
                       "08:00 AM - 10:00 AM",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+                      style: TextStyle(fontSize: 16),
                     ),
 
                     const SizedBox(
@@ -64,8 +63,7 @@ class TuesdayPage extends StatelessWidget {
                         // Room Number
                         Text(
                           "A-502",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20),
+                          style: TextStyle(fontSize: 18),
                         ),
                       ],
                     )
@@ -77,7 +75,7 @@ class TuesdayPage extends StatelessWidget {
 
           // Container for break / lunch
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(20.0),
             child: Container(
               width: 350,
               height: 130,
@@ -100,7 +98,7 @@ class TuesdayPage extends StatelessWidget {
                     Text(
                       "Break",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                     ),
                     SizedBox(
                       height: 15,
@@ -108,8 +106,7 @@ class TuesdayPage extends StatelessWidget {
                     // Teacher name
                     Text(
                       "10:00 AM - 11:00 AM",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+                      style: TextStyle(fontSize: 16),
                     ),
 
                     SizedBox(
@@ -129,7 +126,7 @@ class TuesdayPage extends StatelessWidget {
 
           // Container for second subject
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(20.0),
             child: Container(
               width: 350,
               height: 130,
@@ -152,7 +149,7 @@ class TuesdayPage extends StatelessWidget {
                     Text(
                       "Software Design ",
                       style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 22),
+                          TextStyle(fontWeight: FontWeight.bold, fontSize: 18),
                     ),
                     SizedBox(
                       height: 15,
@@ -160,8 +157,7 @@ class TuesdayPage extends StatelessWidget {
                     // Teacher name
                     Text(
                       "11:00 AM - 1:00 PM",
-                      style:
-                          TextStyle(fontWeight: FontWeight.bold, fontSize: 17),
+                      style: TextStyle(fontSize: 16),
                     ),
 
                     SizedBox(
@@ -181,8 +177,7 @@ class TuesdayPage extends StatelessWidget {
                         // Room Number
                         Text(
                           "A-502",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 20),
+                          style: TextStyle(fontSize: 18),
                         ),
                       ],
                     )
