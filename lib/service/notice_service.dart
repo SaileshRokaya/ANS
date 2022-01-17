@@ -9,16 +9,6 @@ import 'dart:math';
 class NoticeService {
   static const readURL = "http://studentapi.patancollege.edu.np/api/notice";
 
-// Create a method eventFromJson which accept one parameter as a string
-  //It will decode the string value and store in variable named data as a map
-  List<Data> eventFromJson(String jsonString) {
-    final Map<String, dynamic> data = json.decode(jsonString);
-    // print("Event Model Data: $data");
-
-    // Convert the json data into map and return as a list
-    return List<Data>.from(data['data'].map((item) => Data.fromJson(item)));
-  }
-
   // Create a method getEventData with asynchoruous operation
   // In the future data will be returned in a list form
   Future<List> getNoticeData() async {
