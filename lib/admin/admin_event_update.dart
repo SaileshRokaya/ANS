@@ -69,7 +69,7 @@ class _AdminEventUpdatePageState extends State<AdminEventUpdatePage> {
             centerTitle: true,
             title: Text(
               "Update",
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
           ),
           body: SingleChildScrollView(
@@ -85,7 +85,7 @@ class _AdminEventUpdatePageState extends State<AdminEventUpdatePage> {
                   // Title content is here
                   child: TextFormField(
                     style: const TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.normal),
+                        fontSize: 16, fontWeight: FontWeight.normal),
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: "Enter your title here",
@@ -103,7 +103,7 @@ class _AdminEventUpdatePageState extends State<AdminEventUpdatePage> {
                     minLines: 1, //Normal textInputField will be displayed
                     maxLines: 5, // when user presses enter it will adapt to it
                     style: const TextStyle(
-                        fontSize: 18, fontWeight: FontWeight.normal),
+                        fontSize: 16, fontWeight: FontWeight.normal),
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       hintText: "Message here",
@@ -120,9 +120,11 @@ class _AdminEventUpdatePageState extends State<AdminEventUpdatePage> {
                     child: Text(
                       "Update",
                       style:
-                          TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ),
-                    style: TextButton.styleFrom(minimumSize: Size(200, 55)),
+                    style: TextButton.styleFrom(
+                        minimumSize: Size(150, 55),
+                        backgroundColor: Colors.lightGreen),
                     onPressed: () {
                       //  To update the event part
                       EventModel eventModel = EventModel(

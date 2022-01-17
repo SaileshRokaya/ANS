@@ -24,7 +24,7 @@ class _UserNoticePageState extends State<UserNoticePage> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text("Inbox"),
+          title: Text("Notice"),
         ),
 
         // The body part is here
