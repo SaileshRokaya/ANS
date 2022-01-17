@@ -151,8 +151,10 @@ class _LeaveListState extends State<LeaveList> {
                               // Edit icon function here
                               IconButton(
                                   onPressed: () {
-                                    if (model.status == "Accept" ||
-                                        model.status == "Reject") {
+                                    if (provider.leaveList[position].status ==
+                                            "Accept" ||
+                                        provider.leaveList[position].status ==
+                                            "Reject") {
                                       ScaffoldMessenger.of(context)
                                           .showSnackBar(SnackBar(
                                               content: Text(

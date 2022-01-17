@@ -140,57 +140,11 @@ class _AdminLeaveInformationPageState extends State<AdminLeaveInformationPage> {
                           minimumSize: Size(45, 45),
                           backgroundColor: Colors.green),
                       onPressed: () {
-<<<<<<< HEAD
                         if (widget.leaveModel!.status == "Accept" ||
                             widget.leaveModel!.status == "Reject") {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text("Cannot change the status")));
                         } else {
-=======
-                        // Value were input on the eventmodel constructor
-                        LeaveModel leaveModel = LeaveModel(
-                          id: widget.leaveModel!.id,
-                          name: widget.leaveModel!.name,
-                          rollNo: widget.leaveModel!.rollNo,
-                          reqReason: widget.leaveModel!.reqReason,
-                          level: widget.leaveModel!.level,
-                          leaveDate: "",
-                          status: "Accept",
-                          accRejReason: '',
-                          course: widget.leaveModel!.course,
-                        );
-
-                        // Add method was called
-                        update(leaveModel);
-                        print("Update successfully");
-
-                        // To update the UI Screen
-                        void reloadData() async {
-                          final postMdl = Provider.of<LeaveServiceProvider>(
-                              context,
-                              listen: false);
-                          leaveDatas = await LeaveService().getLeaveData();
-                          postMdl.updateEvent(leaveDatas);
-                        }
-
-                        reloadData();
-                      },
-                    ),
-
-                    // Log out button
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: ElevatedButton(
-                        child: Text(
-                          "Reject",
-                          style: TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                        style: TextButton.styleFrom(
-                            minimumSize: Size(45, 45),
-                            backgroundColor: Colors.red),
-                        onPressed: () {
->>>>>>> 9a0b360836ed35ec2063f653d6e6514b078b98b2
                           // Value were input on the eventmodel constructor
                           LeaveModel leaveModel = LeaveModel(
                             id: widget.leaveModel!.id,
