@@ -13,43 +13,6 @@ class ReceiptPage extends StatefulWidget {
 }
 
 class _ReceiptPageState extends State<ReceiptPage> {
-// Create an empty list to store the list of event coming from the database
-  List<Data> receiptDatas = [];
-
-  // Create a method reloadData to update the UI screen
-  // void reloadData() async {
-  //   final postMdl = Provider.of<UserProvider>(context, listen: false);
-  //   receiptDatas = await ReceiptService().getReceiptData();
-  //   //  postMdl.updateEvent(eventDatas);
-  // }
-
-  // // Create a method getEventUser to get all the event list
-  // getEventUser() async {
-  //   // All the event list will be stored in eventDatas
-  //   receiptDatas = await ReceiptService().getReceiptData();
-  // }
-
-  // Create an update method to update the event title and message
-  // update(EventModel eventModel) async {
-  //   // Call the updateEvent method from the class EventService to update the
-  //   // event title and event message
-  //   await EventService().updateEvent(eventModel).then((sucess) {
-  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-  //       content: Text("Update Sucessful"),
-  //     ));
-  //     // print("Add Sucessful");
-  //     Navigator.pop(context);
-  //   });
-  // }
-
-//  bool editMode = false;
-
-  // This method will call everytime
-  // @override
-  // void initState() {
-  //   reloadData();
-  // }
-
   @override
   Widget build(BuildContext context) {
     // return Consumer<UserProvider>(builder: (context, provider, child) {

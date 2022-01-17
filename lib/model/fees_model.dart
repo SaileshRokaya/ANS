@@ -1,124 +1,83 @@
-// class FeesModel {
-//   List<Data>? data;
+// To parse this JSON data, do
+//
+//     final leaveModel = leaveModelFromJson(jsonString);
 
-//   FeesModel({this.data});
+import 'dart:convert';
 
-//   FeesModel.fromJson(Map<String, dynamic> json) {
-//     if (json['data'] != null) {
-//       data = <Data>[];
-//       json['data'].forEach((v) {
-//         data!.add(new Data.fromJson(v));
-//       });
-//     }
-//   }
+FeeModel leaveModelFromJson(String str) => FeeModel.fromJson(json.decode(str));
 
-//   Map<String, dynamic> toJson() {
-//     final Map<String, dynamic> data = new Map<String, dynamic>();
-//     if (this.data != null) {
-//       data['data'] = this.data!.map((v) => v.toJson()).toList();
-//     }
-//     return data;
-//   }
-// }
+String leaveModelToJson(FeeModel data) => json.encode(data.toJson());
 
-class Data {
-  String receiptNo;
-  String receiptDate;
-  String totalAmount;
+class FeeModel {
+  FeeModel({
+    required this.id,
+    required this.name,
+    required this.rollNo,
+    required this.level,
+    required this.leaveDate,
+    required this.status,
+    required this.reqReason,
+    required this.accRejReason,
+    required this.course,
+  });
 
-  Data(
-      {required this.receiptNo,
-      required this.receiptDate,
-      required this.totalAmount});
+  String id;
+  String name;
+  String rollNo;
+  String level;
+  String leaveDate;
+  String status;
+  String reqReason;
+  String accRejReason;
+  String course;
 
-  // Data.fromJson(Map<String, dynamic> json) {
-  //   receiptNo = json['receipt_no'];
-  //   receiptDate = json['receipt_date'];
-  //   totalAmount = json['total_amount'];
-  // }
+  factory FeeModel.fromJson(Map<String, dynamic> json) => FeeModel(
+      id: json["id"],
+      name: json["name"],
+      rollNo: json["roll_no"],
+      level: json["level"],
+      leaveDate: json["leave_date"],
+      status: json["status"],
+      reqReason: json["req_reason"],
+      accRejReason: json["acc_rej_reason"],
+      course: json["course"]);
 
-  factory Data.fromJson(Map<String, dynamic> json) {
-    return Data(
-      receiptDate: json['receipt_no'],
-      totalAmount: json['receipt_date'],
-      receiptNo: json['total_amount'],
-    );
+  Map<String, dynamic> toJson() => {
+        "id": id,
+        "name": name,
+        "roll_no": rollNo,
+        "level": level,
+        "course": course,
+        "leave_date": leaveDate,
+        "status": status,
+        "req_reason": reqReason,
+        "acc_rej_reason": accRejReason,
+      };
+
+  Map<String, dynamic> toJsonAdd() {
+    return {
+      "name": name,
+      "roll_no": rollNo,
+      "level": level,
+      "course": course,
+      "leave_date": leaveDate,
+      "status": status,
+      "req_reason": reqReason,
+      "acc_rej_reason": accRejReason,
+    };
   }
 
-  // Map<String, dynamic> toJson() {
-  //   final Map<String, dynamic> data = new Map<String, dynamic>();
-  //   data['receipt_no'] = this.receiptNo;
-  //   data['receipt_date'] = this.receiptDate;
-  //   data['total_amount'] = this.totalAmount;
-  //   return data;
-  // }
+  Map<String, dynamic> toJsonUpdate() {
+    return {
+      "id": id,
+      "name": name,
+      "roll_no": rollNo,
+      "level": level,
+      "course": course,
+      "leave_date": leaveDate,
+      "status": status,
+      "req_reason": reqReason,
+      "acc_rej_reason": accRejReason,
+    };
+  }
 }
-
-
-
-
-// class FeesModel {
-//   // List<Data>? data;
-
-//   String receiptNo;
-//   dynamic receiptDate;
-//   String totalAmount;
-
-//   FeesModel(
-//       {required this.receiptNo,
-//       required this.receiptDate,
-//       required this.totalAmount});
-
-//   // factory FeesModel.fromJson(Map<String, dynamic> json) => FeesModel(
-//   //       receiptNo = json['receipt_no'],
-//   //       receiptDate = json['receipt_date'],
-//   //       totalAmount = json['total_amount'],
-//   //     );
-
-//   factory FeesModel.fromJson(Map<String, dynamic> json) => FeesModel(
-//         receiptNo: json['receipt_no'],
-//         receiptDate: json['receipt_date'],
-//         totalAmount: json['total_amount'],
-//       );
-
-//   Map<String, dynamic> toJson() => {
-//         "receipt_no": receiptNo,
-//         "receipt_date": receiptDate,
-//         "total_amount": totalAmount
-//       };
-
-//   Map<String, dynamic> toJsonAdd() {
-//     return {
-//       "receipt_no": receiptNo,
-//       "receipt_date": receiptDate,
-//       "total_amount": totalAmount
-//     };
-//   }
-
-//   // Map<String, dynamic> toJson() {
-//   //   final Map<String, dynamic> data = new Map<String, dynamic>();
-//   //   data['receipt_no'] = this.receiptNo;
-//   //   data['receipt_date'] = this.receiptDate;
-//   //   data['total_amount'] = this.totalAmount;
-//   //   return data;
-//   // }
-
-//   // FeesModel({this.data});
-
-//   // FeesModel.fromJson(Map<String, dynamic> json) {
-//   //   if (json['data'] != null) {
-//   //     data = <Data>[];
-//   //     json['data'].forEach((v) {
-//   //       data!.add(new Data.fromJson(v));
-//   //     });
-//   //   }
-//   // }
-
-//   // Map<String, dynamic> toJson() {
-//   //   final Map<String, dynamic> data = new Map<String, dynamic>();
-//   //   if (this.data != null) {
-//   //     data['data'] = this.data!.map((v) => v.toJson()).toList();
-//   //   }
-//   //   return data;
-//   // }
-// }

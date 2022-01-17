@@ -11,10 +11,10 @@ class UserProvider with ChangeNotifier {
   }
 
   // Provider working with rest api
-  List<Data> receiptList = [];
-  void showReceiptDetail(List<Data> data) {
-    this.receiptList = data;
-    print(receiptList);
-    notifyListeners();
-  }
+  // List<Data> receiptList = [];
+  // void showReceiptDetail(List<Data> data) {
+  //   this.receiptList = data;
+  //   print(receiptList);
+  //   notifyListeners();
+  // }
 }
