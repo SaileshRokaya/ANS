@@ -21,7 +21,7 @@ class _SMSPageState extends State<SMSPage> {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text("Inbox"),
+          title: Text("PCPS SMS"),
         ),
 
         // The body part is here

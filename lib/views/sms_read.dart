@@ -19,7 +19,7 @@ class SMSReadPage extends StatelessWidget {
     return Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: Text("Information"),
+          title: Text("PCPS SMS Details"),
         ),
         body: Container(
           child: SingleChildScrollView(
@@ -32,7 +32,7 @@ class SMSReadPage extends StatelessWidget {
                   child: Text(
                     dates,
                     style:
-                        TextStyle(fontSize: 20, fontWeight: FontWeight.normal),
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.normal),
                   ),
                 ),
 
