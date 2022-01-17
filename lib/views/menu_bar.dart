@@ -65,6 +65,11 @@ class MenuBarPage extends StatelessWidget {
             onTap: () => {Navigator.of(context).pop()},
           ),
           ListTile(
+            leading: Icon(Icons.code),
+            title: Text('Development Team'),
+            onTap: () => {Navigator.of(context).pop()},
+          ),
+          ListTile(
             leading: Icon(Icons.exit_to_app),
             title: Text('Logout'),
             onTap: () async {
