@@ -61,7 +61,7 @@ class _AdminLeaveInformationPageState extends State<AdminLeaveInformationPage> {
       appBar: AppBar(
         title: Text(
           "Information",
-          style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+          style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
@@ -74,7 +74,7 @@ class _AdminLeaveInformationPageState extends State<AdminLeaveInformationPage> {
               // Name
               Text(
                 "Name:" + " " + name,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 16),
               ),
               SizedBox(
                 height: 20,
@@ -83,7 +83,7 @@ class _AdminLeaveInformationPageState extends State<AdminLeaveInformationPage> {
               // Email
               Text(
                 "Roll No: " + rollNo,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 16),
               ),
               SizedBox(
                 height: 20,
@@ -92,7 +92,7 @@ class _AdminLeaveInformationPageState extends State<AdminLeaveInformationPage> {
               // Registration Date
               Text(
                 "Course: " + course,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 16),
               ),
               SizedBox(
                 height: 20,
@@ -101,7 +101,7 @@ class _AdminLeaveInformationPageState extends State<AdminLeaveInformationPage> {
               // Mobile Number
               Text(
                 "Level: " + level,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 16),
               ),
               SizedBox(
                 height: 20,
@@ -110,7 +110,7 @@ class _AdminLeaveInformationPageState extends State<AdminLeaveInformationPage> {
               // Roll No
               Text(
                 "Status: " + status,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 16),
               ),
               SizedBox(
                 height: 20,
@@ -119,7 +119,7 @@ class _AdminLeaveInformationPageState extends State<AdminLeaveInformationPage> {
               // Nationality
               Text(
                 "Reason: " + reason,
-                style: TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 16),
               ),
               SizedBox(
                 height: 20,
@@ -134,15 +134,63 @@ class _AdminLeaveInformationPageState extends State<AdminLeaveInformationPage> {
                       child: Text(
                         "Accept",
                         style: TextStyle(
-                            fontSize: 22, fontWeight: FontWeight.bold),
+                            fontSize: 18, fontWeight: FontWeight.bold),
                       ),
-                      style: TextButton.styleFrom(minimumSize: Size(30, 45)),
+                      style: TextButton.styleFrom(
+                          minimumSize: Size(45, 45),
+                          backgroundColor: Colors.green),
                       onPressed: () {
+<<<<<<< HEAD
                         if (widget.leaveModel!.status == "Accept" ||
                             widget.leaveModel!.status == "Reject") {
                           ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                               content: Text("Cannot change the status")));
                         } else {
+=======
+                        // Value were input on the eventmodel constructor
+                        LeaveModel leaveModel = LeaveModel(
+                          id: widget.leaveModel!.id,
+                          name: widget.leaveModel!.name,
+                          rollNo: widget.leaveModel!.rollNo,
+                          reqReason: widget.leaveModel!.reqReason,
+                          level: widget.leaveModel!.level,
+                          leaveDate: "",
+                          status: "Accept",
+                          accRejReason: '',
+                          course: widget.leaveModel!.course,
+                        );
+
+                        // Add method was called
+                        update(leaveModel);
+                        print("Update successfully");
+
+                        // To update the UI Screen
+                        void reloadData() async {
+                          final postMdl = Provider.of<LeaveServiceProvider>(
+                              context,
+                              listen: false);
+                          leaveDatas = await LeaveService().getLeaveData();
+                          postMdl.updateEvent(leaveDatas);
+                        }
+
+                        reloadData();
+                      },
+                    ),
+
+                    // Log out button
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: ElevatedButton(
+                        child: Text(
+                          "Reject",
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                        style: TextButton.styleFrom(
+                            minimumSize: Size(45, 45),
+                            backgroundColor: Colors.red),
+                        onPressed: () {
+>>>>>>> 9a0b360836ed35ec2063f653d6e6514b078b98b2
                           // Value were input on the eventmodel constructor
                           LeaveModel leaveModel = LeaveModel(
                             id: widget.leaveModel!.id,

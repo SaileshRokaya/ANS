@@ -87,7 +87,7 @@ class _AdminFeePageState extends State<AdminFeePage> {
                 ? Center(
                     child: const Text(
                     "No data found",
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                   ))
                 : ListView.builder(
                     itemCount: provider.feeList.length,
@@ -127,7 +127,7 @@ class _AdminFeePageState extends State<AdminFeePage> {
                           title: Text(provider.feeList[position].name,
                               maxLines: 2,
                               style: TextStyle(
-                                  fontWeight: FontWeight.w800, fontSize: 21.0)),
+                                  fontWeight: FontWeight.w800, fontSize: 18.0)),
 
                           // It will contain the data and time
                           // that coming from the data and convert in string

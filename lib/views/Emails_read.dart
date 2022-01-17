@@ -92,12 +92,12 @@ class EmailReadPage extends StatelessWidget {
                       // ),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 15.0, top: 15),
-                      child: Text(
-                        message,
-                        style: TextStyle(
-                            fontSize: 16, fontWeight: FontWeight.normal),
-                      ),
+                      padding:
+                          const EdgeInsets.only(left: 15.0, top: 15, right: 15),
+                      child: Text(message,
+                          style: TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.normal),
+                          textAlign: TextAlign.justify),
                     ),
                   ),
                 )

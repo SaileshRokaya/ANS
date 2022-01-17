@@ -78,7 +78,7 @@ class _AdminEventPageState extends State<AdminEventPage> {
 
             // Title content is here
             child: TextFormField(
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 16),
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: "Enter your title here",
@@ -95,7 +95,7 @@ class _AdminEventPageState extends State<AdminEventPage> {
               keyboardType: TextInputType.multiline,
               minLines: 1, //Normal textInputField will be displayed
               maxLines: 5, // when user presses enter it will adapt to it
-              style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: const TextStyle(fontSize: 16),
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
                 hintText: "Message here",
@@ -112,7 +112,8 @@ class _AdminEventPageState extends State<AdminEventPage> {
               "Send",
               style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
             ),
-            style: TextButton.styleFrom(minimumSize: Size(200, 55)),
+            style: TextButton.styleFrom(
+                minimumSize: Size(150, 55), backgroundColor: Colors.green),
             onPressed: () {
               // If the user didnot input text on title form field
               // then it will show an error with the message

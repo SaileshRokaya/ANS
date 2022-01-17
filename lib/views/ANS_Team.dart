@@ -60,7 +60,7 @@ class _ANS_TeamState extends State<ANS_Team> {
               // Name
               Text(
                 "Sailesh Rokaya             System Analyst",
-                style: TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: 16, color: Colors.purple),
               ),
               SizedBox(
                 height: 20,
@@ -69,7 +69,7 @@ class _ANS_TeamState extends State<ANS_Team> {
               // Name
               Text(
                 "Saroj Belbase                Backend Developer",
-                style: TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: 16, color: Colors.purple),
               ),
               SizedBox(
                 height: 20,
@@ -78,7 +78,7 @@ class _ANS_TeamState extends State<ANS_Team> {
               // Name
               Text(
                 "Kanhaiya Sharma         Frontend Developer",
-                style: TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: 16, color: Colors.purple),
               ),
               SizedBox(
                 height: 20,
@@ -87,7 +87,7 @@ class _ANS_TeamState extends State<ANS_Team> {
               // Name
               Text(
                 "Bhaskar Rokaya           QA Test Engineer",
-                style: TextStyle(fontSize: 16),
+                style: TextStyle(fontSize: 16, color: Colors.purple),
               ),
               SizedBox(
                 height: 20,

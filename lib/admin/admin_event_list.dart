@@ -74,7 +74,7 @@ class _AdminEventListPageState extends State<AdminEventListPage> {
                 }),
             title: Text(
               "List Of Event",
-              style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
             actions: <Widget>[
               Padding(
@@ -103,7 +103,7 @@ class _AdminEventListPageState extends State<AdminEventListPage> {
                       child: const Text(
                       "No data found",
                       style:
-                          TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                     ))
                   : ListView.builder(
 
@@ -146,7 +146,7 @@ class _AdminEventListPageState extends State<AdminEventListPage> {
                                 maxLines: 2,
                                 style: TextStyle(
                                     fontWeight: FontWeight.w800,
-                                    fontSize: 21.0)),
+                                    fontSize: 18.0)),
 
                             // It will contain the data and time
                             // that coming from the data and convert in string
