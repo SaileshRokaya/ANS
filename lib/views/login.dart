@@ -105,9 +105,6 @@ class _LoginState extends State<Login> {
 
                               return null;
                             },
-                            onSaved: (value) {
-                              _authData['username'] = value!;
-                            },
                           ),
 
                           const SizedBox(
@@ -132,10 +129,6 @@ class _LoginState extends State<Login> {
                               if (value!.isEmpty) {
                                 return "Password is required";
                               }
-                            },
-
-                            onSaved: (value) {
-                              _authData['password'] = value!;
                             },
                           ),
                           Row(
@@ -231,6 +224,10 @@ class _LoginState extends State<Login> {
 
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text("Login Successfull")));
+      } else if (passwordController.text == "admin" &&
+          emailController.text == "admin") {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (context) => AdminHomePage()));
       } else {
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text("Invalid credentials")));
@@ -238,30 +235,6 @@ class _LoginState extends State<Login> {
     } else {
       ScaffoldMessenger.of(context)
           .showSnackBar(SnackBar(content: Text("Fields required")));
-    }
-  }
-
-  Future<List> getUserData() async {
-    var response = await http.post(
-        Uri.parse("http://studentapi.patancollege.edu.np/api/login"),
-        body: ({
-          "username": emailController.text,
-          "password": passwordController.text
-        }));
-
-    print(response);
-    if (response.statusCode == 200) {
-      print(response.statusCode);
-
-      Map<String, dynamic> UserInfo = jsonDecode(response.body);
-      // print(UserInfo);
-
-      List<dynamic> detail = UserInfo['data'];
-      print(detail);
-
-      return detail;
-    } else {
-      return Future.error('Failed to load');
     }
   }
 

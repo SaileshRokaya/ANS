@@ -3,19 +3,12 @@ import 'package:ans/service/subject_service.dart';
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class SubjectPage extends StatefulWidget {
-  const SubjectPage({Key? key}) : super(key: key);
-
-  @override
-  _SubjectPageState createState() => _SubjectPageState();
-}
-
-class _SubjectPageState extends State<SubjectPage> {
+class RoutinePages extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("My Subject"),
+          title: Text("Routines"),
           centerTitle: true,
         ),
         body: FutureBuilder<List>(
@@ -39,7 +32,7 @@ class _SubjectPageState extends State<SubjectPage> {
                           child: Container(
                             padding: const EdgeInsets.all(15.0),
                             width: 250,
-                            height: 120,
+                            height: 180,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(50),
                             ),
@@ -48,7 +41,7 @@ class _SubjectPageState extends State<SubjectPage> {
                               children: [
                                 // For subject name
                                 Text(
-                                  snapshot.data![position]["subject_name"],
+                                  snapshot.data![position]["day"],
                                   style: TextStyle(
                                       fontWeight: FontWeight.bold,
                                       fontSize: 18),
@@ -64,19 +57,47 @@ class _SubjectPageState extends State<SubjectPage> {
                                   children: [
                                     // Subject code
                                     Text(
-                                      "Subject Code: ${snapshot.data![position]["subject_code"]}",
+                                      "Subject Name: ${snapshot.data![position]["subject_name"]}",
                                       style: TextStyle(
                                           fontWeight: FontWeight.normal,
                                           fontSize: 16),
                                     ),
+
+                                    SizedBox(
+                                      height: 15,
+                                    ),
                                     Text(
-                                      "Credit: ${(snapshot.data![position]["subject_credit"]).toString()}",
+                                      (snapshot.data![position]["start_time"] +
+                                          " - " +
+                                          snapshot.data![position]["end_time"]),
                                       style: TextStyle(
                                           fontWeight: FontWeight.normal,
                                           fontSize: 16),
                                     ),
                                   ],
-                                )
+                                ),
+
+                                SizedBox(
+                                  height: 15,
+                                ),
+
+                                Text(
+                                  "Class Type: ${snapshot.data![position]["class_type"]}",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18),
+                                ),
+
+                                SizedBox(
+                                  height: 15,
+                                ),
+
+                                Text(
+                                  "Room No: ${snapshot.data![position]["room_no"]}",
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.bold,
+                                      fontSize: 18),
+                                ),
                               ],
                             ),
                           ),
