@@ -138,47 +138,11 @@ class _AdminFeeInformationPageState extends State<AdminFeeInformationPage> {
                       ),
                       style: TextButton.styleFrom(minimumSize: Size(30, 45)),
                       onPressed: () {
-                        // Value were input on the eventmodel constructor
-                        FeeModel feeModel = FeeModel(
-                          id: widget.feeModel!.id,
-                          name: widget.feeModel!.name,
-                          rollNo: widget.feeModel!.rollNo,
-                          reqReason: widget.feeModel!.reqReason,
-                          level: widget.feeModel!.level,
-                          leaveDate: "",
-                          status: "Accept",
-                          accRejReason: '',
-                          course: widget.feeModel!.course,
-                        );
-
-                        // Add method was called
-                        update(feeModel);
-                        print("Update successfully");
-
-                        // To update the UI Screen
-                        void reloadData() async {
-                          final postMdl = Provider.of<FeeServiceProvider>(
-                              context,
-                              listen: false);
-                          feeDatas = await FeeService().getfeeData();
-                          postMdl.updateEvent(feeDatas);
-                        }
-
-                        reloadData();
-                      },
-                    ),
-
-                    // Log out button
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20),
-                      child: ElevatedButton(
-                        child: Text(
-                          "Reject",
-                          style: TextStyle(
-                              fontSize: 22, fontWeight: FontWeight.bold),
-                        ),
-                        style: TextButton.styleFrom(minimumSize: Size(30, 45)),
-                        onPressed: () {
+                        if (widget.feeModel!.status == "Accept" ||
+                            widget.feeModel!.status == "Reject") {
+                          ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text("Cannot change the status")));
+                        } else {
                           // Value were input on the eventmodel constructor
                           FeeModel feeModel = FeeModel(
                             id: widget.feeModel!.id,
@@ -187,7 +151,7 @@ class _AdminFeeInformationPageState extends State<AdminFeeInformationPage> {
                             reqReason: widget.feeModel!.reqReason,
                             level: widget.feeModel!.level,
                             leaveDate: "",
-                            status: "Reject",
+                            status: "Accept",
                             accRejReason: '',
                             course: widget.feeModel!.course,
                           );
@@ -206,6 +170,54 @@ class _AdminFeeInformationPageState extends State<AdminFeeInformationPage> {
                           }
 
                           reloadData();
+                        }
+                      },
+                    ),
+
+                    // Log out button
+                    Padding(
+                      padding: const EdgeInsets.only(left: 20),
+                      child: ElevatedButton(
+                        child: Text(
+                          "Reject",
+                          style: TextStyle(
+                              fontSize: 22, fontWeight: FontWeight.bold),
+                        ),
+                        style: TextButton.styleFrom(minimumSize: Size(30, 45)),
+                        onPressed: () {
+                          if (widget.feeModel!.status == "Accept" ||
+                              widget.feeModel!.status == "Reject") {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                                content: Text("Cannot change the status")));
+                          } else {
+                            // Value were input on the eventmodel constructor
+                            FeeModel feeModel = FeeModel(
+                              id: widget.feeModel!.id,
+                              name: widget.feeModel!.name,
+                              rollNo: widget.feeModel!.rollNo,
+                              reqReason: widget.feeModel!.reqReason,
+                              level: widget.feeModel!.level,
+                              leaveDate: "",
+                              status: "Reject",
+                              accRejReason: '',
+                              course: widget.feeModel!.course,
+                            );
+
+                            // Add method was called
+                            update(feeModel);
+                            print("Update successfully");
+
+                            // To update the UI Screen
+                            void reloadData() async {
+                              final postMdl = Provider.of<FeeServiceProvider>(
+                                  context,
+                                  listen: false);
+                              feeDatas = await FeeService().getfeeData();
+                              postMdl.updateEvent(feeDatas);
+                            }
+
+                            reloadData();
+                          }
                         },
                       ),
                     ),

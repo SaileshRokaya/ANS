@@ -5,7 +5,6 @@ import 'package:ans/fees/fees_form.dart';
 import 'package:ans/leaves/leave_detail_show.dart';
 import 'package:ans/leaves/leave_form.dart';
 import 'package:ans/leaves/leave_update_form.dart';
-import 'package:ans/leaves/reason_leave.dart';
 import 'package:ans/model/leave_model.dart';
 import 'package:ans/provider/leave_service_provider.dart';
 import 'package:ans/service/leave_service.dart';
@@ -59,10 +58,13 @@ class _AdminLeavePageState extends State<AdminLeavePage> {
 
   String heading = "About fee payment date extend";
 
+  late bool _isButtonDisabled;
+
   // This method will call everytime
   @override
   void initState() {
     reloadData();
+    _isButtonDisabled = false;
   }
 
   @override

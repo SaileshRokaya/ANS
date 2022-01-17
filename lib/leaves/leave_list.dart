@@ -4,7 +4,6 @@ import 'package:ans/fees/fees_form.dart';
 import 'package:ans/leaves/leave_detail_show.dart';
 import 'package:ans/leaves/leave_form.dart';
 import 'package:ans/leaves/leave_update_form.dart';
-import 'package:ans/leaves/reason_leave.dart';
 import 'package:ans/model/leave_model.dart';
 import 'package:ans/provider/leave_service_provider.dart';
 import 'package:ans/service/leave_service.dart';
@@ -152,15 +151,23 @@ class _LeaveListState extends State<LeaveList> {
                               // Edit icon function here
                               IconButton(
                                   onPressed: () {
-                                    // After pressing the edit button the page will forward to admin event update page
-                                    // with two value eventGetList which is list
-                                    // Other was index
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                LeaveUpdateForm(
-                                                  leaveModel: model,
-                                                )));
+                                    if (model.status == "Accept" ||
+                                        model.status == "Reject") {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                              content: Text(
+                                                  "Cannot change the status")));
+                                    } else {
+                                      // After pressing the edit button the page will forward to admin event update page
+                                      // with two value eventGetList which is list
+                                      // Other was index
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  LeaveUpdateForm(
+                                                    leaveModel: model,
+                                                  )));
+                                    }
                                   },
                                   icon: Icon(Icons.edit)),
 
