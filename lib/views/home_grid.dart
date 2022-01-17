@@ -53,7 +53,7 @@ class _HomeGridState extends State<HomeGrid> {
           ),
           onTap: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => RoutinePage()));
+                MaterialPageRoute(builder: (context) => SubjectPage()));
           },
         ),
 

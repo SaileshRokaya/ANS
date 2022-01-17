@@ -1,5 +1,4 @@
 import 'package:ans/api/shared_pre.dart';
-import 'package:ans/model/user_model.dart';
 import 'package:ans/views/login.dart';
 import 'package:ans/views/user_profile.dart';
 import 'package:http/http.dart' as http;
@@ -14,12 +13,11 @@ class UserService {
   Future<List> getUserData() async {
     String? token;
     await SharedPre().getAuthToken().then((value) => {token = value!});
-    final response = await http.post(Uri.parse(readURL));
-    // headers: {
-    //   'Content-Type': 'application/json',
-    //   'Accept': 'application/json',
-    //   'Authorization': 'Bearer $token'
-    // });
+    final response = await http.get(Uri.parse(readURL), headers: {
+      'Content-Type': 'application/json',
+      'Accept': 'application/json',
+      'Authorization': 'Bearer $token'
+    });
     print(response);
     if (response.statusCode == 200) {
       print(response.statusCode);

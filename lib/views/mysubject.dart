@@ -19,7 +19,7 @@ class _SubjectPageState extends State<SubjectPage> {
           centerTitle: true,
         ),
         body: FutureBuilder<List>(
-            future: RoutineService().getRoutineData(),
+            future: SubjectService().getSubjectData(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 if (snapshot.data?.length == 0) {
@@ -32,52 +32,54 @@ class _SubjectPageState extends State<SubjectPage> {
                     //   itemCount: provider.receiptList.length,
                     itemCount: snapshot.data?.length,
                     itemBuilder: (context, position) {
-                      return Card(
-                        color: Colors.blue,
-                        child: Padding(
-                          padding: const EdgeInsets.all(15.0),
+                      return Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Card(
+                          color: Colors.blue,
                           child: Container(
-                            padding: const EdgeInsets.all(15.0),
-                            width: 250,
+                            width: 180,
                             height: 120,
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(50),
                             ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                // For subject name
-                                Text(
-                                  snapshot.data![position]["subject_name"],
-                                  style: TextStyle(
-                                      fontWeight: FontWeight.bold,
-                                      fontSize: 18),
-                                ),
+                            child: Padding(
+                              padding: const EdgeInsets.all(12.0),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  // For subject name
+                                  Text(
+                                    snapshot.data![position]["subject_name"],
+                                    style: TextStyle(
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: 18),
+                                  ),
 
-                                SizedBox(
-                                  height: 15,
-                                ),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
 
-                                Row(
-                                  mainAxisAlignment:
-                                      MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    // Subject code
-                                    Text(
-                                      "Subject Code: ${snapshot.data![position]["subject_code"]}",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.normal,
-                                          fontSize: 16),
-                                    ),
-                                    Text(
-                                      "Credit: ${(snapshot.data![position]["subject_credit"]).toString()}",
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.normal,
-                                          fontSize: 16),
-                                    ),
-                                  ],
-                                )
-                              ],
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      // Subject code
+                                      Text(
+                                        "Subject Code: ${snapshot.data![position]["subject_code"]}",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.normal,
+                                            fontSize: 16),
+                                      ),
+                                      Text(
+                                        "Credit: ${(snapshot.data![position]["subject_credit"]).toString()}",
+                                        style: TextStyle(
+                                            fontWeight: FontWeight.normal,
+                                            fontSize: 16),
+                                      ),
+                                    ],
+                                  )
+                                ],
+                              ),
                             ),
                           ),
                         ),

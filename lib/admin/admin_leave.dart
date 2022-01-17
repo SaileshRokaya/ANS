@@ -142,39 +142,39 @@ class _AdminLeavePageState extends State<AdminLeavePage> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               // Edit icon function here
-                              IconButton(
-                                  onPressed: () {
-                                    // After pressing the edit button the page will forward to admin event update page
-                                    // with two value eventGetList which is list
-                                    // Other was index
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                LeaveUpdateForm(
-                                                  leaveModel: model,
-                                                )));
-                                  },
-                                  icon: Icon(Icons.edit)),
+                              // IconButton(
+                              //     onPressed: () {
+                              //       // After pressing the edit button the page will forward to admin event update page
+                              //       // with two value eventGetList which is list
+                              //       // Other was index
+                              //       Navigator.of(context).push(
+                              //           MaterialPageRoute(
+                              //               builder: (context) =>
+                              //                   LeaveUpdateForm(
+                              //                     leaveModel: model,
+                              //                   )));
+                              //     },
+                              //     icon: Icon(Icons.edit)),
 
                               // Delete icon function here
-                              IconButton(
+                              // IconButton(
 
-                                  // After pressing the delete icon the respective id will be passed through the
-                                  // deleteEvent method to delete the respective event data.
-                                  onPressed: () async {
-                                    int data = int.parse(
-                                        provider.leaveList[position].id);
+                              //     // After pressing the delete icon the respective id will be passed through the
+                              //     // deleteEvent method to delete the respective event data.
+                              //     onPressed: () async {
+                              //       int data = int.parse(
+                              //           provider.leaveList[position].id);
 
-                                    await LeaveService().deleteEvent(data);
-                                    print("My deleteable id is: $data");
+                              //       await LeaveService().deleteEvent(data);
+                              //       print("My deleteable id is: $data");
 
-                                    //   Update event method will be called with the help of provider
-                                    //   to update the UI screen of event list
-                                    leaveDatas =
-                                        await LeaveService().getLeaveData();
-                                    provider.updateEvent(leaveDatas!);
-                                  },
-                                  icon: Icon(Icons.delete)),
+                              //       //   Update event method will be called with the help of provider
+                              //       //   to update the UI screen of event list
+                              //       leaveDatas =
+                              //           await LeaveService().getLeaveData();
+                              //       provider.updateEvent(leaveDatas!);
+                              //     },
+                              //     icon: Icon(Icons.delete)),
                             ],
                           ),
 

@@ -62,7 +62,7 @@ class _UserNoticePageState extends State<UserNoticePage> {
                                 fontWeight: FontWeight.bold, fontSize: 16),
                           ),
                           leading: CircleAvatar(
-                            child: Text(varFromEmail[0]),
+                            child: Text(snapshot.data![position]["subject"][0]),
                           ),
                           subtitle: Text(
                             snapshot.data![position]["notice_date"],

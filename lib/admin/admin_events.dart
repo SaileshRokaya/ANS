@@ -7,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 import 'admin_event_list.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class AdminEventPage extends StatefulWidget {
   // Create an instance
@@ -27,6 +28,8 @@ class _AdminEventPageState extends State<AdminEventPage> {
   TextEditingController eventCreated = TextEditingController();
 
   EventService eventService = EventService();
+
+  // Initialize the flutterlocalnotification
 
   // Create an empty list eventData to store the event data
   List<EventModel> eventDatas = [];
@@ -55,35 +58,6 @@ class _AdminEventPageState extends State<AdminEventPage> {
 
     DateTime now = DateTime.now();
     String formattedDate = DateFormat('yyyy-MM-dd  kk:mm a').format(now);
-
-    // Terminated state
-    // FirebaseMessaging.instance.getInitialMessage().then((event) {
-    //   setState(() {
-    //     FirebaseMessaging.onMessage.listen((event) {
-    //       eventTitle.text = "${event.notification!.title}";
-    //       formattedDate = "${event.notification!.body}";
-    //     });
-    //   });
-    // });
-
-    // Foreground state
-    // FirebaseMessaging.onMessage.listen((event) {
-    //   setState(() {
-    //     eventTitle.text = "${event.notification!.title}";
-    //     formattedDate = "${event.notification!.body}";
-    //   });
-    // });
-
-    // Back ground state
-    //   FirebaseMessaging.onMessageOpenedApp.listen((event) {
-    //     setState(() {
-    //       FirebaseMessaging.onMessage.listen((event) {
-    //         eventTitle.text = "${event.notification!.title}";
-    //         formattedDate = "${event.notification!.body}";
-    //       });
-    //     });
-    //   });
-    // }
   }
 
   @override
