@@ -12,6 +12,7 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserDetail extends StatelessWidget {
+  Login? logins;
   @override
   Widget build(BuildContext context) {
     return Scaffold(

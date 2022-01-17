@@ -1,22 +1,21 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:ans/service/email_service.dart';
+import 'package:ans/service/sms_service.dart';
 import 'package:ans/views/Emails_read.dart';
 import 'package:ans/views/Events_read.dart';
+import 'package:ans/views/sms_read.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 
-class EmailPage extends StatefulWidget {
-  const EmailPage({Key? key}) : super(key: key);
+class SMSPage extends StatefulWidget {
+  const SMSPage({Key? key}) : super(key: key);
 
   @override
-  State<EmailPage> createState() => _EmailPageState();
+  State<SMSPage> createState() => _SMSPageState();
 }
 
-class _EmailPageState extends State<EmailPage> {
-  String heading = "Dear Students, Namest and warm getting from PCPS";
-  // String varFromEmail = "sailesh@gmail.com";
-
+class _SMSPageState extends State<SMSPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +26,7 @@ class _EmailPageState extends State<EmailPage> {
 
         // The body part is here
         body: FutureBuilder<List>(
-            future: EmailService().getEmailData(),
+            future: SMSService().getSMSData(),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 if (snapshot.data?.length == 0) {
@@ -45,6 +44,9 @@ class _EmailPageState extends State<EmailPage> {
 
                       String dates =
                           DateFormat("\ndd-MM-yyyy").format(date).toString();
+
+                      String sms = snapshot.data![position]['sms_message'];
+                      var sm = sms.substring(0, 40);
                       return Card(
                         margin: EdgeInsets.all(8.0),
                         elevation: 5.0,
@@ -55,34 +57,30 @@ class _EmailPageState extends State<EmailPage> {
                             horizontal: 15.0,
                           ),
                           title: Text(
-                            snapshot.data![position]["subject"],
+                            sm,
                             style: TextStyle(
                                 fontWeight: FontWeight.bold, fontSize: 18),
                           ),
-                          leading: CircleAvatar(
-                            child: Text(
-                                (snapshot.data![position]["mail_from"])[0]),
-                          ),
                           subtitle: Text(
-                            snapshot.data![position]["mail_from"],
+                            snapshot.data![position]["sent_on"],
                             style: TextStyle(
                                 fontSize: 16, fontWeight: FontWeight.normal),
                           ),
                           trailing: Text(
                             DateFormat("MMM d").format(date).toString(),
+                            style: TextStyle(
+                                fontSize: 16, fontWeight: FontWeight.normal),
                           ),
                           onTap: () {
                             Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => EmailReadPage(
+                                    builder: (context) => SMSReadPage(
                                           dates: dates,
                                           message: snapshot.data![position]
-                                              ["html_message"],
-                                          title: snapshot.data![position]
-                                              ["subject"],
-                                          emailFrom: snapshot.data![position]
-                                              ["mail_from"],
+                                              ["sms_message"],
+                                          mobile: snapshot.data![position]
+                                              ["mobile_no"],
                                         )));
                           },
                         ),

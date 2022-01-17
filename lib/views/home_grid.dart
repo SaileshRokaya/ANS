@@ -8,6 +8,8 @@ import 'package:ans/views/attendance.dart';
 import 'package:ans/views/events.dart';
 import 'package:ans/views/myroutine.dart';
 import 'package:ans/views/notice.dart';
+import 'package:ans/views/routine_pages.dart';
+import 'package:ans/views/sms_list.dart';
 import 'package:flutter/material.dart';
 import 'package:ans/views/mysubject.dart';
 import 'package:provider/provider.dart';
@@ -51,7 +53,7 @@ class _HomeGridState extends State<HomeGrid> {
           ),
           onTap: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => SubjectPage()));
+                MaterialPageRoute(builder: (context) => RoutinePage()));
           },
         ),
 
@@ -80,7 +82,7 @@ class _HomeGridState extends State<HomeGrid> {
           ),
           onTap: () {
             Navigator.push(context,
-                MaterialPageRoute(builder: (context) => RoutinePage()));
+                MaterialPageRoute(builder: (context) => RoutinePages()));
           },
         ),
 
@@ -257,8 +259,8 @@ class _HomeGridState extends State<HomeGrid> {
             ),
           ),
           onTap: () {
-            Navigator.push(context,
-                MaterialPageRoute(builder: (context) => SubjectPage()));
+            Navigator.push(
+                context, MaterialPageRoute(builder: (context) => SMSPage()));
           },
         ),
       ],
