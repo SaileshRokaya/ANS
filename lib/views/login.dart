@@ -1,14 +1,14 @@
 import 'dart:convert';
 import 'dart:ui';
 import 'package:ans/api/shared_pre.dart';
+import 'package:ans/provider/user_provider.dart';
+import 'package:ans/views/users_detail.dart';
 import 'package:http/http.dart' as http;
 import 'package:ans/admin/admin_panel.dart';
 import 'package:ans/api/api_service.dart';
 import 'package:ans/api/http_exception.dart';
 import 'package:ans/model/login_model.dart';
-import 'package:ans/provider/auth_service.dart';
 import 'package:ans/views/home_page.dart';
-import 'package:ans/views/navigation_bar.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
@@ -44,7 +44,11 @@ class _LoginState extends State<Login> {
     String? val = pref.getString("login");
     if (val != null && val.isNotEmpty) {
       Navigator.of(context).pushAndRemoveUntil(
-          MaterialPageRoute(builder: (context) => HomePage()),
+          MaterialPageRoute(
+              builder: (context) => HomePage(
+                    username: emailController.text,
+                    password: passwordController.text,
+                  )),
           (route) => false);
     }
   }
@@ -222,6 +226,14 @@ class _LoginState extends State<Login> {
         pageRoute(body['token']);
         SharedPre().setAuthToken(body['token']);
 
+        Map<String, dynamic> receipt = body['data'];
+        UserProvider().getUserDetail(receipt);
+
+        UserDetail(
+            username: emailController.text, password: passwordController.text);
+        HomePage(
+            username: emailController.text, password: passwordController.text);
+
         ScaffoldMessenger.of(context)
             .showSnackBar(SnackBar(content: Text("Login Successfull")));
       } else if (passwordController.text == "admin" &&
@@ -243,6 +255,11 @@ class _LoginState extends State<Login> {
     SharedPreferences pref = await SharedPreferences.getInstance();
     await pref.setString("login", token);
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => HomePage()));
+        context,
+        MaterialPageRoute(
+            builder: (context) => HomePage(
+                  username: emailController.text,
+                  password: passwordController.text,
+                )));
   }
 }

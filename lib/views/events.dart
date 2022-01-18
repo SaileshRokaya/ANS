@@ -66,34 +66,12 @@ class _EventViewState extends State<EventView> {
     return Consumer<EventProvider>(
       builder: (context, provider, child) {
         return Scaffold(
-          // floatingActionButton: FloatingActionButton(
-          //     child: Icon(Icons.add),
-          //     onPressed: () {
-          //       Navigator.push(context,
-          //           MaterialPageRoute(builder: (context) => AdminEventPage()));
-          //     }),
           appBar: AppBar(
             centerTitle: true,
             title: Text(
               "List Of Event",
               style: TextStyle(fontSize: 23, fontWeight: FontWeight.bold),
             ),
-            // actions: <Widget>[
-            //   Padding(
-            //       padding: EdgeInsets.only(right: 20.0),
-            //       child: GestureDetector(
-            //         onTap: () async {
-            //           List<EventModel> eventDatas =
-            //               await EventService().getEventData();
-            //           provider.updateEvent(eventDatas);
-            //           print("The datas are: $eventDatas");
-            //         },
-            //         child: Icon(
-            //           Icons.refresh_rounded,
-            //           size: 26.0,
-            //         ),
-            //       )),
-            // ],
           ),
           body: Container(
 

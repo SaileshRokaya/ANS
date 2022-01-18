@@ -1,5 +1,6 @@
 // ignore_for_file: prefer_const_constructors
 
+import 'package:ans/api/shared_pre.dart';
 import 'package:ans/views/login.dart';
 import 'package:ans/views/menu_bar.dart';
 import 'package:ans/views/my_profile.dart';
@@ -9,19 +10,13 @@ import 'package:ans/views/mysubject.dart';
 import 'package:ans/views/home_grid.dart';
 import 'package:ans/views/user_profile.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  String username;
+  String password;
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
+  HomePage({required this.username, required this.password});
 
-class _HomePageState extends State<HomePage> {
-  @override
-  void initState() {
-    // TODO: implement initState
-    super.initState();
-  }
+  SharedPre pre = SharedPre();
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +39,13 @@ class _HomePageState extends State<HomePage> {
                 backgroundColor: Colors.cyanAccent,
               ),
               onTap: () {
-                Navigator.push(context,
-                    MaterialPageRoute(builder: (context) => UserDetail()));
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => UserDetail(
+                              username: username,
+                              password: password,
+                            )));
               },
             )
           ],
