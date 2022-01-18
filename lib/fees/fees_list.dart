@@ -147,15 +147,25 @@ class _FeeListState extends State<FeeList> {
                               // Edit icon function here
                               IconButton(
                                   onPressed: () {
-                                    // After pressing the edit button the page will forward to admin event update page
-                                    // with two value eventGetList which is list
-                                    // Other was index
-                                    Navigator.of(context).push(
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                FeesUpdateForm(
-                                                  feeModel: model,
-                                                )));
+                                    if (provider.feeList[position].status ==
+                                            "Accept" ||
+                                        provider.feeList[position].status ==
+                                            "Reject") {
+                                      ScaffoldMessenger.of(context)
+                                          .showSnackBar(SnackBar(
+                                              content: Text(
+                                                  "Cannot change the status")));
+                                    } else {
+                                      // After pressing the edit button the page will forward to admin event update page
+                                      // with two value eventGetList which is list
+                                      // Other was index
+                                      Navigator.of(context).push(
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  FeesUpdateForm(
+                                                    feeModel: model,
+                                                  )));
+                                    }
                                   },
                                   icon: Icon(Icons.edit)),
 
