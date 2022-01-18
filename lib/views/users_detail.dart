@@ -12,16 +12,21 @@ import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class UserDetail extends StatelessWidget {
-  Login? logins;
+  String username;
+  String password;
+  UserDetail({required this.username, required this.password});
+
+  // Login? logins;
   @override
   Widget build(BuildContext context) {
+    // var userProvider = Provider.of<UserProvider>(context);
     return Scaffold(
         appBar: AppBar(
           title: Text("Profile"),
           centerTitle: true,
         ),
-        body: FutureBuilder<List>(
-            future: UserService().getUserData(),
+        body: FutureBuilder<Map>(
+            future: UserService().getUserData(username, password),
             builder: (context, snapshot) {
               if (snapshot.hasData) {
                 if (snapshot.data?.length == 0) {
@@ -35,10 +40,14 @@ class UserDetail extends StatelessWidget {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(
-                            left: 100, top: 12, bottom: 12, right: 20),
+                            left: 75, top: 12, bottom: 12, right: 20),
                         child: CircleAvatar(
+                          child: Text(
+                            (snapshot.data?['data']['name'])[0],
+                            style: TextStyle(fontSize: 75),
+                          ),
                           radius: 75,
-                          backgroundColor: Colors.lightBlue,
+                          // backgroundColor: Colors.lightBlue,
                           //backgroundImage: AssetImage("logo.png"),
                         ),
                       ),
@@ -56,7 +65,7 @@ class UserDetail extends StatelessWidget {
                             children: [
                               // Name
                               Text(
-                                "Name: " + snapshot.data![1]['name'],
+                                "Name: " + snapshot.data?['data']['name'],
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
@@ -66,7 +75,7 @@ class UserDetail extends StatelessWidget {
 
                               // Email
                               Text(
-                                "Email: " + snapshot.data![2]['email'],
+                                "Email: " + snapshot.data?['data']['email'],
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
@@ -76,7 +85,8 @@ class UserDetail extends StatelessWidget {
 
                               // Registration Date
                               Text(
-                                "Username: " + snapshot.data![3]['username'],
+                                "Username: " +
+                                    snapshot.data?['data']['username'],
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
@@ -86,7 +96,8 @@ class UserDetail extends StatelessWidget {
 
                               // Mobile Number
                               Text(
-                                "Mobile: " + snapshot.data![5]['mobile_no'],
+                                "Mobile: " +
+                                    snapshot.data?['data']['mobile_no'],
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
@@ -96,7 +107,9 @@ class UserDetail extends StatelessWidget {
 
                               // Roll No
                               Text(
-                                "EdusysID: " + snapshot.data![4]['edusys_id'],
+                                "EdusysID: " +
+                                    (snapshot.data?['data']['edusys_id'])
+                                        .toString(),
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
@@ -106,7 +119,9 @@ class UserDetail extends StatelessWidget {
 
                               // Nationality
                               Text(
-                                "StudentID: " + snapshot.data![6]['student_id'],
+                                "StudentID: " +
+                                    (snapshot.data?['data']['student_id'])
+                                        .toString(),
                                 style: TextStyle(
                                     fontSize: 20, fontWeight: FontWeight.bold),
                               ),
