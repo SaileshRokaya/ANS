@@ -1,4 +1,6 @@
 //import 'package:ans/fees/fees_form.dart';
+// ignore_for_file: prefer_const_constructors
+
 import 'package:ans/fees/fees_list.dart';
 import 'package:ans/leaves/leave_form.dart';
 import 'package:ans/leaves/leave_list.dart';

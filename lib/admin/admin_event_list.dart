@@ -20,25 +20,21 @@ class AdminEventListPage extends StatefulWidget {
 }
 
 class _AdminEventListPageState extends State<AdminEventListPage> {
-//  EventService eventService = new EventService();
-
-  // late final int? index;
-
   // Create an empty list to store the list of event coming from the database
   List<EventModel>? eventDatas;
 
   // Create a method reloadData to update the UI screen
-  void reloadData() async {
-    final postMdl = Provider.of<EventProvider>(context, listen: false);
-    eventDatas = await EventService().getEventData();
-    postMdl.updateEvent(eventDatas!);
-  }
+  // void reloadData() async {
+  //   final postMdl = Provider.of<EventProvider>(context, listen: false);
+  //   eventDatas = await EventService().getEventData();
+  //   postMdl.updateEvent(eventDatas!);
+  // }
 
   // Create a method getEventUser to get all the event list
-  getEventUser() async {
-    // All the event list will be stored in eventDatas
-    eventDatas = await EventService().getEventData();
-  }
+  // getEventUser() async {
+  //   // All the event list will be stored in eventDatas
+  //   eventDatas = await EventService().getEventData();
+  // }
 
   // Create an update method to update the event title and message
   update(EventModel eventModel) async {
@@ -58,7 +54,8 @@ class _AdminEventListPageState extends State<AdminEventListPage> {
   // This method will call everytime
   @override
   void initState() {
-    reloadData();
+    final data = Provider.of<EventProvider>(context, listen: false);
+    data.fetchData(context);
   }
 
   @override
@@ -76,29 +73,29 @@ class _AdminEventListPageState extends State<AdminEventListPage> {
               "List Of Event",
               style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
             ),
-            actions: <Widget>[
-              Padding(
-                  padding: EdgeInsets.only(right: 20.0),
-                  child: GestureDetector(
-                    onTap: () async {
-                      List<EventModel> eventDatas =
-                          await EventService().getEventData();
-                      provider.updateEvent(eventDatas);
-                      print("The datas are: $eventDatas");
-                    },
-                    child: Icon(
-                      Icons.refresh_rounded,
-                      size: 26.0,
-                    ),
-                  )),
-            ],
+            // actions: <Widget>[
+            //   Padding(
+            //       padding: EdgeInsets.only(right: 20.0),
+            //       child: GestureDetector(
+            //         onTap: () async {
+            //           List<EventModel> eventDatas =
+            //               await EventService().getEventData();
+            //           provider.updateEvent(eventDatas);
+            //           print("The datas are: $eventDatas");
+            //         },
+            //         child: Icon(
+            //           Icons.refresh_rounded,
+            //           size: 26.0,
+            //         ),
+            //       )),
+            // ],
           ),
           body: Container(
 
               // Check the condition whether the list is empty or not
               // if the list is empty, then it will display no data found
               // Otherwise it will display the list of events
-              child: provider.eventList.isEmpty
+              child: provider.loading
                   ? Center(
                       child: const Text(
                       "No data found",
@@ -142,7 +139,8 @@ class _AdminEventListPageState extends State<AdminEventListPage> {
 
                             // It contain the title of the event coming from the database
                             // with the help of provider
-                            title: Text(provider.eventList[index].eventTitle,
+                            title: Text(provider.eventModel.eventTitle,
+                                //  provider.eventList[index].eventTitle,
                                 maxLines: 2,
                                 style: TextStyle(
                                     fontWeight: FontWeight.w800,
@@ -160,39 +158,39 @@ class _AdminEventListPageState extends State<AdminEventListPage> {
                               mainAxisSize: MainAxisSize.min,
                               children: [
                                 // Edit icon function here
-                                IconButton(
-                                    onPressed: () {
-                                      // After pressing the edit button the page will forward to admin event update page
-                                      // with two value eventGetList which is list
-                                      // Other was index
-                                      Navigator.of(context).push(
-                                          MaterialPageRoute(
-                                              builder: (context) =>
-                                                  AdminEventUpdatePage(
-                                                    eventModel: model,
-                                                  )));
-                                    },
-                                    icon: Icon(Icons.edit)),
+                                // IconButton(
+                                //     onPressed: () {
+                                //       // After pressing the edit button the page will forward to admin event update page
+                                //       // with two value eventGetList which is list
+                                //       // Other was index
+                                //       Navigator.of(context).push(
+                                //           MaterialPageRoute(
+                                //               builder: (context) =>
+                                //                   AdminEventUpdatePage(
+                                //                     eventModel: model,
+                                //                   )));
+                                //     },
+                                //     icon: Icon(Icons.edit)),
 
                                 // Delete icon function here
-                                IconButton(
+                                // IconButton(
 
-                                    // After pressing the delete icon the respective id will be passed through the
-                                    // deleteEvent method to delete the respective event data.
-                                    onPressed: () async {
-                                      int data = int.parse(
-                                          provider.eventList[index].id);
+                                //     // After pressing the delete icon the respective id will be passed through the
+                                //     // deleteEvent method to delete the respective event data.
+                                //     onPressed: () async {
+                                //       int data = int.parse(
+                                //           provider.eventList[index].id);
 
-                                      await EventService().deleteEvent(data);
-                                      print("My deleteable id is: $data");
+                                //       await EventService().deleteEvent(data);
+                                //       print("My deleteable id is: $data");
 
-                                      // Update event method will be called with the help of provider
-                                      // to update the UI screen of event list
-                                      eventDatas =
-                                          await EventService().getEventData();
-                                      provider.updateEvent(eventDatas!);
-                                    },
-                                    icon: Icon(Icons.delete)),
+                                //       // Update event method will be called with the help of provider
+                                //       // to update the UI screen of event list
+                                //       eventDatas =
+                                //           await EventService().getEventData();
+                                //       provider.updateEvent(eventDatas!);
+                                //     },
+                                //     icon: Icon(Icons.delete)),
                               ],
                             ),
 

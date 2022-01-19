@@ -22,21 +22,13 @@ class _AdminEventUpdatePageState extends State<AdminEventUpdatePage> {
   TextEditingController eventTitle = TextEditingController();
   TextEditingController eventMessage = TextEditingController();
   TextEditingController eventCreated = TextEditingController();
+  TextEditingController eventStartDate = TextEditingController();
+  TextEditingController eventEndDate = TextEditingController();
 
   // EventService eventService = EventService();
 
   // Create an empty list
   List<EventModel> eventDatas = [];
-
-  // add(EventModel eventModel) async {
-  //   await eventService.addEvent(eventModel).then((sucess) {
-  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-  //       content: Text("Add Sucessful"),
-  //     ));
-  //     // print("Add Sucessful");
-  //     Navigator.pop(context);
-  //   });
-  // }
 
   // Create an update method with the parameter EventModel class
   update(EventModel eventModel) async {
@@ -57,6 +49,8 @@ class _AdminEventUpdatePageState extends State<AdminEventUpdatePage> {
     if (widget.eventModel != null) {
       eventTitle.text = widget.eventModel!.eventTitle;
       eventMessage.text = widget.eventModel!.eventMessage;
+      eventStartDate.text = widget.eventModel!.eventStartDate;
+      eventEndDate.text = widget.eventModel!.eventEndDate;
     }
   }
 
@@ -113,6 +107,38 @@ class _AdminEventUpdatePageState extends State<AdminEventUpdatePage> {
                   ),
                 ),
 
+                // Start date here
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: TextFormField(
+                    keyboardType: TextInputType.multiline,
+                    minLines: 1, //Normal textInputField will be displayed
+                    //  maxLines: 5, // when user presses enter it will adapt to it
+                    style: const TextStyle(fontSize: 16),
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: "Start event date here",
+                    ),
+                    controller: eventStartDate,
+                  ),
+                ),
+
+                // End date here
+                Padding(
+                  padding: const EdgeInsets.all(16.0),
+                  child: TextFormField(
+                    keyboardType: TextInputType.multiline,
+                    minLines: 1, //Normal textInputField will be displayed
+                    //  maxLines: 5, // when user presses enter it will adapt to it
+                    style: const TextStyle(fontSize: 16),
+                    decoration: const InputDecoration(
+                      border: OutlineInputBorder(),
+                      hintText: "Event end date here",
+                    ),
+                    controller: eventEndDate,
+                  ),
+                ),
+
                 const SizedBox(
                   height: 20,
                 ),
@@ -131,21 +157,23 @@ class _AdminEventUpdatePageState extends State<AdminEventUpdatePage> {
                           id: widget.eventModel!.id,
                           eventTitle: eventTitle.text,
                           eventMessage: eventMessage.text,
-                          eventCreated: widget.eventModel!.eventCreated);
+                          eventCreated: widget.eventModel!.eventCreated,
+                          eventStartDate: eventStartDate.text,
+                          eventEndDate: eventEndDate.text);
 
                       // Call the event update method which was instance of calss
                       update(eventModel);
 
                       // To update the UI screen
-                      void reloadData() async {
-                        final postMdl =
-                            Provider.of<EventProvider>(context, listen: false);
-                        eventDatas = await EventService().getEventData();
-                        postMdl.updateEvent(eventDatas);
-                      }
+                      // void reloadData() async {
+                      //   final postMdl =
+                      //       Provider.of<EventProvider>(context, listen: false);
+                      //   eventDatas = await EventService().getEventData();
+                      //   postMdl.updateEvent(eventDatas);
+                      // }
 
-                      // Call the reloadData method
-                      reloadData();
+                      // // Call the reloadData method
+                      // reloadData();
                     }),
               ],
             ),
