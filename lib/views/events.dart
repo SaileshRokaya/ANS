@@ -28,17 +28,17 @@ class _EventViewState extends State<EventView> {
   List<EventModel> eventDatas = [];
 
   // Create a method reloadData to update the UI screen
-  void reloadData() async {
-    final postMdl = Provider.of<EventProvider>(context, listen: false);
-    eventDatas = await EventService().getEventData();
-    postMdl.updateEvent(eventDatas);
-  }
+  // void reloadData() async {
+  //   final postMdl = Provider.of<EventProvider>(context, listen: false);
+  //   eventDatas = await EventService().getEventData();
+  //   postMdl.updateEvent(eventDatas);
+  // }
 
-  // Create a method getEventUser to get all the event list
-  getEventUser() async {
-    // All the event list will be stored in eventDatas
-    eventDatas = await EventService().getEventData();
-  }
+  // // Create a method getEventUser to get all the event list
+  // getEventUser() async {
+  //   // All the event list will be stored in eventDatas
+  //   eventDatas = await EventService().getEventData();
+  // }
 
   // Create an update method to update the event title and message
   update(EventModel eventModel) async {
@@ -58,7 +58,7 @@ class _EventViewState extends State<EventView> {
   // This method will call everytime
   @override
   void initState() {
-    reloadData();
+    // reloadData();
   }
 
   @override
@@ -145,24 +145,24 @@ class _EventViewState extends State<EventView> {
                                 //     icon: Icon(Icons.edit)),
 
                                 // Delete icon function here
-                                IconButton(
+                                // IconButton(
 
-                                    // After pressing the delete icon the respective id will be passed through the
-                                    // deleteEvent method to delete the respective event data.
-                                    onPressed: () async {
-                                      int data = int.parse(
-                                          provider.eventList[index].id);
+                                //     // After pressing the delete icon the respective id will be passed through the
+                                //     // deleteEvent method to delete the respective event data.
+                                //     onPressed: () async {
+                                //       int data = int.parse(
+                                //           provider.eventList[index].id);
 
-                                      await EventService().deleteEvent(data);
-                                      print("My deleteable id is: $data");
+                                //       await EventService().deleteEvent(data);
+                                //       print("My deleteable id is: $data");
 
-                                      // Update event method will be called with the help of provider
-                                      // to update the UI screen of event list
-                                      eventDatas =
-                                          await EventService().getEventData();
-                                      provider.updateEvent(eventDatas);
-                                    },
-                                    icon: Icon(Icons.delete)),
+                                //       // Update event method will be called with the help of provider
+                                //       // to update the UI screen of event list
+                                //       eventDatas =
+                                //           await EventService().getEventData();
+                                //       provider.updateEvent(eventDatas);
+                                //     },
+                                //     icon: Icon(Icons.delete)),
                               ],
                             ),
 
