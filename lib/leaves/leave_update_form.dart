@@ -26,42 +26,42 @@ class _LeaveUpdateFormState extends State<LeaveUpdateForm> {
   List<LeaveModel> leaveDatas = [];
 
   // Add method was created
-  add(LeaveModel eventModel) async {
-    // Call the addEvent method from EventService class to add the data on the database
-    // from the user
-    await LeaveService().addLeave(eventModel).then((sucess) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("Add Sucessful"),
-      ));
-      // print("Add Sucessful");
-      Navigator.pop(context);
-    });
-  }
+  // add(LeaveModel eventModel) async {
+  //   // Call the addEvent method from EventService class to add the data on the database
+  //   // from the user
+  //   await LeaveService().addLeave(eventModel).then((sucess) {
+  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  //       content: Text("Add Sucessful"),
+  //     ));
+  //     // print("Add Sucessful");
+  //     Navigator.pop(context);
+  //   });
+  // }
 
   // Create an update method with the parameter EventModel class
-  update(LeaveModel leaveModel) async {
-    // Call the updateEvent method from the EventService class
-    // to update the event title or event message or both
-    await LeaveService().updateEvent(leaveModel).then((sucess) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("Update Sucessful"),
-      ));
-      // print("Add Sucessful");
-      Navigator.pop(context);
-    });
-  }
+  // update(LeaveModel leaveModel) async {
+  //   // Call the updateEvent method from the EventService class
+  //   // to update the event title or event message or both
+  //   await LeaveService().updateEvent(leaveModel).then((sucess) {
+  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  //       content: Text("Update Sucessful"),
+  //     ));
+  //     // print("Add Sucessful");
+  //     Navigator.pop(context);
+  //   });
+  // }
 
-  @override
-  void initState() {
-    super.initState();
-    if (widget.leaveModel != null) {
-      name.text = widget.leaveModel!.name;
-      rollno.text = widget.leaveModel!.rollNo;
-      level.text = widget.leaveModel!.level;
-      course.text = widget.leaveModel!.course;
-      reqReason.text = widget.leaveModel!.reqReason;
-    }
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   if (widget.leaveModel != null) {
+  //     name.text = widget.leaveModel!.name;
+  //     rollno.text = widget.leaveModel!.rollNo;
+  //     level.text = widget.leaveModel!.level;
+  //     course.text = widget.leaveModel!.course;
+  //     reqReason.text = widget.leaveModel!.reqReason;
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -221,32 +221,32 @@ class _LeaveUpdateFormState extends State<LeaveUpdateForm> {
                         ));
                       } else {
                         // Value were input on the eventmodel constructor
-                        LeaveModel leaveModel = LeaveModel(
-                          id: widget.leaveModel!.id,
-                          name: name.text,
-                          rollNo: rollno.text,
-                          reqReason: reqReason.text,
-                          level: level.text,
-                          leaveDate: "",
-                          status: "Pending",
-                          accRejReason: '',
-                          course: course.text,
-                        );
+                        // LeaveModel leaveModel = LeaveModel(
+                        //   id: widget.leaveModel!.id,
+                        //   name: name.text,
+                        //   rollNo: rollno.text,
+                        //   reqReason: reqReason.text,
+                        //   level: level.text,
+                        //   leaveDate: "",
+                        //   status: "Pending",
+                        //   accRejReason: '',
+                        //   course: course.text,
+                        // );
 
                         // Add method was called
-                        update(leaveModel);
-                        print("Update successfully");
+                        // update(leaveModel);
+                        // print("Update successfully");
 
-                        // To update the UI Screen
-                        void reloadData() async {
-                          final postMdl = Provider.of<LeaveServiceProvider>(
-                              context,
-                              listen: false);
-                          leaveDatas = await LeaveService().getLeaveData();
-                          postMdl.updateEvent(leaveDatas);
-                        }
+                        // // To update the UI Screen
+                        // void reloadData() async {
+                        //   final postMdl = Provider.of<LeaveServiceProvider>(
+                        //       context,
+                        //       listen: false);
+                        //   leaveDatas = await LeaveService().getLeaveData();
+                        //   postMdl.updateEvent(leaveDatas);
+                        // }
 
-                        reloadData();
+                        // reloadData();
                       }
                     },
                   ),

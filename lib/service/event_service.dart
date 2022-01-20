@@ -53,6 +53,7 @@ class EventService {
         Uri.parse(URL),
         headers: {
           "contentTypeHeader": "application/json",
+          "Accept": "application/json"
         },
       );
       if (response.statusCode == 200) {
@@ -64,7 +65,6 @@ class EventService {
     } catch (e) {}
     return result;
   }
-
   // Future<EventModel> getEventData() async {
   //    EventModel eventModel;
   //   try {

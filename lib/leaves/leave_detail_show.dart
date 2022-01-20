@@ -19,18 +19,18 @@ class _LeaveDetailPageState extends State<LeaveDetailPage> {
   String course = "";
   String reason = "";
 
-  @override
-  void initState() {
-    super.initState();
-    if (widget.leaveModel != null) {
-      name = widget.leaveModel!.name;
-      rollNo = widget.leaveModel!.rollNo;
-      level = widget.leaveModel!.level;
-      course = widget.leaveModel!.course;
-      reason = widget.leaveModel!.reqReason;
-      status = widget.leaveModel!.status;
-    }
-  }
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   if (widget.leaveModel != null) {
+  //     name = widget.leaveModel!.name;
+  //     rollNo = widget.leaveModel!.rollNo;
+  //     level = widget.leaveModel!.level;
+  //     course = widget.leaveModel!.course;
+  //     reason = widget.leaveModel!.reqReason;
+  //     status = widget.leaveModel!.status;
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {

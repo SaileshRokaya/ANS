@@ -1,3 +1,4 @@
+import 'package:ans/leaves/leave_list.dart';
 import 'package:ans/model/leave_model.dart';
 import 'package:ans/provider/event_service_provider.dart';
 import 'package:ans/provider/leave_service_provider.dart';
@@ -14,22 +15,23 @@ class LeaveForm extends StatefulWidget {
 }
 
 class _LeaveFormState extends State<LeaveForm> {
+  late LeaveModel leaveModels;
   TextEditingController id = TextEditingController();
-  TextEditingController name = TextEditingController();
-  TextEditingController rollno = TextEditingController();
-  TextEditingController level = TextEditingController();
-  TextEditingController reqReason = TextEditingController();
-  TextEditingController course = TextEditingController();
-  TextEditingController accReason = TextEditingController();
+  TextEditingController subject = TextEditingController();
+  TextEditingController message = TextEditingController();
+  TextEditingController applicationDate = TextEditingController();
+  TextEditingController startDate = TextEditingController();
+  TextEditingController endDate = TextEditingController();
+  TextEditingController status = TextEditingController();
+  TextEditingController remarks = TextEditingController();
 
   // Create an empty list eventData to store the event data
   List<LeaveModel> eventDatas = [];
 
-  // Add method was created
-  add(LeaveModel eventModel) async {
+  add(LeaveModel leaveModel) async {
     // Call the addEvent method from EventService class to add the data on the database
     // from the user
-    await LeaveService().addLeave(eventModel).then((sucess) {
+    await LeaveService().addLeave(leaveModel).then((sucess) {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
         content: Text("Add Sucessful"),
       ));
@@ -40,216 +42,217 @@ class _LeaveFormState extends State<LeaveForm> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        title: Text("Leave Request Form"),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(15.0),
-        child: Card(
-          child: SingleChildScrollView(
-            child: Form(
-              child: Column(
-                children: [
-                  TextFormField(
-                      style: TextStyle(fontSize: 16),
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: "Full Name",
-                        labelText: "Name",
+    return Consumer<LeaveServiceProvider>(
+      builder: (context, provider, child) {
+        return Scaffold(
+          appBar: AppBar(
+            centerTitle: true,
+            title: Text("Leave Request Form"),
+          ),
+          body: Padding(
+            padding: const EdgeInsets.all(15.0),
+            child: Card(
+              child: SingleChildScrollView(
+                child: Form(
+                  child: Column(
+                    children: [
+                      TextFormField(
+                        style: TextStyle(fontSize: 16),
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: "Subject ",
+                          labelText: "Title",
+                        ),
+                        controller: subject,
+                        //controller: nameController,
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Field is required";
+                          }
+                          return null;
+                        },
+                        onChanged: (String value) {
+                          LeaveServiceProvider().Subject = value;
+                        },
                       ),
-                      controller: name,
-                      //controller: nameController,
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Full name is required";
-                        }
-                        return null;
-                      },
-                      onSaved: (value) {
-                        //nameController.text = value!;
-                      }),
-                  const SizedBox(
-                    height: 20,
-                  ),
-
-                  // College roll number text is here
-                  TextFormField(
-                    style: TextStyle(fontSize: 16),
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: "Enter your college roll number",
-                      labelText: "Roll Number",
-                    ),
-                    controller: rollno,
-                    //controller: emailController,
-                    // The validator receives the text that the user has entered Validation
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "Please enter your email";
-                      }
-                    },
-                    onSaved: (value) {
-                      //emailController.text = value!;
-                    },
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
-
-                  // Course name text field is here
-                  TextFormField(
-                      style: TextStyle(fontSize: 16),
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        hintText: "Your course name",
-                        labelText: "Course",
+                      const SizedBox(
+                        height: 20,
                       ),
-                      controller: course,
-                      //controller: phoneController,
-                      // The validator receives the text that the user has entered Validation
-                      validator: (value) {
-                        if (value!.isEmpty) {
-                          return "Required";
-                        }
-                        return null;
-                      },
-                      onSaved: (value) {
-                        //phoneController.text = value!;
-                      }),
-                  const SizedBox(
-                    height: 20,
-                  ),
 
-                  // title text field is here
-                  TextFormField(
-                    style: TextStyle(fontSize: 16),
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: "Enter your college roll number",
-                      labelText: "Level",
-                    ),
-                    controller: level,
-                    //controller: emailController,
-                    // The validator receives the text that the user has entered Validation
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "Required";
-                      }
-                    },
-                    onSaved: (value) {
-                      //emailController.text = value!;
-                    },
-                  ),
-                  const SizedBox(
-                    height: 20,
-                  ),
+                      // College roll number text is here
+                      TextFormField(
+                        style: TextStyle(fontSize: 16),
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: "Your message here",
+                          labelText: "Message",
+                        ),
+                        controller: message,
+                        //controller: emailController,
+                        // The validator receives the text that the user has entered Validation
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Please enter your message";
+                          }
+                        },
+                        onChanged: (String value) {
+                          LeaveServiceProvider().Message = value;
+                        },
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
 
-                  // body message form field is here
-                  TextFormField(
-                    keyboardType: TextInputType.multiline,
-                    minLines: 1, //Normal textInputField will be displayed
-                    maxLines: 5, // when user presses enter it will adapt to it
-                    style: TextStyle(fontSize: 16),
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      hintText: "Write your reason here",
-                      labelText: "Reason",
-                    ),
-                    controller: reqReason,
-                    //controller: passwordController,
+                      // Course name text field is here
+                      TextFormField(
+                        style: TextStyle(fontSize: 16),
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: "Your application date here",
+                          labelText: "Application Date",
+                        ),
+                        controller: applicationDate,
+                        //controller: phoneController,
+                        // The validator receives the text that the user has entered Validation
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Required";
+                          }
+                          return null;
+                        },
+                        onChanged: (String value) {
+                          LeaveServiceProvider().ApplicationDate = value;
+                        },
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
 
-                    // The validator receives the text that the user has entered
-                    validator: (value) {
-                      if (value!.isEmpty) {
-                        return "Reason is required";
-                      }
-                    },
+                      // title text field is here
+                      TextFormField(
+                        style: TextStyle(fontSize: 16),
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: "Enter your leave start date",
+                          labelText: "Start Date",
+                        ),
+                        controller: startDate,
+                        //controller: emailController,
+                        // The validator receives the text that the user has entered Validation
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Required";
+                          }
+                        },
+                        onChanged: (String value) {
+                          LeaveServiceProvider().LeaveStartDate = value;
+                        },
+                      ),
+                      const SizedBox(
+                        height: 20,
+                      ),
 
-                    onSaved: (value) {
-                      //passwordController.text = value!;
-                    },
-                  ),
+                      // body message form field is here
+                      TextFormField(
+                        keyboardType: TextInputType.multiline,
+                        minLines: 1, //Normal textInputField will be displayed
+                        maxLines:
+                            5, // when user presses enter it will adapt to it
+                        style: TextStyle(fontSize: 16),
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          hintText: "Enter your end date",
+                          labelText: "End Date",
+                        ),
+                        controller: endDate,
+                        //controller: passwordController,
 
-                  SizedBox(
-                    height: 50,
-                  ),
+                        // The validator receives the text that the user has entered
+                        validator: (value) {
+                          if (value!.isEmpty) {
+                            return "Reason is required";
+                          }
+                        },
 
-                  // Request button is here
-                  ElevatedButton(
-                    child: Text(
-                      "Request",
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    style: TextButton.styleFrom(
-                        minimumSize: Size(395, 55),
-                        backgroundColor: Colors.green),
-                    onPressed: () {
-                      // If the user didnot input text on title form field
-                      // then it will show an error with the message
-                      if (name.text.isEmpty) {
-                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                          content: Text("This field is required"),
-                        ));
-                      } else {
-                        // Value were input on the eventmodel constructor
-                        LeaveModel leaveModel = LeaveModel(
-                          id: id.text,
-                          name: name.text,
-                          rollNo: rollno.text,
-                          reqReason: reqReason.text,
-                          level: level.text,
-                          leaveDate: "",
-                          status: "Pending",
-                          accRejReason: '',
-                          course: course.text,
-                        );
+                        onChanged: (String value) {
+                          LeaveServiceProvider().LeaveEndDate = value;
+                        },
+                      ),
 
-                        // Add method was called
-                        add(leaveModel);
-                        print("Added successfully");
+                      SizedBox(
+                        height: 50,
+                      ),
 
-                        // To update the UI Screen
-                        void reloadData() async {
-                          final postMdl = Provider.of<LeaveServiceProvider>(
+                      // Request button is here
+                      ElevatedButton(
+                        child: Text(
+                          "Request",
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                        style: TextButton.styleFrom(
+                            minimumSize: Size(395, 55),
+                            backgroundColor: Colors.green),
+                        onPressed: () {
+                          // If the user didnot input text on title form field
+                          // then it will show an error with the message
+                          if (subject.text.isEmpty) {
+                            ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                              content: Text("This field is required"),
+                            ));
+                          } else {
+                            final data = Provider.of<LeaveServiceProvider>(
+                                context,
+                                listen: false);
+                            LeaveModel model = LeaveModel(
+                                id: 0,
+                                subject: subject.text,
+                                message: message.text,
+                                applicationDate: applicationDate.text,
+                                leaveStartDate: startDate.text,
+                                leaveEndDate: endDate.text,
+                                status: status.text,
+                                approverRemarks: remarks.text);
+
+                            add(model);
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) => LeaveList()));
+
+                          }
+                        },
+                      ),
+
+                      SizedBox(
+                        height: 30,
+                      ),
+
+                      // Cancel button is here
+                      ElevatedButton(
+                        child: Text(
+                          "Cancel",
+                          style: TextStyle(
+                              fontSize: 18, fontWeight: FontWeight.bold),
+                        ),
+                        style: TextButton.styleFrom(
+                            minimumSize: Size(395, 55),
+                            backgroundColor: Colors.red),
+                        onPressed: () {
+                          Navigator.push(
                               context,
-                              listen: false);
-                          eventDatas = await LeaveService().getLeaveData();
-                          postMdl.updateEvent(eventDatas);
-                        }
-
-                        reloadData();
-                      }
-                    },
+                              MaterialPageRoute(
+                                  builder: (context) => LeaveForm()));
+                        },
+                      ),
+                    ],
                   ),
-
-                  SizedBox(
-                    height: 30,
-                  ),
-
-                  // Cancel button is here
-                  ElevatedButton(
-                    child: Text(
-                      "Cancel",
-                      style:
-                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
-                    ),
-                    style: TextButton.styleFrom(
-                        minimumSize: Size(395, 55),
-                        backgroundColor: Colors.red),
-                    onPressed: () {
-                      Navigator.push(context,
-                          MaterialPageRoute(builder: (context) => LeaveForm()));
-                    },
-                  ),
-                ],
+                ),
               ),
             ),
           ),
-        ),
-      ),
+        );
+      },
     );
   }
 }
