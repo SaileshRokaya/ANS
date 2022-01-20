@@ -26,35 +26,35 @@ class _AdminLeavePageState extends State<AdminLeavePage> {
   List<LeaveModel>? leaveDatas;
 
   // Create a method reloadData to update the UI screen
-  void reloadData() async {
-    final postMdl = Provider.of<LeaveServiceProvider>(context, listen: false);
-    leaveDatas = await LeaveService().getLeaveData();
-    postMdl.updateEvent(leaveDatas!);
-  }
+  // void reloadData() async {
+  //   final postMdl = Provider.of<LeaveServiceProvider>(context, listen: false);
+  //   leaveDatas = await LeaveService().getLeaveData();
+  //   postMdl.updateEvent(leaveDatas!);
+  // }
 
-  // Create a method user form status
-  void checkStatus() {
-    final postMdl = Provider.of<LeaveServiceProvider>(context, listen: false);
-  }
+  // // Create a method user form status
+  // void checkStatus() {
+  //   final postMdl = Provider.of<LeaveServiceProvider>(context, listen: false);
+  // }
 
-  // Create a method getEventUser to get all the event list
-  getEventUser() async {
-    // All the event list will be stored in eventDatas
-    leaveDatas = await LeaveService().getLeaveData();
-  }
+  // // Create a method getEventUser to get all the event list
+  // getEventUser() async {
+  //   // All the event list will be stored in eventDatas
+  //   leaveDatas = await LeaveService().getLeaveData();
+  // }
 
   // Create an update method to update the event title and message
-  update(LeaveModel leaveModel) async {
-    // Call the updateEvent method from the class EventService to update the
-    // event title and event message
-    await LeaveService().updateEvent(leaveModel).then((sucess) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("Update Sucessful"),
-      ));
-      // print("Add Sucessful");
-      //Navigator.pop(context);
-    });
-  }
+  // update(LeaveModel leaveModel) async {
+  //   // Call the updateEvent method from the class EventService to update the
+  //   // event title and event message
+  //   await LeaveService().updateEvent(leaveModel).then((sucess) {
+  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  //       content: Text("Update Sucessful"),
+  //     ));
+  //     // print("Add Sucessful");
+  //     //Navigator.pop(context);
+  //   });
+  // }
 
   String heading = "About fee payment date extend";
 
@@ -63,8 +63,8 @@ class _AdminLeavePageState extends State<AdminLeavePage> {
   // This method will call everytime
   @override
   void initState() {
-    reloadData();
-    _isButtonDisabled = false;
+    // reloadData();
+    // _isButtonDisabled = false;
   }
 
   @override
@@ -84,34 +84,34 @@ class _AdminLeavePageState extends State<AdminLeavePage> {
             // Check the condition whether the list is empty or not
             // if the list is empty, then it will display no data found
             // Otherwise it will display the list of events
-            child: provider.leaveList.isEmpty
+            child: provider.loading
                 ? Center(
                     child: const Text(
                     "No data found",
                     style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
                   ))
                 : ListView.builder(
-                    itemCount: provider.leaveList.length,
+                    itemCount: 4,
                     itemBuilder: (context, position) {
                       // All the event data will be added to eventGetList
                       //  EventModel eventGetList = eventDatas![index];
                       //  print("The list is $eventGetList");
-                      Map<String, dynamic> data = {
-                        "id": provider.leaveList[position].id,
-                        "name": provider.leaveList[position].name,
-                        "course": provider.leaveList[position].course,
-                        "level": provider.leaveList[position].level,
-                        "roll_no": provider.leaveList[position].rollNo,
-                        "leave_date": provider.leaveList[position].leaveDate,
-                        "status": provider.leaveList[position].status,
-                        "req_reason": provider.leaveList[position].reqReason,
-                        "acc_rej_reason":
-                            provider.leaveList[position].accRejReason
-                      };
-                      int ids = int.parse(provider.leaveList[position].id);
-                      print("THe updated id is: $ids");
+                      // Map<String, dynamic> data = {
+                      //   "id": provider.leaveList[position].id,
+                      //   "name": provider.leaveList[position].name,
+                      //   "course": provider.leaveList[position].course,
+                      //   "level": provider.leaveList[position].level,
+                      //   "roll_no": provider.leaveList[position].rollNo,
+                      //   "leave_date": provider.leaveList[position].leaveDate,
+                      //   "status": provider.leaveList[position].status,
+                      //   "req_reason": provider.leaveList[position].reqReason,
+                      //   "acc_rej_reason":
+                      //       provider.leaveList[position].accRejReason
+                      // };
+                      // int ids = int.parse(provider.leaveList[position].id);
+                      // print("THe updated id is: $ids");
 
-                      LeaveModel model = LeaveModel.fromJson(data);
+                      // LeaveModel model = LeaveModel.fromJson(data);
 
                       return Card(
                         margin: EdgeInsets.all(8.0),
@@ -125,21 +125,21 @@ class _AdminLeavePageState extends State<AdminLeavePage> {
 
                           // It contain the title of the event coming from the database
                           // with the help of provider
-                          title: Text(provider.leaveList[position].name,
-                              maxLines: 2,
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w800, fontSize: 21.0)),
+                          // title: Text(provider.leaveList[position].name,
+                          //     maxLines: 2,
+                          //     style: TextStyle(
+                          //         fontWeight: FontWeight.w800, fontSize: 21.0)),
 
                           // It will contain the data and time
                           // that coming from the data and convert in string
-                          subtitle: Text(
-                            provider.leaveList[position].status,
-                            // Text(
-                            //   DateFormat("\ndd-MM-yyyy kk:mm a")
-                            //       .format(date)
-                            //       .toString(),
-                            style: TextStyle(fontSize: 16),
-                          ),
+                          // subtitle: Text(
+                          //   provider.leaveList[position].status,
+                          //   // Text(
+                          //   //   DateFormat("\ndd-MM-yyyy kk:mm a")
+                          //   //       .format(date)
+                          //   //       .toString(),
+                          //   style: TextStyle(fontSize: 16),
+                          // ),
                           trailing: Row(
                             mainAxisSize: MainAxisSize.min,
                             children: [
@@ -183,13 +183,13 @@ class _AdminLeavePageState extends State<AdminLeavePage> {
                           // By tapping the particular card, it will show the body content of event
                           // With the help of alerdialog method
                           onTap: () {
-                            Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                    builder: (context) =>
-                                        AdminLeaveInformationPage(
-                                          leaveModel: model,
-                                        )));
+                            // Navigator.push(
+                            //     context,
+                            //     MaterialPageRoute(
+                            //         builder: (context) =>
+                            //             AdminLeaveInformationPage(
+                            //               leaveModel: model,
+                            //             )));
                           },
                         ),
                       );

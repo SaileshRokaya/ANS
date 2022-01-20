@@ -1,4 +1,5 @@
 import 'package:ans/admin/admin_panel.dart';
+import 'package:ans/model/leave_model.dart';
 
 import 'package:ans/provider/event_service_provider.dart';
 import 'package:ans/provider/fee_service_provider.dart';
@@ -15,6 +16,8 @@ class AcademicApp extends StatefulWidget {
 }
 
 class _AcademicAppState extends State<AcademicApp> {
+  late LeaveModel leaveModel;
+
   @override
   void initState() {
     super.initState();

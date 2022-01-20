@@ -1,79 +1,115 @@
 import 'package:ans/model/leave_model.dart';
 import 'package:ans/service/leave_service.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class LeaveServiceProvider with ChangeNotifier {
   LeaveService leaveService = LeaveService();
 
-  late String id;
-  late String name;
-  late String rollNo;
-  late String level;
-  late String leaveDate;
-  late String status;
-  late String reqReason;
-  late String accRejReason;
-  late String course;
+  int id = 0;
+  late String subject = "";
+  late String message = "";
+  late String applicationDate = "";
+  late String leaveStartDate = "";
+  late String leaveEndDate = "";
+  late String status = "";
+  late String approverRemarks = "";
 
   // Getters
-  String get Id => id;
-  String get Name => name;
-  String get RollNo => rollNo;
-  String get Level => level;
-  String get Reason => reqReason;
+  int get Id => id;
+  String get Subject => subject;
+  String get Message => message;
+  String get ApplicationDate => applicationDate;
+  String get LeaveStartDate => leaveStartDate;
+  String get LeaveEndDate => leaveEndDate;
   String get Status => status;
-  String get Course => course;
+  String get ApproverRemarks => approverRemarks;
 
   // Setters
 
-  set Id(String id) {
+  set Id(int id) {
     id = id;
   }
 
-  set Name(String name) {
-    name = name;
+  set Subject(String subject) {
+    subject = subject;
   }
 
-  set RollNo(String roll) {
-    rollNo = roll;
+  set Message(String message) {
+    message = message;
   }
 
-  set Level(String level) {
-    level = level;
+  set ApplicationDate(String application) {
+    applicationDate = application;
   }
 
-  set Course(String course) {
-    course = course;
+  set LeaveStartDate(String startDate) {
+    leaveStartDate = startDate;
+  }
+
+  set LeaveEndDate(String endDate) {
+    leaveEndDate = endDate;
   }
 
   set Status(String status) {
     status = status;
   }
 
-  set Reason(String reason) {
-    reqReason = reason;
+  set ApproverRemarks(String remarks) {
+    approverRemarks = remarks;
   }
 
   // View data with provider
-  List<LeaveModel> leaveList = [];
-  void updateEvent(List<LeaveModel> data) {
-    this.leaveList = data;
+  // List<LeaveModel> leaveList = [];
+  // void updateEvent(List<LeaveModel> data) {
+  //   this.leaveList = data;
+  //   notifyListeners();
+  // }
+
+  List<dynamic> leaveModel = [];
+  bool loading = false;
+
+  fetchData(context) async {
+    loading = true;
+    leaveModel = await LeaveService().getLeaveData(context);
+    loading = false;
     notifyListeners();
   }
 
-  // update function provider
-  updatedEvent() {
-    var updateEntry = LeaveModel(
-        id: id,
-        name: name,
-        course: course,
-        level: level,
-        rollNo: rollNo,
-        status: status,
-        leaveDate: leaveDate,
-        reqReason: reqReason,
-        accRejReason: accRejReason);
+  // Add method was created
+  // add() async {
+  //   // Call the addEvent method from EventService class to add the data on the database
+  //   // from the user
+  //   if (id == 0) {
+  //     var addLeave = LeaveModel(
+  //         id: id,
+  //         subject: subject,
+  //         message: message,
+  //         applicationDate: applicationDate,
+  //         leaveStartDate: leaveStartDate,
+  //         leaveEndDate: leaveEndDate,
+  //         status: status,
+  //         approverRemarks: approverRemarks);
+  //     await LeaveService().addLeave(addLeave);
+  //     notifyListeners();
+  //   } else {
+  //     print("Cannot add the data");
+  //   }
+  // }
 
-    LeaveService().updateEvent(updateEntry);
-  }
+  // update function provider
+  // updatedEvent() {
+  //   var updateEntry = LeaveModel(
+  //     id: id,
+  //     subject: subject,
+  //     message: message,
+  //     applicationDate: applicationDate,
+  //     leaveStartDate: leaveStartDate,
+  //     leaveEndDate: leaveEndDate,
+  //     status: status,
+  //     approverRemarks: approverRemarks
+  //       );
+
+  //   LeaveService().updateEvent(updateEntry);
+  // }
 }

@@ -30,29 +30,29 @@ class _AdminLeaveInformationPageState extends State<AdminLeaveInformationPage> {
   bool _isButtonDisabled = true;
 
   // Create an update method with the parameter EventModel class
-  update(LeaveModel leaveModel) async {
-    // Call the updateEvent method from the EventService class
-    // to update the event title or event message or both
-    await LeaveService().updateEvent(leaveModel).then((sucess) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-        content: Text("Update Sucessful"),
-      ));
-      // print("Add Sucessful");
-      Navigator.pop(context);
-    });
-  }
+  // update(LeaveModel leaveModel) async {
+  //   // Call the updateEvent method from the EventService class
+  //   // to update the event title or event message or both
+  //   await LeaveService().updateEvent(leaveModel).then((sucess) {
+  //     ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+  //       content: Text("Update Sucessful"),
+  //     ));
+  //     // print("Add Sucessful");
+  //     Navigator.pop(context);
+  //   });
+  // }
 
   @override
   void initState() {
     super.initState();
-    if (widget.leaveModel != null) {
-      name = widget.leaveModel!.name;
-      rollNo = widget.leaveModel!.rollNo;
-      level = widget.leaveModel!.level;
-      course = widget.leaveModel!.course;
-      reason = widget.leaveModel!.reqReason;
-      status = widget.leaveModel!.status;
-    }
+    // if (widget.leaveModel != null) {
+    //   name = widget.leaveModel!.name;
+    //   rollNo = widget.leaveModel!.rollNo;
+    //   level = widget.leaveModel!.level;
+    //   course = widget.leaveModel!.course;
+    //   reason = widget.leaveModel!.reqReason;
+    //   status = widget.leaveModel!.status;
+    // }
   }
 
   @override
@@ -146,33 +146,33 @@ class _AdminLeaveInformationPageState extends State<AdminLeaveInformationPage> {
                               content: Text("Cannot change the status")));
                         } else {
                           // Value were input on the eventmodel constructor
-                          LeaveModel leaveModel = LeaveModel(
-                            id: widget.leaveModel!.id,
-                            name: widget.leaveModel!.name,
-                            rollNo: widget.leaveModel!.rollNo,
-                            reqReason: widget.leaveModel!.reqReason,
-                            level: widget.leaveModel!.level,
-                            leaveDate: "",
-                            status: "Accept",
-                            accRejReason: '',
-                            course: widget.leaveModel!.course,
-                          );
+                          // LeaveModel leaveModel = LeaveModel(
+                          //   id: widget.leaveModel!.id,
+                          //   name: widget.leaveModel!.name,
+                          //   rollNo: widget.leaveModel!.rollNo,
+                          //   reqReason: widget.leaveModel!.reqReason,
+                          //   level: widget.leaveModel!.level,
+                          //   leaveDate: "",
+                          //   status: "Accept",
+                          //   accRejReason: '',
+                          //   course: widget.leaveModel!.course,
+                          // );
 
                           // Add method was called
-                          update(leaveModel);
+                          // update(leaveModel);
 
-                          print("Update successfully");
+                          // print("Update successfully");
 
-                          // To update the UI Screen
-                          void reloadData() async {
-                            final postMdl = Provider.of<LeaveServiceProvider>(
-                                context,
-                                listen: false);
-                            leaveDatas = await LeaveService().getLeaveData();
-                            postMdl.updateEvent(leaveDatas);
-                          }
+                          // // To update the UI Screen
+                          // void reloadData() async {
+                          //   final postMdl = Provider.of<LeaveServiceProvider>(
+                          //       context,
+                          //       listen: false);
+                          //   leaveDatas = await LeaveService().getLeaveData();
+                          //   postMdl.updateEvent(leaveDatas);
+                          // }
 
-                          reloadData();
+                          // reloadData();
                         }
                       },
                     ),
@@ -197,33 +197,33 @@ class _AdminLeaveInformationPageState extends State<AdminLeaveInformationPage> {
                                           Text("Cannot change the status")));
                             } else {
 // Value were input on the eventmodel constructor
-                              LeaveModel leaveModel = LeaveModel(
-                                id: widget.leaveModel!.id,
-                                name: widget.leaveModel!.name,
-                                rollNo: widget.leaveModel!.rollNo,
-                                reqReason: widget.leaveModel!.reqReason,
-                                level: widget.leaveModel!.level,
-                                leaveDate: "",
-                                status: "Reject",
-                                accRejReason: '',
-                                course: widget.leaveModel!.course,
-                              );
+                              // LeaveModel leaveModel = LeaveModel(
+                              //   id: widget.leaveModel!.id,
+                              //   name: widget.leaveModel!.name,
+                              //   rollNo: widget.leaveModel!.rollNo,
+                              //   reqReason: widget.leaveModel!.reqReason,
+                              //   level: widget.leaveModel!.level,
+                              //   leaveDate: "",
+                              //   status: "Reject",
+                              //   accRejReason: '',
+                              //   course: widget.leaveModel!.course,
+                              // );
 
                               // Add method was called
-                              update(leaveModel);
-                              print("Update successfully");
+                              // update(leaveModel);
+                              // print("Update successfully");
 
-                              // To update the UI Screen
-                              void reloadData() async {
-                                final postMdl =
-                                    Provider.of<LeaveServiceProvider>(context,
-                                        listen: false);
-                                leaveDatas =
-                                    await LeaveService().getLeaveData();
-                                postMdl.updateEvent(leaveDatas);
-                              }
+                              // // To update the UI Screen
+                              // void reloadData() async {
+                              //   final postMdl =
+                              //       Provider.of<LeaveServiceProvider>(context,
+                              //           listen: false);
+                              //   leaveDatas =
+                              //       await LeaveService().getLeaveData();
+                              //   postMdl.updateEvent(leaveDatas);
+                              // }
 
-                              reloadData();
+                              // reloadData();
                             }
                           }),
                     ),
